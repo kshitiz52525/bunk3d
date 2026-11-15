@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Report</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: {{scrim}}; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Close report sheet" style="flex: 1; display: block"></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" aria-label="Close report sheet" style="flex: 1; display: block"></a></sc-if>
+<div style="background: #17171B; border-radius: 28px 28px 0 0; padding: 10px 18px 26px; border-top: 1px solid #2E2E36">
+<div style="width: 40px; height: 4px; border-radius: 2px; background: #3A3A42; margin: 0 auto 14px"></div>
+
+<sc-if value="{{form}}" hint-placeholder-val="{{true}}">
+<h2 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">What’s wrong with it?</h2>
+<p style="margin: 4px 0 12px; font-size: 13px; color: #9A9AA5">They won’t know it was you.</p>
+<div style="display: flex; flex-direction: column; gap: 6px" role="radiogroup" aria-label="Report reason">
+<sc-for list="{{reasons}}" as="r" hint-placeholder-count="8">
+<button onClick="{{r.pick}}" role="radio" aria-checked="{{r.aria}}" style="display: flex; align-items: center; gap: 10px; text-align: left; border: 1.5px solid {{r.border}}; background: {{r.bg}}; color: #F5F5F0; font: inherit; font-size: 14px; font-weight: 700; padding: 0 12px; min-height: 44px; border-radius: 12px"><span style="width: 18px; height: 18px; border-radius: 9px; border: {{r.dot}}; box-sizing: border-box"></span>{{r.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{selfHarm}}" hint-placeholder-val="{{false}}">
+<div style="margin-top: 10px; background: #1A1626; border: 1px solid #B49CFF; border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.5; color: #E4E4DE"><b style="color: #CDBEFF">If you’re worried about someone — or yourself</b>, Tele-MANAS is free and 24×7: call <b>14416</b>. We’ll also flag this to our team right away.</div>
+</sc-if>
+<input aria-label="Add a note (optional)" placeholder="Add a note (optional)" style="margin-top: 10px; width: 100%; box-sizing: border-box; height: 44px; padding: 0 12px; background: #0D0D0F; border: 1px solid #2E2E36; border-radius: 12px; color: #F5F5F0; font: inherit; font-size: 14px">
+<label style="display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; font-weight: 700; min-height: 40px"><input type="checkbox" style="width: 20px; height: 20px; accent-color: #D4FF3A; margin: 0">Also block this user</label>
+<button onClick="{{submit}}" style="width: 100%; margin-top: 8px; border: 0; background: {{btnBg}}; color: {{btnFg}}; font: inherit; font-size: 16px; font-weight: 800; min-height: 54px; border-radius: 16px">Send report</button>
+</sc-if>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div style="text-align: center; padding: 10px 0 6px">
+<div style="width: 70px; height: 70px; margin: 0 auto; border-radius: 24px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; transform: rotate(-6deg)"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+<h2 style="margin: 16px 0 6px; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800">Got it. Thanks for looking out.</h2>
+<p style="margin: 0; font-size: 13px; color: #9A9AA5; line-height: 1.5">Campus Mods will review it. At 3 reports it’s hidden until they do. You’ll hear back in Notices.</p>
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" style="margin-top: 16px; display: flex; justify-content: center; align-items: center; min-height: 52px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">Back to Tea</a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" style="margin-top: 16px; display: flex; justify-content: center; align-items: center; min-height: 52px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">Back to Tea</a></sc-if>
+</div>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { r: '', done: false }; }
+_rv() {
+const sel = this.state.r;
+const reasons = ['Harassment or bullying', 'Hate', 'Naming or doxxing someone', 'Sexual content', 'Self-harm', 'Spam', 'Misinformation', 'Something else'].map((l) => {
+const on = l === sel;
+return { label: l, aria: on ? 'true' : 'false', bg: on ? '#26262D' : 'transparent', border: on ? '#D4FF3A' : '#26262D', dot: on ? '6px solid #D4FF3A' : '2px solid #4A4A54', pick: () => this.setState({ r: l }) };
+});
+return {
+reasons: reasons, form: !this.state.done, done: this.state.done, selfHarm: sel === 'Self-harm',
+btnBg: sel ? '#D4FF3A' : '#2A2A31', btnFg: sel ? '#0D0D0F' : '#6E6E78',
+submit: () => { if (sel) this.setState({ done: true }); }
+};
+}
+renderVals() {
+const v = this._rv() || {};
+v.scrim = this.props.back ? 'rgba(5,5,6,0.62)' : '#050506';
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+[].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

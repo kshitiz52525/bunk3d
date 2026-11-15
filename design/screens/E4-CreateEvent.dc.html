@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Create event</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #222228">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="E1-Events.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a></sc-if>
+<span style="font-family: Unbounded, sans-serif; font-size: 15px; font-weight: 800">New event</span>
+<span style="font-size: 13px; font-weight: 700; color: #9A9AA5; min-width: 44px; text-align: right">Draft</span>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 10px; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px">
+<span style="width: 34px; height: 34px; border-radius: 11px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 9px; font-weight: 800">GDG</span>
+<span style="flex: 1; font-size: 13px; font-weight: 700">Hosting as <b>GDG Atria</b></span>
+<span style="font-size: 11px; font-weight: 800; color: #9A9AA5">Club admin</span>
+</div>
+<button style="height: 110px; border: 2px dashed #4A4A54; border-radius: 18px; background: #17171B; color: #F5F5F0; font: inherit; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4FF3A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg><span style="font-size: 14px; font-weight: 800">Add a cover</span></button>
+<div><label for="et" style="font-size: 12px; font-weight: 800; color: #9A9AA5">Title</label><input id="et" value="Hack the Canteen" style="margin-top: 6px; width: 100%; box-sizing: border-box; height: 48px; padding: 0 14px; background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; color: #F5F5F0; font: inherit; font-size: 15px; font-weight: 700"></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+<button onClick="{{c.pick}}" style="border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 34px; border-radius: 17px">{{c.label}}</button>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div style="background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; padding: 9px 11px"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">STARTS</div><div style="font-size: 14px; font-weight: 700">31 Oct · 6:00 PM</div></div>
+<div style="background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; padding: 9px 11px"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">ENDS</div><div style="font-size: 14px; font-weight: 700">1 Nov · 6:00 AM</div></div>
+<div style="background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; padding: 9px 11px"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">VENUE</div><div style="font-size: 14px; font-weight: 700">Tech Lab 2</div></div>
+<div style="background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; padding: 9px 11px"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">CAPACITY</div><div style="font-size: 14px; font-weight: 700">120</div></div>
+<div style="background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; padding: 9px 11px; grid-column: span 2"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">RSVP DEADLINE</div><div style="font-size: 14px; font-weight: 700">Thu 30 Oct · 11:59 PM</div></div>
+</div>
+<textarea aria-label="Description" style="height: 70px; box-sizing: border-box; padding: 10px 12px; background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; color: #F5F5F0; font: inherit; font-size: 14px; line-height: 1.45; resize: none">Teams of 2–4 build anything that fixes campus life.</textarea>
+<div style="display: flex; align-items: center; gap: 8px">
+<div role="radiogroup" aria-label="Ticket type" style="display: flex; background: #17171B; border-radius: 12px; padding: 3px; gap: 3px"><button onClick="{{setFree}}" role="radio" aria-checked="{{freeOn}}" style="border: 0; background: {{freeBg}}; color: {{freeFg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 14px; min-height: 34px; border-radius: 10px">Free</button><button onClick="{{setPaid}}" role="radio" aria-checked="{{paidOn}}" style="border: 0; background: {{paidBg}}; color: {{paidFg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 14px; min-height: 34px; border-radius: 10px">Paid</button></div>
+<sc-if value="{{paid}}" hint-placeholder-val="{{false}}"><span style="display: flex; align-items: center; height: 40px; padding: 0 12px; background: #17171B; border: 1.5px solid #D4FF3A; border-radius: 12px; font-size: 14px; font-weight: 800">₹ 199</span></sc-if>
+</div>
+<div style="font-size: 12px; color: #9A9AA5; line-height: 1.45">{{ticketNote}}</div>
+</div>
+<div style="padding: 10px 16px 26px">
+<a href="E2-EventDetail.dc.html" style="display: flex; justify-content: center; align-items: center; min-height: 56px; background: #D4FF3A; color: #0D0D0F; border-radius: 16px; font-size: 16px; font-weight: 800; text-decoration: none; box-shadow: 4px 4px 0 #B49CFF">Publish event</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { cat: 'Tech', paid: false }; }
+_rv() {
+const cats = ['Tech', 'Cultural', 'Sports', 'Workshop', 'Fest'].map((l) => {
+const on = l === this.state.cat;
+return { label: l, bg: on ? '#D4FF3A' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#D4FF3A' : '#2E2E36', pick: () => this.setState({ cat: l }) };
+});
+const pd = this.state.paid;
+return { cats: cats, paid: pd, freeOn: pd ? 'false' : 'true', paidOn: pd ? 'true' : 'false',
+freeBg: pd ? 'transparent' : '#F5F5F0', freeFg: pd ? '#9A9AA5' : '#0D0D0F', paidBg: pd ? '#D4FF3A' : 'transparent', paidFg: pd ? '#0D0D0F' : '#9A9AA5',
+setFree: () => this.setState({ paid: false }), setPaid: () => this.setState({ paid: true }),
+ticketNote: pd ? 'Buyers pay ₹199 + 5% platform fee (₹10) + 18% GST on that fee (₹1.80) = ₹210.80. Paid through Razorpay; full refund until 48 h before.' : 'Free RSVP. Switch to Paid to sell tickets.' };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+[].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

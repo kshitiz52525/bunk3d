@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bunk3d ops console</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3A5000}a:hover{color:#121214}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F3F2EC; color: #121214; font-family: Inter, system-ui, sans-serif; display: flex; flex-wrap: wrap">
+<aside style="flex: 1 1 220px; max-width: 100%; box-sizing: border-box; background: #121214; color: #F5F5F0; padding: 22px 14px; display: flex; flex-direction: column; gap: 4px">
+<div style="padding: 0 10px 18px"><div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.8px">bunk<span style="color: #D4FF3A">3</span>d <span style="font-family: Inter, sans-serif; font-size: 12px; color: #9A9AA5; font-weight: 700">ops</span></div><div style="font-size: 11px; color: #9A9AA5; margin-top: 4px">Signed in · 2FA · Priya (ops mod)</div></div>
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="5">
+<button onClick="{{n.pick}}" style="display: flex; align-items: center; justify-content: space-between; text-align: left; border: 0; background: {{n.bg}}; color: {{n.fg}}; font: inherit; font-size: 14px; font-weight: 700; padding: 0 12px; min-height: 44px; border-radius: 10px"><span>{{n.label}}</span><span style="font-size: 11px; font-weight: 800; color: {{n.countFg}}">{{n.count}}</span></button>
+</sc-for>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 40px">
+<div style="max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px">
+<div><div style="font-size: 12px; font-weight: 800; color: #62626C; letter-spacing: 1px">{{code}}</div><h1 style="margin: 2px 0 0; font-family: Unbounded, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -1px">{{title}}</h1></div>
+<span style="font-size: 13px; color: #62626C">Every action here is written to the audit log.</span>
+</div>
+
+<sc-if value="{{isVer}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<div style="flex: 999 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; overflow: hidden">
+<div style="overflow-x: auto"><table style="width: 100%; min-width: 600px; border-collapse: collapse; font-size: 13px">
+<thead><tr style="text-align: left; font-size: 11px; color: #62626C; letter-spacing: 0.8px; background: #FAFAF6"><th style="padding: 12px 16px">STUDENT</th><th style="padding: 12px 8px">CAMPUS</th><th style="padding: 12px 8px">METHOD</th><th style="padding: 12px 8px">WAITING</th><th style="padding: 12px 16px">ACTION</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #EEEDE6; background: #F7FFE0"><td style="padding: 12px 16px; font-weight: 800">Aditi R.</td><td style="padding: 12px 8px">Christ University</td><td style="padding: 12px 8px">Student ID</td><td style="padding: 12px 8px; color: #B26A00; font-weight: 800">19 h</td><td style="padding: 12px 16px">Reviewing →</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">Mohit S.</td><td style="padding: 12px 8px">Christ University</td><td style="padding: 12px 8px">Student ID</td><td style="padding: 12px 8px">6 h</td><td style="padding: 12px 16px">Open</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">Fatima K.</td><td style="padding: 12px 8px">Atria University</td><td style="padding: 12px 8px">ID (no college email)</td><td style="padding: 12px 8px">2 h</td><td style="padding: 12px 16px">Open</td></tr>
+</tbody></table></div>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; padding: 18px">
+<div style="font-size: 15px; font-weight: 800">Aditi R. · Christ University</div>
+<div style="height: 150px; margin-top: 12px; border-radius: 12px; background: #ECEAE2; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: #62626C">[ID IMAGE · signed URL, expires 5 min]</div>
+<div style="font-size: 12px; color: #62626C; margin-top: 10px; line-height: 1.5">Name matches profile · college matches · DOB on ID: 2005 (18+)</div>
+<div style="display: flex; gap: 8px; margin-top: 12px"><button style="flex: 1; border: 0; background: #121214; color: #D4FF3A; font: inherit; font-size: 14px; font-weight: 800; min-height: 44px; border-radius: 10px">Approve</button><button style="flex: 1; border: 1px solid #D6D3C9; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700; min-height: 44px; border-radius: 10px">Reject with reason</button></div>
+<div style="font-size: 11px; color: #62626C; margin-top: 8px">Image auto-deletes 30 days after decision.</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isRep}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; overflow: hidden"><div style="overflow-x: auto"><table style="width: 100%; min-width: 680px; border-collapse: collapse; font-size: 13px">
+<thead><tr style="text-align: left; font-size: 11px; color: #62626C; letter-spacing: 0.8px; background: #FAFAF6"><th style="padding: 12px 16px">ITEM</th><th style="padding: 12px 8px">SOURCE</th><th style="padding: 12px 8px">MOD VOTES</th><th style="padding: 12px 8px">DUE</th><th style="padding: 12px 16px">ACTIONS</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px"><b>Anon post</b> · “canteen staff name…”</td><td style="padding: 12px 8px">Split vote · Atria</td><td style="padding: 12px 8px">Remove 1 · Keep 1</td><td style="padding: 12px 8px; color: #B26A00; font-weight: 800">in 6 h</td><td style="padding: 12px 16px">Remove · Keep · <b>Anon lookup</b></td></tr>
+<tr style="border-top: 1px solid #EEEDE6; background: #FFF0F0"><td style="padding: 12px 16px"><b>Comment</b> · threat</td><td style="padding: 12px 8px">AI severe · blocked</td><td style="padding: 12px 8px">—</td><td style="padding: 12px 8px; color: #C62828; font-weight: 800">now</td><td style="padding: 12px 16px">Ban · Escalate legal</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px"><b>Appeal</b> · removed note</td><td style="padding: 12px 8px">Author appeal</td><td style="padding: 12px 8px">Removed 2-0</td><td style="padding: 12px 8px">in 60 h</td><td style="padding: 12px 16px">Uphold · Restore</td></tr>
+</tbody></table></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; padding: 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center"><b style="font-size: 14px">Anonymous author lookup</b><input aria-label="Reason for lookup (required)" placeholder="Reason (required) — e.g. report #4412, threat" style="flex: 1 1 260px; height: 42px; padding: 0 12px; border: 1px solid #D6D3C9; border-radius: 10px; font: inherit; font-size: 13px"><button style="border: 0; background: #121214; color: #F5F5F0; font: inherit; font-size: 13px; font-weight: 800; padding: 0 16px; min-height: 42px; border-radius: 10px">Reveal &amp; log</button></div>
+</sc-if>
+
+<sc-if value="{{isUsers}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; overflow: hidden"><div style="overflow-x: auto"><table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 13px">
+<thead><tr style="text-align: left; font-size: 11px; color: #62626C; letter-spacing: 0.8px; background: #FAFAF6"><th style="padding: 12px 16px">USER</th><th style="padding: 12px 8px">CAMPUS</th><th style="padding: 12px 8px">STRIKES (90 d)</th><th style="padding: 12px 8px">STATUS</th><th style="padding: 12px 16px">ACTIONS</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">@quietstorm</td><td style="padding: 12px 8px">Atria</td><td style="padding: 12px 8px">2</td><td style="padding: 12px 8px; color: #B26A00; font-weight: 800">Muted until 25 Oct</td><td style="padding: 12px 16px">Add strike · Lift mute</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">@spam.king</td><td style="padding: 12px 8px">Christ</td><td style="padding: 12px 8px">3</td><td style="padding: 12px 8px; color: #C62828; font-weight: 800">7-day ban</td><td style="padding: 12px 16px">Permanent ban</td></tr>
+</tbody></table></div></div>
+</sc-if>
+
+<sc-if value="{{isCampus}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; padding: 18px"><div style="font-size: 15px; font-weight: 800">Atria University</div><div style="font-size: 12px; color: #62626C; margin-top: 4px">Live · atriauniversity.edu.in · 1,284 verified</div><div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px"><span style="background: #121214; color: #D4FF3A; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 8px">Wave 1 ✓</span><span style="background: #121214; color: #D4FF3A; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 8px">Wave 2 ✓</span><span style="background: #FFF4DE; color: #8A5200; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 8px">Wave 3 · waiting on CA sign-off</span><span style="background: #ECEAE2; color: #62626C; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 8px">Wave 4 off</span></div>
+<div style="font-size: 12px; color: #62626C; margin-top: 8px">Day-7 retention 31% · 1,040 weekly active · gate for wave 3 met except legal</div>
+<div style="font-size: 13px; margin-top: 12px; line-height: 1.7">Campus Mods: 11 / 15<br>Notice account: Office of Students ✓<br>Seeded notes: 236</div><button style="margin-top: 12px; border: 0; background: #121214; color: #D4FF3A; font: inherit; font-size: 13px; font-weight: 800; padding: 0 14px; min-height: 40px; border-radius: 10px">Assign Campus Mod</button></div>
+<div style="background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; padding: 18px"><div style="font-size: 15px; font-weight: 800">Christ University</div><div style="font-size: 12px; color: #62626C; margin-top: 4px">Live · ID upload only · 612 verified</div><div style="font-size: 13px; margin-top: 12px; line-height: 1.7">Campus Mods: 6 / 15<br>Notice account: not agreed<br>Seeded notes: 118</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{isRoles}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; overflow: hidden"><div style="overflow-x: auto"><table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 13px">
+<thead><tr style="text-align: left; font-size: 11px; color: #62626C; letter-spacing: 0.8px; background: #FAFAF6"><th style="padding: 12px 16px">PERSON</th><th style="padding: 12px 8px">ROLE</th><th style="padding: 12px 8px">SCOPE</th><th style="padding: 12px 8px">GRANTED BY</th><th style="padding: 12px 16px">ACTION</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">Aarav Sharma</td><td style="padding: 12px 8px">Campus Mod</td><td style="padding: 12px 8px">campus: Atria</td><td style="padding: 12px 8px">kshitiz · trained 22 Oct</td><td style="padding: 12px 16px">Revoke</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">Aarav Sharma</td><td style="padding: 12px 8px">Club admin</td><td style="padding: 12px 8px">club: GDG Atria</td><td style="padding: 12px 8px">College HQ verified</td><td style="padding: 12px 16px">Revoke</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">Dr. Meera Iyer</td><td style="padding: 12px 8px">College admin · signatory</td><td style="padding: 12px 8px">campus: Atria</td><td style="padding: 12px 8px">ops · documents checked</td><td style="padding: 12px 16px">Revoke</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">Neha (Infinix)</td><td style="padding: 12px 8px">Brand owner</td><td style="padding: 12px 8px">brand: Infinix India</td><td style="padding: 12px 8px">OP7 verified</td><td style="padding: 12px 16px">Revoke</td></tr>
+</tbody></table></div></div>
+<button style="align-self: flex-start; border: 0; background: #121214; color: #D4FF3A; font: inherit; font-size: 13px; font-weight: 800; padding: 0 16px; min-height: 42px; border-radius: 10px">+ Assign role</button>
+</sc-if>
+
+<sc-if value="{{isSpots}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<div style="flex: 999 1 480px; min-width: 0; height: 380px; border-radius: 16px; background: #E1E8DC; position: relative; overflow: hidden; border: 1px solid #D6D3C9">
+<span style="position: absolute; left: -40px; top: 150px; width: 900px; height: 20px; background: #FFFFFF; transform: rotate(-8deg)" aria-hidden="true"></span>
+<span style="position: absolute; left: 260px; top: -20px; width: 18px; height: 500px; background: #FFFFFF; transform: rotate(6deg)" aria-hidden="true"></span>
+<span style="position: absolute; left: 120px; top: 90px; background: #121214; color: #D4FF3A; font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 14px">Block A Canteen</span>
+<span style="position: absolute; left: 340px; top: 60px; background: #121214; color: #F5F5F0; font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 14px">Central Quad</span>
+<span style="position: absolute; left: 90px; top: 250px; background: #121214; color: #F5F5F0; font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 14px">Library Café</span>
+<span style="position: absolute; left: 380px; top: 240px; border: 2px dashed #121214; color: #121214; font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 14px; background: rgba(255,255,255,0.7)">+ drop a new spot</span>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 15px; font-weight: 800">Block A Canteen</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; font-size: 12px"><div style="background: #FAFAF6; border-radius: 10px; padding: 8px"><b>Category</b><br>Chai &amp; cafés</div><div style="background: #FAFAF6; border-radius: 10px; padding: 8px"><b>Hours</b><br>7 AM – 9 PM</div><div style="background: #FAFAF6; border-radius: 10px; padding: 8px"><b>Crowd override</b><br>Auto (check-ins)</div><div style="background: #FAFAF6; border-radius: 10px; padding: 8px"><b>Photos</b><br>3 uploaded</div></div>
+<div style="font-size: 12px; color: #62626C">Crowd shows “updated N min ago” in the app. No student location is ever stored.</div>
+<button style="border: 0; background: #121214; color: #D4FF3A; font: inherit; font-size: 13px; font-weight: 800; min-height: 42px; border-radius: 10px">Save spot</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isBrands}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; overflow: hidden"><div style="overflow-x: auto"><table style="width: 100%; min-width: 700px; border-collapse: collapse; font-size: 13px">
+<thead><tr style="text-align: left; font-size: 11px; color: #62626C; letter-spacing: 0.8px; background: #FAFAF6"><th style="padding: 12px 16px">ITEM</th><th style="padding: 12px 8px">TYPE</th><th style="padding: 12px 8px">POLICY CHECK</th><th style="padding: 12px 8px">FUNDING</th><th style="padding: 12px 16px">DECISION</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">Infinix · Phone sampling week</td><td style="padding: 12px 8px">Campaign</td><td style="padding: 12px 8px; color: #1E8A5C; font-weight: 800">Category allowed · age-appropriate</td><td style="padding: 12px 8px">₹2,50,000 held by partner</td><td style="padding: 12px 16px"><b>Approve</b> · Request changes · Reject</td></tr>
+<tr style="border-top: 1px solid #EEEDE6; background: #FFF0F0"><td style="padding: 12px 16px; font-weight: 800">[BRAND] · Fantasy league ambassadors</td><td style="padding: 12px 8px">Campaign</td><td style="padding: 12px 8px; color: #C62828; font-weight: 800">Betting / fantasy gaming — not allowed</td><td style="padding: 12px 8px">—</td><td style="padding: 12px 16px"><b>Reject</b></td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 12px 16px; font-weight: 800">Zordie AI</td><td style="padding: 12px 8px">Brand verification</td><td style="padding: 12px 8px">GST + incorporation docs uploaded</td><td style="padding: 12px 8px">—</td><td style="padding: 12px 16px"><b>Verify brand</b></td></tr>
+</tbody></table></div></div>
+</sc-if>
+
+<sc-if value="{{isAudit}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; overflow: hidden"><div style="overflow-x: auto"><table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 13px; font-family: ui-monospace, Menlo, monospace">
+<thead><tr style="text-align: left; font-size: 11px; color: #62626C; background: #FAFAF6; font-family: Inter, sans-serif"><th style="padding: 12px 16px">TIME</th><th style="padding: 12px 8px">ACTOR</th><th style="padding: 12px 8px">ACTION</th><th style="padding: 12px 16px">REASON</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 10px 16px">10:41</td><td style="padding: 10px 8px">priya</td><td style="padding: 10px 8px">anon_lookup post#88123</td><td style="padding: 10px 16px">report #4412 threat</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 10px 16px">10:12</td><td style="padding: 10px 8px">mods(2)</td><td style="padding: 10px 8px">remove post#88090</td><td style="padding: 10px 16px">rule 2 naming</td></tr>
+<tr style="border-top: 1px solid #EEEDE6"><td style="padding: 10px 16px">09:55</td><td style="padding: 10px 8px">kshitiz</td><td style="padding: 10px 8px">role_assign campus_mod</td><td style="padding: 10px 16px">trained 22 Oct</td></tr>
+</tbody></table></div></div>
+</sc-if>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":960}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { s: 'ver' }; }
+renderVals() {
+const defs = [['ver', 'Verifications', '3', 'OP1'], ['rep', 'Reports & escalations', '3', 'OP2'], ['users', 'Users & strikes', '', 'OP3'], ['campus', 'Campuses, waves & flags', '', 'OP4'], ['roles', 'Roles', '', 'OP5'], ['spots', 'Radar spots', '', 'OP6'], ['brands', 'Brand & campaign review', '2', 'OP7'], ['audit', 'Audit log', '', 'OP8']];
+const s = this.state.s;
+const nav = defs.map(([k, l, c]) => ({ label: l, count: c, bg: k === s ? '#D4FF3A' : 'transparent', fg: k === s ? '#121214' : '#E4E4DE', countFg: k === s ? '#121214' : '#FF6B9A', pick: () => this.setState({ s: k }) }));
+const cur = defs.find((d) => d[0] === s);
+return { nav: nav, title: cur[1], code: cur[3], isVer: s === 'ver', isRep: s === 'rep', isUsers: s === 'users', isCampus: s === 'campus', isAudit: s === 'audit', isRoles: s === 'roles', isSpots: s === 'spots', isBrands: s === 'brands' };
+}
+}
+</script>
+</body>
+</html>

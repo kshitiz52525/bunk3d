@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Submit proof</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B49CFF}a:hover{color:#CDBEFF}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="H5-Workspace.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<div style="flex: 1"><div style="font-size: 12px; color: #9A9AA5; font-weight: 700">Design 4 event posters · ₹1,000</div><div style="font-size: 15px; font-weight: 800">Submit proof</div></div>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="5"><div><div style="height: 5px; border-radius: 3px; background: {{s.bar}}"></div><div style="font-size: 10px; font-weight: 800; color: {{s.fg}}; margin-top: 5px">{{s.label}}</div></div></sc-for>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">FILES · REQUIRED BY THE BRIEF</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<span style="aspect-ratio: 3/4; border-radius: 12px; background: #D4FF3A"></span><span style="aspect-ratio: 3/4; border-radius: 12px; background: #FF6B9A"></span><span style="aspect-ratio: 3/4; border-radius: 12px; background: #5CC8FF"></span><span style="aspect-ratio: 3/4; border-radius: 12px; background: #FFB547"></span>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px"><span style="flex: 1; font-size: 13px; font-weight: 700">posters-final.zip · 18 MB</span><span style="font-size: 12px; color: #3DDC97; font-weight: 800">Uploaded</span></div>
+<textarea aria-label="Note to reviewer" style="min-height: 76px; border-radius: 14px; border: 1px solid #2E2E36; background: #17171B; color: #F5F5F0; font: inherit; font-size: 14px; padding: 12px; resize: none">Bumped the date size on poster 3 like you asked. Source files in the zip.</textarea>
+<sc-if value="{{revision}}" hint-placeholder-val="{{false}}"><div style="background: #3D2E0D; color: #FFD58A; border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.45"><b>Rhea asked for changes (1 of 2 free revisions):</b> poster 4 still says Oct. Swap to Nov 9.</div></sc-if>
+<sc-if value="{{approved}}" hint-placeholder-val="{{false}}"><div style="background: #12301F; color: #9FF0C6; border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.45"><b>Approved.</b> ₹970.50 (₹1,000 minus the 2.5% club-gig fee and GST on it) is now <b>Pending</b> in My Bag. It becomes Payable after the 7-day hold.</div></sc-if>
+<sc-if value="{{submitted}}" hint-placeholder-val="{{false}}"><div style="background: #1A1626; border: 1.5px solid #B49CFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 12px; background: #B49CFF; color: #0D0D0F; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span style="flex: 1"><span style="display: block; font-size: 15px; font-weight: 800">Sent to Rhea for review</span><span style="display: block; font-size: 12px; color: #C9C9C3">GDG Atria · events lead</span></span></div>
+<div style="display: grid; grid-template-columns: 70px minmax(0, 1fr); row-gap: 6px; font-size: 12px; line-height: 1.4"><span style="color: #9A9AA5; font-weight: 700">By Tue 4 Nov</span><span>Rhea approves or asks for changes (2 free revisions)</span><span style="color: #9A9AA5; font-weight: 700">No reply</span><span>Auto-approved after 3 days</span><span style="color: #9A9AA5; font-weight: 700">Then</span><span>₹970.50 goes to <b>Pending</b> in My Bag, Payable after a 7-day hold</span></div>
+<div style="font-size: 12px; color: #9A9AA5">We’ll ping you in Notices. You can keep working on other gigs.</div>
+</div></sc-if>
+<sc-if value="{{working}}" hint-placeholder-val="{{true}}"><div style="font-size: 12px; color: #9A9AA5; line-height: 1.45">Reviewer has 3 days to approve or ask for changes. No reply = auto-approved.</div></sc-if>
+</div>
+<div style="padding: 10px 16px 26px; display: flex; flex-direction: column; gap: 8px">
+<sc-if value="{{editable}}" hint-placeholder-val="{{true}}"><div style="display: flex; gap: 8px">
+<button style="flex: 1; border: 0; background: #1F1F25; color: #F5F5F0; font: inherit; font-size: 13px; font-weight: 700; min-height: 56px; border-radius: 16px">Save draft</button>
+<button onClick="{{go}}" style="flex: 2; border: 0; background: #B49CFF; color: #0D0D0F; font: inherit; font-size: 15px; font-weight: 800; min-height: 56px; border-radius: 16px">{{cta}}</button>
+</div></sc-if>
+<sc-if value="{{submitted}}" hint-placeholder-val="{{false}}">
+<a href="H4-MyWork.dc.html" style="display: flex; justify-content: center; align-items: center; min-height: 56px; background: #B49CFF; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">Back to My Work</a>
+<div style="display: flex; gap: 8px"><button onClick="{{alt}}" style="flex: 1; border: 0; background: #1F1F25; color: #C9C9C3; font: inherit; font-size: 12px; font-weight: 700; min-height: 40px; border-radius: 12px">Preview: changes asked</button><button onClick="{{go}}" style="flex: 1; border: 0; background: #1F1F25; color: #C9C9C3; font: inherit; font-size: 12px; font-weight: 700; min-height: 40px; border-radius: 12px">Preview: approved</button></div>
+</sc-if>
+<sc-if value="{{approved}}" hint-placeholder-val="{{false}}"><div style="display: flex; gap: 8px">
+<a href="#open-H7" onClick="{{ovOpen_H7}}" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 56px; background: #1F1F25; color: #F5F5F0; border-radius: 16px; font-size: 13px; font-weight: 700; text-decoration: none">Something’s off</a>
+<a href="#open-B2" onClick="{{ovOpen_B2}}" style="flex: 2; display: flex; justify-content: center; align-items: center; min-height: 56px; background: #B49CFF; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">See ₹970.50 in My Bag</a>
+</div></sc-if>
+</div>
+<sc-if value="{{ovShow_H7}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="H7-Dispute" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_B2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="B2-EarningDetail" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { s: 0 }; }
+_rv() {
+const s = this.state.s;
+const labels = ['Working', 'Submitted', 'Review', 'Changes', 'Approved'];
+const idx = [0, 2, 3, 4][s];
+const steps = labels.map((l, i) => ({ label: l, bar: i <= idx ? (i === 3 && s === 3 ? '#FFB547' : '#B49CFF') : '#26262D', fg: i <= idx ? '#F5F5F0' : '#6E6E78' }));
+const ctas = ['Submit for review', 'In review · simulate approve', 'Resubmit', 'View in My Bag'];
+return {
+steps: steps, revision: s === 2, approved: s === 3, submitted: s === 1, working: s === 0 || s === 2, editable: s === 0 || s === 2, cta: ctas[s],
+ctaBg: s === 1 ? '#26262D' : '#B49CFF', ctaFg: s === 1 ? '#C9C9C3' : '#0D0D0F',
+altLabel: s === 1 ? 'Simulate changes' : (s === 3 ? 'Dispute' : 'Save draft'),
+alt: () => { if (s === 1) this.setState({ s: 2 }); },
+go: () => { if (s === 0 || s === 2) this.setState({ s: 1 }); else if (s === 1) this.setState({ s: 3 }); }
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["H7", "B2"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

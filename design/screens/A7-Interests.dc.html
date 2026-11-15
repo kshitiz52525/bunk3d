@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Interests and goals</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; padding: 16px 22px 30px">
+<div style="display: flex; align-items: center; justify-content: space-between; height: 48px">
+<a href="A6-Profile.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<span style="font-size: 12px; font-weight: 800; color: #9A9AA5; letter-spacing: 1px">STEP 5 OF 7</span>
+<span style="width: 44px"></span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-top: 8px">
+<span style="height: 5px; border-radius: 3px; background: #D4FF3A"></span><span style="height: 5px; border-radius: 3px; background: #D4FF3A"></span><span style="height: 5px; border-radius: 3px; background: #D4FF3A"></span><span style="height: 5px; border-radius: 3px; background: #D4FF3A"></span><span style="height: 5px; border-radius: 3px; background: #D4FF3A"></span><span style="height: 5px; border-radius: 3px; background: #26262D"></span><span style="height: 5px; border-radius: 3px; background: #26262D"></span>
+</div>
+
+<h1 style="margin: 22px 0 4px; font-family: Unbounded, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -1px">What’s your vibe?</h1>
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 10px"><span style="font-size: 15px; font-weight: 800">Interests</span><span style="font-size: 12px; font-weight: 800; color: {{iColor}}">{{iCount}} picked · 3 to 10</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px">
+<sc-for list="{{interests}}" as="t" hint-placeholder-count="14">
+<button onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" style="border: 1.5px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 14px; font-weight: 700; padding: 0 14px; min-height: 40px; border-radius: 20px; transform: rotate({{t.rot}}deg)">{{t.label}}</button>
+</sc-for>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 22px"><span style="font-size: 15px; font-weight: 800">I’m here to…</span><span style="font-size: 12px; font-weight: 800; color: {{gColor}}">{{gCount}} picked · 1 to 4</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px">
+<sc-for list="{{goals}}" as="t" hint-placeholder-count="6">
+<button onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" style="border: 1.5px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 14px; font-weight: 700; padding: 0 14px; min-height: 40px; border-radius: 20px">{{t.label}}</button>
+</sc-for>
+</div>
+
+<div style="flex: 1"></div>
+<a href="A8-Clubs.dc.html" style="display: flex; justify-content: center; align-items: center; min-height: 56px; background: #D4FF3A; color: #0D0D0F; border-radius: 16px; font-size: 16px; font-weight: 800; text-decoration: none; box-shadow: 4px 4px 0 #B49CFF">Next</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { i: ['Coding', 'Startups', 'Cricket', 'Memes'], g: ['Find notes', 'Make friends'] }; }
+build(list, key, max, onColor, rot) {
+const sel = this.state[key];
+return list.map((l, n) => {
+const on = sel.indexOf(l) !== -1;
+return {
+label: l, pressed: on ? 'true' : 'false',
+bg: on ? onColor : '#17171B', fg: on ? '#0D0D0F' : '#E4E4DE', border: on ? onColor : '#2E2E36',
+rot: on && rot ? (n % 2 ? 2 : -2) : 0,
+toggle: () => { if (on) this.setState({ [key]: sel.filter((x) => x !== l) }); else if (sel.length < max) this.setState({ [key]: sel.concat([l]) }); }
+};
+});
+}
+renderVals() {
+const interests = this.build(['Coding', 'Design', 'Startups', 'Cricket', 'Football', 'Gaming', 'Music', 'Dance', 'Memes', 'Photography', 'Fitness', 'Anime', 'Debate', 'Films'], 'i', 10, '#D4FF3A', true);
+const goals = this.build(['Find notes', 'Make friends', 'Join clubs', 'Go to events', 'Hackathon teams', 'Just vibe'], 'g', 4, '#B49CFF', false);
+const ic = this.state.i.length, gc = this.state.g.length;
+return { interests: interests, goals: goals, iCount: ic, gCount: gc, iColor: ic >= 3 ? '#3DDC97' : '#FFB547', gColor: gc >= 1 ? '#3DDC97' : '#FFB547' };
+}
+}
+</script>
+</body>
+</html>

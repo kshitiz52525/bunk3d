@@ -1,0 +1,1088 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "A1-Welcome.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A1 · Welcome",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "A2-SignIn.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A2 · Sign in + OTP",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "A3-College.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A3 · Choose college",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "A4-Verify.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A4 · Verify campus",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "A5-Pending.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A5 · Verification pending",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "A6-Profile.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A6 · Profile basics",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "A7-Interests.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A7 · Interests & goals",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "A8-Clubs.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A8 · Join clubs & follow",
+      "w": 390,
+      "x": 3290,
+      "y": 0
+    },
+    "A9-Guidelines.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "onboarding",
+      "title": "A9 · Guidelines",
+      "w": 390,
+      "x": 3760,
+      "y": 0
+    },
+    "B1-Bag.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "B1 · My Bag",
+      "w": 390,
+      "x": 0,
+      "y": 1244
+    },
+    "B2-EarningDetail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "B2 · Earning detail",
+      "w": 390,
+      "x": 470,
+      "y": 1244
+    },
+    "B3-PayoutKYC.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "B3 · Payout method & KYC",
+      "w": 390,
+      "x": 940,
+      "y": 1244
+    },
+    "B4-Withdraw.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "B4 · Withdraw",
+      "w": 390,
+      "x": 1410,
+      "y": 1244
+    },
+    "B5-History.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "B5 · History & tax",
+      "w": 390,
+      "x": 1880,
+      "y": 1244
+    },
+    "B6-Fees.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "B6 · How fees work + take-home calculator",
+      "w": 390,
+      "x": 2350,
+      "y": 1244
+    },
+    "C1-Clubs.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "C1 · Clubs home",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "C2-ClubPage.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "C2 · Club page",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "C3-ClubAdmin.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "C3 · Club admin → now Crew HQ CH2 (web)",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "C4-MyTasks.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "C4 · My club tasks",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "C5-TaskDetail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "C5 · Task detail & submit",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "C6-Quests.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "C6 · Side Quests · wave 2",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "C7-CloutBoard.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "C7 · Clout Board · wave 2",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "C8-ClubChat.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "C8 · Club chat",
+      "w": 390,
+      "x": 3290,
+      "y": 0
+    },
+    "D1-ChatList.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "D1 · Chats & requests",
+      "w": 390,
+      "x": 0,
+      "y": 1244
+    },
+    "D2-Chat.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "D2 · Chat",
+      "w": 390,
+      "x": 470,
+      "y": 1244
+    },
+    "D3-GroupChat.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "crew",
+      "title": "D3 · Group chat",
+      "w": 390,
+      "x": 940,
+      "y": 1244
+    },
+    "E1-Events.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "poppin",
+      "title": "E1 · Events list",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "E2-EventDetail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "poppin",
+      "title": "E2 · Event detail",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "E3-Ticket.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "poppin",
+      "title": "E3 · My ticket",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "E4-CreateEvent.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "poppin",
+      "title": "E4 · Create event → now Crew HQ CH4 (web)",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "E5-Scanner.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "poppin",
+      "title": "CH5 · Check-in scanner (phone browser)",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "E6-TeamReg.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "poppin",
+      "title": "E6 · Team registration",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "E7-Checkout.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "poppin",
+      "title": "E7 · Paid checkout · wave 3",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "E8-Results.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "poppin",
+      "title": "E8 · Results & certificate",
+      "w": 390,
+      "x": 3290,
+      "y": 0
+    },
+    "H1-Gigs.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "H1 · Discover gigs",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "H2-GigDetail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "H2 · Gig detail",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "H3-Apply.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "H3 · Apply",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "H4-MyWork.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "H4 · My Work",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "H5-Workspace.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "H5 · Gig workspace",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "H6-SubmitProof.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "H6 · Submit proof",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "H7-Dispute.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "H7 · Dispute",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "K1-Timetable.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "notes",
+      "title": "K1 · Timetable · wave 2",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "K2-Attendance.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "notes",
+      "title": "K2 · Attendance · wave 2",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "K3-Deadlines.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "notes",
+      "title": "K3 · Deadlines · wave 2",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "M1-ModQueue.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "safety",
+      "title": "M1 · Mod queue",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "M2-ModReview.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "safety",
+      "title": "M2 · Mod review",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "M3-Motion.dc.html": {
+      "h": 1180,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "Motion spec · scroll & photo animations",
+      "w": 1280,
+      "x": 0,
+      "y": 1244
+    },
+    "MS1-ModeSwitch.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "foundations",
+      "title": "Mode switch — swipe up on your photo",
+      "w": 390,
+      "x": 1360,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "h": 1180,
+      "page": "foundations",
+      "title": "Bunk3d — brand & design system",
+      "w": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "N1-NotesHome.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "notes",
+      "title": "N1 · Study › Notes home",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "N2-Subject.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "notes",
+      "title": "N2 · Subject",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "N3-Viewer.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "notes",
+      "title": "N3 · Note viewer",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "N4-Upload.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "notes",
+      "title": "N4 · Upload note",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "P1-MyProfile.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "you",
+      "title": "P1 · My profile",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "P2-OtherProfile.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "you",
+      "title": "P2 · Other profile",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "P3-Settings.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "you",
+      "title": "P3 · Settings",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "P4-Portfolio.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "P4 · Portfolio",
+      "w": 390,
+      "x": 1410,
+      "y": 2488
+    },
+    "Q1-Swap.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "Q1 · The Swap",
+      "w": 390,
+      "x": 0,
+      "y": 2488
+    },
+    "Q2-Listing.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "Q2 · Listing detail",
+      "w": 390,
+      "x": 470,
+      "y": 2488
+    },
+    "Q3-CreateListing.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "hustle",
+      "title": "Q3 · Create listing",
+      "w": 390,
+      "x": 940,
+      "y": 2488
+    },
+    "R1-Map.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "R1 · Discover › The Radar map",
+      "w": 390,
+      "x": 0,
+      "y": 1244
+    },
+    "R2-Spot.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "R2 · Spot sheet",
+      "w": 390,
+      "x": 470,
+      "y": 1244
+    },
+    "R3-CreateMeetup.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "R3 · Create meetup",
+      "w": 390,
+      "x": 940,
+      "y": 1244
+    },
+    "R4-MeetupDetail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "R4 · Meetup detail",
+      "w": 390,
+      "x": 1410,
+      "y": 1244
+    },
+    "R5-LocationShare.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "R5 · Location sharing",
+      "w": 390,
+      "x": 1880,
+      "y": 1244
+    },
+    "S1-States.dc.html": {
+      "h": 1300,
+      "page": "states",
+      "title": "States & edge cases",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "SP1-Deck.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "S1 · Discover › The Spark deck",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "SP2-Prefs.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "S2 · Spark preferences",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "SP3-Shot.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "S3 · Shoot Your Shot",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "SP4-Invites.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "discover",
+      "title": "S4 · Invites inbox",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "T1-Feed.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "T1 · Tea feed — text, photos, polls, stories, official notices",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "T10-PhotoStory.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "T10 · Photo stories (auto-advance)",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "T11-PhotoComposer.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "T11 · Photo post & story: camera or device",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "T2-PostDetail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "T2 · Post detail",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "T3-Create.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "T3 · Create post (text / poll) → Photo opens T11",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "T4-Communities.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "T4 · Communities · wave 2",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "T5-CommunityFeed.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "T5 · Community feed · wave 2",
+      "w": 390,
+      "x": 3290,
+      "y": 0
+    },
+    "T9-PhotoViewer.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "tea",
+      "title": "T9 · Full-screen photo viewer",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "W1-OpsConsole.dc.html": {
+      "expand": "fill",
+      "h": 960,
+      "is_interactive": true,
+      "page": "safety",
+      "title": "OP1–OP8 · Ops (web)",
+      "w": 1440,
+      "x": 940,
+      "y": 0
+    },
+    "WEB-CollabHQ.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "web",
+      "title": "Collab HQ · BR1–BR14 (plans & credits)",
+      "w": 1440,
+      "x": 0,
+      "y": 1420
+    },
+    "WEB-CollegeHQ.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "web",
+      "title": "College HQ · CO1–CO6",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "WEB-CrewHQ.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "web",
+      "title": "Crew HQ · CH1–CH12",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "WEB-Finance.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "page": "web",
+      "title": "Finance · FI1–FI8 (fees & subscriptions)",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "WEB-Vendor.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "page": "web",
+      "title": "Collab HQ vendor · VN1–VN2",
+      "w": 1440,
+      "x": 1520,
+      "y": 1420
+    },
+    "X1-Notices.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "you",
+      "title": "X1 · Notices",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "X2-Search.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "you",
+      "title": "X2 · Search",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "X3-Report.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "you",
+      "title": "X3 · Report sheet",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-23T19:15:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "page": "foundations",
+    "view": "canvas"
+  },
+  "notes": {
+    "tBag": {
+      "kind": "title1",
+      "maxW": 2740,
+      "page": "hustle",
+      "text": "My Bag — every rupee shows its state",
+      "w": 240,
+      "x": 0,
+      "y": 954
+    },
+    "tCrew": {
+      "kind": "title1",
+      "maxW": 3680,
+      "page": "crew",
+      "text": "The Crew — clubs, tasks, quests, chat",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tDms": {
+      "kind": "title1",
+      "maxW": 1330,
+      "page": "crew",
+      "text": "The DMs — from the header, both modes",
+      "w": 240,
+      "x": 0,
+      "y": 954
+    },
+    "tHustle": {
+      "kind": "title1",
+      "maxW": 3210,
+      "page": "hustle",
+      "text": "The Hustle — gig → proof → approved → paid",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tNotes": {
+      "kind": "title1",
+      "maxW": 3210,
+      "page": "notes",
+      "text": "Study — Notes, PYQs, timetable, attendance, deadlines",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tOnb": {
+      "kind": "title1",
+      "maxW": 4150,
+      "page": "onboarding",
+      "text": "Onboarding — verified, 18+, college can’t see you",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tPop": {
+      "kind": "title1",
+      "maxW": 3680,
+      "page": "poppin",
+      "text": "What’s Poppin’ — RSVP, teams, tickets, results",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tRadar": {
+      "kind": "title1",
+      "maxW": 2270,
+      "page": "discover",
+      "text": "The Radar — spots, meetups, opt-in location",
+      "w": 240,
+      "x": 0,
+      "y": 954
+    },
+    "tSafe": {
+      "kind": "title1",
+      "maxW": 2380,
+      "page": "safety",
+      "text": "Campus Mods & ops console",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tSpark": {
+      "kind": "title1",
+      "maxW": 1800,
+      "page": "discover",
+      "text": "The Spark — friends, study, sports, events. 18+, no dating",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tSwap": {
+      "kind": "title1",
+      "maxW": 1800,
+      "page": "hustle",
+      "text": "The Swap & Portfolio",
+      "w": 240,
+      "x": 0,
+      "y": 2198
+    },
+    "tTea": {
+      "kind": "title1",
+      "maxW": 3680,
+      "page": "tea",
+      "text": "Spill the Tea — one feed: text, photos, polls, stories, official notices",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tTeaPhotos": {
+      "kind": "title1",
+      "maxW": 1280,
+      "page": "tea",
+      "text": "Motion spec for the Tea feed",
+      "w": 240,
+      "x": 0,
+      "y": 954
+    },
+    "tWeb1": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "web",
+      "text": "Web workspace — managers on the web",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    },
+    "tWeb2": {
+      "kind": "title1",
+      "maxW": 2960,
+      "page": "web",
+      "text": "Brands & vendors",
+      "w": 240,
+      "x": 0,
+      "y": 1130
+    },
+    "tYou": {
+      "kind": "title1",
+      "maxW": 2740,
+      "page": "you",
+      "text": "Profile, Notices, Search, Report",
+      "w": 240,
+      "x": 0,
+      "y": -290
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "MS1-ModeSwitch.dc.html",
+    "A1-Welcome.dc.html",
+    "A2-SignIn.dc.html",
+    "A3-College.dc.html",
+    "A4-Verify.dc.html",
+    "A5-Pending.dc.html",
+    "A6-Profile.dc.html",
+    "A7-Interests.dc.html",
+    "A8-Clubs.dc.html",
+    "A9-Guidelines.dc.html",
+    "T1-Feed.dc.html",
+    "T2-PostDetail.dc.html",
+    "T3-Create.dc.html",
+    "T11-PhotoComposer.dc.html",
+    "T9-PhotoViewer.dc.html",
+    "T10-PhotoStory.dc.html",
+    "T4-Communities.dc.html",
+    "T5-CommunityFeed.dc.html",
+    "M3-Motion.dc.html",
+    "N1-NotesHome.dc.html",
+    "N2-Subject.dc.html",
+    "N3-Viewer.dc.html",
+    "N4-Upload.dc.html",
+    "K1-Timetable.dc.html",
+    "K2-Attendance.dc.html",
+    "K3-Deadlines.dc.html",
+    "E1-Events.dc.html",
+    "E2-EventDetail.dc.html",
+    "E3-Ticket.dc.html",
+    "E4-CreateEvent.dc.html",
+    "E5-Scanner.dc.html",
+    "E6-TeamReg.dc.html",
+    "E7-Checkout.dc.html",
+    "E8-Results.dc.html",
+    "C1-Clubs.dc.html",
+    "C2-ClubPage.dc.html",
+    "C3-ClubAdmin.dc.html",
+    "C4-MyTasks.dc.html",
+    "C5-TaskDetail.dc.html",
+    "C6-Quests.dc.html",
+    "C7-CloutBoard.dc.html",
+    "C8-ClubChat.dc.html",
+    "D1-ChatList.dc.html",
+    "D2-Chat.dc.html",
+    "D3-GroupChat.dc.html",
+    "SP1-Deck.dc.html",
+    "SP2-Prefs.dc.html",
+    "SP3-Shot.dc.html",
+    "SP4-Invites.dc.html",
+    "R1-Map.dc.html",
+    "R2-Spot.dc.html",
+    "R3-CreateMeetup.dc.html",
+    "R4-MeetupDetail.dc.html",
+    "R5-LocationShare.dc.html",
+    "P1-MyProfile.dc.html",
+    "P2-OtherProfile.dc.html",
+    "P3-Settings.dc.html",
+    "X1-Notices.dc.html",
+    "X2-Search.dc.html",
+    "X3-Report.dc.html",
+    "H1-Gigs.dc.html",
+    "H2-GigDetail.dc.html",
+    "H3-Apply.dc.html",
+    "H4-MyWork.dc.html",
+    "H5-Workspace.dc.html",
+    "H6-SubmitProof.dc.html",
+    "H7-Dispute.dc.html",
+    "B1-Bag.dc.html",
+    "B2-EarningDetail.dc.html",
+    "B3-PayoutKYC.dc.html",
+    "B4-Withdraw.dc.html",
+    "B5-History.dc.html",
+    "B6-Fees.dc.html",
+    "Q1-Swap.dc.html",
+    "Q2-Listing.dc.html",
+    "Q3-CreateListing.dc.html",
+    "P4-Portfolio.dc.html",
+    "M1-ModQueue.dc.html",
+    "M2-ModReview.dc.html",
+    "W1-OpsConsole.dc.html",
+    "WEB-CrewHQ.dc.html",
+    "WEB-CollegeHQ.dc.html",
+    "WEB-Finance.dc.html",
+    "WEB-CollabHQ.dc.html",
+    "WEB-Vendor.dc.html",
+    "S1-States.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "foundations",
+      "name": "Brand & system"
+    },
+    {
+      "id": "onboarding",
+      "name": "Onboarding A1–A9"
+    },
+    {
+      "id": "tea",
+      "name": "Spill the Tea"
+    },
+    {
+      "id": "notes",
+      "name": "Study"
+    },
+    {
+      "id": "poppin",
+      "name": "What’s Poppin’"
+    },
+    {
+      "id": "crew",
+      "name": "The Crew & DMs"
+    },
+    {
+      "id": "discover",
+      "name": "Discover: Spark & Radar"
+    },
+    {
+      "id": "you",
+      "name": "Profile, Notices, Search"
+    },
+    {
+      "id": "hustle",
+      "name": "The Hustle"
+    },
+    {
+      "id": "safety",
+      "name": "Mods & Ops"
+    },
+    {
+      "id": "web",
+      "name": "Web workspace"
+    },
+    {
+      "id": "states",
+      "name": "States"
+    }
+  ],
+  "title": "Bunk3d — Full Product Design"
+}

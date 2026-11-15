@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gig workspace</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B49CFF}a:hover{color:#CDBEFF}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="H4-MyWork.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<div style="flex: 1"><div style="font-size: 12px; color: #9A9AA5; font-weight: 700">GDG Atria · ₹1,000 fixed</div><div style="font-size: 15px; font-weight: 800">Design 4 event posters</div></div>
+<a href="#open-D2" onClick="{{ovOpen_D2}}" aria-label="Chat with Rhea" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="background: #2A2140; border-radius: 20px; padding: 14px 16px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #CDBEFF">PROGRESS</span><span style="font-size: 12px; font-weight: 800; color: #CDBEFF">Due Sun 2 Nov · 3 days</span></div>
+<div style="font-family: Unbounded, sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-top: 6px">{{done}}<span style="color: #9A7FF0">/4</span></div>
+<div style="height: 8px; border-radius: 4px; background: #1A1428; margin-top: 8px; overflow: hidden"><div style="width: {{pct}}%; height: 100%; background: #B49CFF"></div></div>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">MILESTONES</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 4px 12px">
+<sc-for list="{{ms}}" as="m" hint-placeholder-count="4"><button onClick="{{m.toggle}}" style="width: 100%; display: flex; align-items: center; gap: 12px; border: 0; border-bottom: 1px solid #222228; background: transparent; color: #F5F5F0; font: inherit; padding: 12px 0; text-align: left"><span style="width: 24px; height: 24px; border-radius: 8px; border: 2px solid {{m.border}}; background: {{m.bg}}; color: #0D0D0F; display: grid; place-items: center; font-size: 13px; font-weight: 800; box-sizing: border-box; flex-shrink: 0">{{m.tick}}</span><span style="flex: 1; font-size: 14px; font-weight: 700; color: {{m.fg}}; text-decoration: {{m.strike}}">{{m.label}}</span></button></sc-for>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">BRIEF FROM RHEA</div>
+<div style="display: flex; gap: 8px">
+<div style="flex: 1; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px"><div style="font-size: 13px; font-weight: 800">brand-kit.pdf</div><div style="font-size: 11px; color: #9A9AA5">2.1 MB</div></div>
+<div style="flex: 1; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px"><div style="font-size: 13px; font-weight: 800">copy.docx</div><div style="font-size: 11px; color: #9A9AA5">event text</div></div>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.45"><b style="color: #D4FF3A">Rhea · 2h ago</b><br>Poster 2 looks fire. Can we push the date bigger on 3?</div>
+</div>
+<div style="padding: 10px 16px 26px"><a href="H6-SubmitProof.dc.html" style="display: flex; justify-content: center; align-items: center; min-height: 56px; background: {{ctaBg}}; color: {{ctaFg}}; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">{{cta}}</a></div>
+<sc-if value="{{ovShow_D2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="D2-Chat" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { d: { 0: true, 1: true } }; }
+_rv() {
+const labels = ['Poster 1 · Hack the Canteen', 'Poster 2 · Flutter workshop', 'Poster 3 · Chai & Code', 'Poster 4 · Results night'];
+const d = this.state.d;
+const ms = labels.map((l, i) => { const on = !!d[i]; return { label: l, tick: on ? '✓' : '', border: on ? '#B49CFF' : '#4A4A54', bg: on ? '#B49CFF' : 'transparent', fg: on ? '#9A9AA5' : '#F5F5F0', strike: on ? 'line-through' : 'none', toggle: () => this.setState({ d: { ...d, [i]: !on } }) }; });
+const n = labels.filter((l, i) => d[i]).length;
+return { ms: ms, done: n, pct: n * 25, cta: n === 4 ? 'Submit proof for review' : 'Submit proof (' + n + '/4 ready)', ctaBg: n === 4 ? '#B49CFF' : '#1F1F25', ctaFg: n === 4 ? '#0D0D0F' : '#F5F5F0' };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["D2"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

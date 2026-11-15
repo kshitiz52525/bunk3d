@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Share location</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<sc-if value="{{live}}" hint-placeholder-val="{{false}}">
+<div style="background: #5CC8FF; color: #0D0D0F; padding: 10px 16px; display: flex; align-items: center; gap: 10px">
+<span style="width: 10px; height: 10px; border-radius: 5px; background: #0D0D0F"></span>
+<span style="flex: 1; font-size: 13px; font-weight: 800">Sharing approx. location with {{whoText}} · {{left}} min left</span>
+<button onClick="{{stop}}" style="border: 0; background: #0D0D0F; color: #5CC8FF; font: inherit; font-size: 12px; font-weight: 800; min-height: 34px; padding: 0 12px; border-radius: 10px">Stop</button>
+</div>
+</sc-if>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="R1-Map.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<h1 style="margin: 0; flex: 1; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">Location</h1>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+
+<div style="background: {{ghostBg}}; border: 1px solid #26262D; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 12px">
+<span style="flex: 1"><span style="display: block; font-family: Unbounded, sans-serif; font-size: 16px; font-weight: 800">Ghost mode</span><span style="display: block; font-size: 12px; color: #9A9AA5; margin-top: 3px">{{ghostSub}}</span></span>
+<button onClick="{{toggleGhost}}" role="switch" aria-checked="{{ghostAria}}" aria-label="Ghost mode" style="width: 58px; height: 34px; border: 0; border-radius: 17px; background: {{swBg}}; position: relative; flex-shrink: 0"><span style="position: absolute; top: 4px; left: {{knob}}px; width: 26px; height: 26px; border-radius: 13px; background: {{knobBg}}"></span></button>
+</div>
+
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">SHARE WITH</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{people}}" as="p" hint-placeholder-count="3"><button onClick="{{p.pick}}" style="display: flex; align-items: center; gap: 12px; border: 1.5px solid {{p.border}}; background: #17171B; color: #F5F5F0; font: inherit; min-height: 56px; border-radius: 14px; padding: 0 12px; text-align: left"><span style="width: 36px; height: 36px; border-radius: 12px; background: {{p.tint}}; color: #0D0D0F; display: grid; place-items: center; font-size: 11px; font-weight: 800">{{p.ini}}</span><span style="flex: 1; font-size: 14px; font-weight: 800">{{p.name}}</span><span style="width: 22px; height: 22px; border-radius: 7px; border: 2px solid {{p.border}}; background: {{p.check}}; color: #0D0D0F; display: grid; place-items: center; font-size: 12px; font-weight: 800; box-sizing: border-box">{{p.tick}}</span></button></sc-for>
+</div>
+
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">FOR HOW LONG</div>
+<div style="display: flex; gap: 7px">
+<sc-for list="{{durs}}" as="d" hint-placeholder-count="3"><button onClick="{{d.pick}}" style="flex: 1; border: 1.5px solid {{d.border}}; background: {{d.bg}}; color: {{d.fg}}; font: inherit; font-size: 14px; font-weight: 800; min-height: 48px; border-radius: 14px">{{d.label}}</button></sc-for>
+</div>
+
+<div style="display: flex; gap: 10px; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 12px 14px; font-size: 12px; color: #C9C9C3; line-height: 1.5">
+<svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true" style="flex-shrink: 0"><circle cx="17" cy="17" r="15" fill="none" stroke="#5CC8FF" stroke-width="2" stroke-dasharray="3 4"/><circle cx="17" cy="17" r="4" fill="#5CC8FF"/></svg>
+<span>Approximate only — rounded to about 150 m. It switches off by itself when time runs out. Never visible to people you haven’t picked.</span>
+</div>
+</div>
+<div style="padding: 10px 16px 26px"><button onClick="{{start}}" style="width: 100%; border: 0; background: {{ctaBg}}; color: {{ctaFg}}; font: inherit; font-size: 15px; font-weight: 800; min-height: 56px; border-radius: 16px">{{cta}}</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { ghost: true, sel: { rhea: true }, d: 30, live: false }; }
+renderVals() {
+const st = this.state;
+const list = [['rhea', 'Rhea N.', 'RN', '#D4FF3A'], ['kabir', 'Kabir M.', 'KM', '#B49CFF'], ['squad', 'Hack the Canteen squad (4)', 'HC', '#FF6B9A']];
+const people = list.map((r) => { const on = !!st.sel[r[0]]; return { name: r[1], ini: r[2], tint: r[3], border: on ? '#D4FF3A' : '#2E2E36', check: on ? '#D4FF3A' : 'transparent', tick: on ? '✓' : '', pick: () => this.setState({ sel: { ...st.sel, [r[0]]: !on } }) }; });
+const durs = [15, 30, 60].map((m) => { const on = m === st.d; return { label: m + ' min', bg: on ? '#D4FF3A' : 'transparent', fg: on ? '#0D0D0F' : '#F5F5F0', border: on ? '#D4FF3A' : '#2E2E36', pick: () => this.setState({ d: m }) }; });
+const names = list.filter((r) => st.sel[r[0]]).map((r) => r[1].split(' ')[0]);
+const g = st.ghost;
+return {
+people: people, durs: durs, live: st.live, left: st.d - 1, whoText: names.join(', ') || 'nobody',
+ghostBg: g ? '#17171B' : '#12301F', ghostSub: g ? 'On — you’re invisible on Radar. Default for everyone.' : 'Off — campus sees “around Library” level only.',
+ghostAria: g ? 'true' : 'false', swBg: g ? '#D4FF3A' : '#2E2E36', knob: g ? 28 : 4, knobBg: g ? '#0D0D0F' : '#9A9AA5',
+toggleGhost: () => this.setState({ ghost: !g }),
+cta: st.live ? 'Sharing · tap to extend 15 min' : 'Share for ' + st.d + ' min',
+ctaBg: names.length ? '#D4FF3A' : '#26262D', ctaFg: names.length ? '#0D0D0F' : '#6E6E78',
+start: () => { if (names.length) this.setState({ live: true }); },
+stop: () => this.setState({ live: false })
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Finance</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3A5000}a:hover{color:#121214}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F3F2EC; color: #121214; font-family: Inter, system-ui, sans-serif; display: flex; flex-wrap: wrap">
+<aside style="flex: 1 1 230px; max-width: 100%; box-sizing: border-box; background: #121214; color: #F5F5F0; padding: 22px 14px; display: flex; flex-direction: column; gap: 3px">
+<div style="padding: 0 10px 16px"><div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.8px">bunk<span style="color: #3DDC97">3</span>d <span style="font-family: Inter, sans-serif; font-size: 12px; color: #9A9AA5; font-weight: 700">finance</span></div><div style="font-size: 11px; color: #9A9AA5; margin-top: 4px">Priya S. · Finance · 2FA + device lock</div></div>
+<div style="margin: 0 4px 12px; background: #1F1F25; border-radius: 10px; padding: 10px 12px; font-size: 13px; font-weight: 800; display: flex; justify-content: space-between">All campuses<span style="color: #9A9AA5">▾</span></div>
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+<button onClick="{{n.pick}}" style="display: flex; align-items: center; gap: 8px; text-align: left; border: 0; background: {{n.bg}}; color: {{n.fg}}; font: inherit; font-size: 13px; font-weight: 700; padding: 0 10px; min-height: 40px; border-radius: 10px"><span style="font-size: 10px; font-weight: 800; color: {{n.codeFg}}; width: 30px">{{n.code}}</span><span style="flex: 1">{{n.label}}</span><span style="font-size: 9px; font-weight: 800; color: {{n.waveFg}}; border: 1px solid {{n.waveFg}}; padding: 1px 4px; border-radius: 5px">{{n.wave}}</span></button>
+</sc-for>
+<div style="flex: 1"></div>
+<div style="padding: 14px 10px 0; font-size: 11px; color: #6E6E78; line-height: 1.5">Every action is double-entry and logged. Releases above ₹50,000 need two people.</div>
+</aside>
+
+<main style="flex: 999 1 600px; min-width: 0; box-sizing: border-box; padding: 28px 32px 40px">
+<div style="max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+<div style="min-width: 0"><div style="font-size: 12px; font-weight: 800; color: #62626C; letter-spacing: 1px">{{s.code}} · WAVE {{s.waveNum}}</div><h1 style="margin: 2px 0 0; font-family: Unbounded, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -1px">{{s.title}}</h1><div style="font-size: 14px; color: #62626C; margin-top: 4px; max-width: 640px; line-height: 1.45">{{s.desc}}</div></div>
+<button onClick="{{primaryAct}}" style="border: 0; background: #121214; color: #3DDC97; font: inherit; font-size: 14px; font-weight: 800; min-height: 46px; padding: 0 18px; border-radius: 12px; box-shadow: 3px 3px 0 #B49CFF">{{s.primary}}</button>
+</div>
+
+<sc-if value="{{hasLock}}" hint-placeholder-val="{{false}}"><div style="background: #FFF4DE; color: #6B4500; border: 1px solid #F2D49A; border-radius: 12px; padding: 12px 14px; font-size: 13px; font-weight: 700">{{s.lock}}</div></sc-if>
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}"><div style="background: #E6F8EE; color: #0F5B34; border: 1px solid #A9E3C3; border-radius: 12px; padding: 12px 14px; font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; gap: 10px"><span>{{toast}}</span><button onClick="{{clearToast}}" style="border: 0; background: transparent; color: #0F5B34; font: inherit; font-weight: 800; cursor: pointer">Dismiss</button></div></sc-if>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+<div style="background: {{k.bg}}; color: {{k.fg}}; border: 1px solid {{k.border}}; border-radius: 16px; padding: 14px 16px"><div style="font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: {{k.labelFg}}">{{k.label}}</div><div style="font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -1px; margin-top: 4px">{{k.value}}</div><div style="font-size: 12px; color: {{k.labelFg}}; margin-top: 2px">{{k.sub}}</div></div>
+</sc-for>
+</div>
+
+<sc-if value="{{hasKanban}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+<sc-for list="{{kanban}}" as="col" hint-placeholder-count="4">
+<div style="background: #ECEAE2; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #62626C"><span>{{col.name}}</span><span>{{col.count}}</span></div>
+<sc-for list="{{col.cards}}" as="c" hint-placeholder-count="2">
+<button onClick="{{c.move}}" style="display: block; width: 100%; text-align: left; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 12px; padding: 10px 12px; font: inherit; color: #121214; cursor: pointer"><span style="display: block; font-size: 14px; font-weight: 800">{{c.title}}</span><span style="display: block; font-size: 12px; color: #62626C; margin-top: 3px">{{c.meta}}</span><span style="display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 800; background: {{c.tagBg}}; color: {{c.tagFg}}; padding: 2px 6px; border-radius: 6px">{{c.tag}}</span></button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 12px; color: #62626C">Click a card to move it to the next column.</div>
+</sc-if>
+
+<sc-if value="{{hasTable}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<div style="flex: 999 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; overflow: hidden">
+<div style="overflow-x: auto"><div style="min-width: 640px; font-size: 13px">
+<div style="display: grid; grid-template-columns: {{gridCols}}; font-size: 11px; font-weight: 800; color: #62626C; letter-spacing: 0.8px; background: #FAFAF6"><sc-for list="{{cols}}" as="h" hint-placeholder-count="5"><div style="padding: 12px 14px">{{h}}</div></sc-for></div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
+<button onClick="{{r.pick}}" style="display: grid; grid-template-columns: {{gridCols}}; width: 100%; border: 0; border-top: 1px solid #EEEDE6; background: {{r.bg}}; font: inherit; font-size: 13px; color: #121214; text-align: left; padding: 0; cursor: pointer"><sc-for list="{{r.cells}}" as="c" hint-placeholder-count="5"><span style="padding: 12px 14px; font-weight: {{c.w}}; color: {{c.c}}; min-width: 0">{{c.t}}</span></sc-for></button>
+</sc-for>
+</div></div>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 16px; font-weight: 800">{{d.title}}</div>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{d.lines}}" as="l" hint-placeholder-count="4"><div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #EEEDE6; font-size: 13px"><span style="color: #62626C">{{l.k}}</span><b style="text-align: right">{{l.v}}</b></div></sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{d.actions}}" as="a" hint-placeholder-count="2"><button onClick="{{a.go}}" style="flex: 1 1 120px; border: {{a.border}}; background: {{a.bg}}; color: {{a.fg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 42px; border-radius: 10px; cursor: pointer">{{a.label}}</button></sc-for>
+</div>
+<div style="font-size: 12px; color: #62626C; line-height: 1.45">{{d.note}}</div>
+</div>
+</div>
+</sc-if>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { cur: '', sel: 0, toast: '', moved: {} }; }
+renderVals() {
+const SECTIONS = [{"id": "fi1", "code": "FI1", "label": "Ledger", "wave": 3, "title": "Ledger overview", "desc": "Balances by account. Every rupee has an entry; nothing is edited, only reversed.", "primary": "Export", "kpis": [["HELD IN ESCROW", "₹8.42L", "campaigns + gigs"], ["STUDENT PAYABLE", "₹3.10L", "2,140 students, after fees"], ["CLUB BALANCES", "₹5.66L", "61 clubs"], ["FEE REVENUE", "₹1.18L", "this month · brand 4–7% + student ≤5%, excl. GST"]], "cols": ["ACCOUNT", "TYPE", "BALANCE", "LAST ENTRY"], "rows": [{"cells": ["Bunk3d fee revenue", "Revenue", "₹1,18,000", "24 Oct"], "title": "Fee revenue · October", "lines": [["Brand marketplace fees (4–7%)", "₹71,300"], ["Student fees (0–5%)", "₹46,700"], ["Waived (first ₹1,000, referrals)", "₹8,950 not charged"], ["Instant payout fees (₹15)", "₹2,145, booked separately"]], "actions": ["View entries", "Export for CA"], "hl": true, "note": "Fees are deducted at the payment aggregator’s split settlement. Bunk3d never holds gig money in its own account."}, {"cells": ["Blu Smart · Q4 campaign", "Campaign", "₹2,40,000", "24 Oct"], "title": "Blu Smart campaign", "lines": [["Funded", "₹3,00,000"], ["Settled", "₹60,000"], ["Held", "₹2,40,000"]], "actions": ["View entries"], "hl": false, "note": ""}, {"cells": ["GDG Atria", "Club", "₹18,400", "24 Oct"], "title": "GDG Atria", "lines": [["Held for gigs", "₹6,850"]], "actions": ["View entries"], "hl": false, "note": ""}, {"cells": ["Aarav S.", "Student", "₹1,240 payable", "24 Oct"], "title": "Aarav S.", "lines": [["KYC", "PAN + UPI verified"], ["Paid FY", "₹6,400"]], "actions": ["View entries"], "hl": false, "note": ""}]}, {"id": "fi2", "code": "FI2", "label": "Payout batches", "wave": 3, "title": "Payout batches", "desc": "Review payable amounts, hold suspicious ones, release. Batches above ₹50,000 need two people.", "primary": "Build tonight’s batch", "kpis": [["TONIGHT", "₹1,84,300", "612 payouts"], ["ON HOLD", "9", "₹14,200"], ["APPROVALS", "1 of 2", "needed above ₹50k"], ["FAILED LAST NIGHT", "4", "returned to payable"]], "cols": ["BATCH", "PAYOUTS", "AMOUNT", "APPROVALS", "STATUS"], "rows": [{"cells": ["PB-1024 · 24 Oct", "612", "₹1,84,300", "!1 of 2 · Priya", "Waiting"], "title": "PB-1024", "lines": [["First approver", "Priya (Finance)"], ["Second approver", "Needed · not Priya"], ["Flagged", "9 held for review"]], "actions": ["Approve as 2nd", "Hold batch"], "hl": true, "note": "Two-person rule: the second approver must be a different Finance user."}, {"cells": ["PB-1023 · 23 Oct", "540", "₹1,52,900", "+2 of 2", "Released"], "title": "PB-1023", "lines": [["Paid", "536"], ["Failed", "4 · returned"]], "actions": ["View report"], "hl": false, "note": ""}, {"cells": ["PB-1022 · 22 Oct", "188", "₹38,400", "+1 of 1", "Released"], "title": "PB-1022", "lines": [["Under ₹50k", "single approval"]], "actions": ["View report"], "hl": false, "note": ""}]}, {"id": "fi3", "code": "FI3", "label": "Reconciliation", "wave": 3, "title": "Reconciliation", "desc": "Nightly match of the ledger against partner statements. Mismatches need a human.", "primary": "Run now", "kpis": [["MATCHED", "99.6%", "last night"], ["MISMATCHES", "3", ""], ["VALUE", "₹4,180", "unmatched"], ["LAST RUN", "02:10 AM", ""]], "cols": ["REF", "LEDGER", "PARTNER", "DIFF", "STATUS"], "rows": [{"cells": ["WD-49920", "₹3,200", "₹3,200", "+0", "Matched"], "title": "WD-49920", "lines": [["Status", "Matched"]], "actions": ["View"], "hl": false, "note": ""}, {"cells": ["TKT-88120", "₹209", "₹0", "-₹209", "Missing at gateway"], "title": "TKT-88120", "lines": [["Likely", "Gateway timeout · buyer charged?"], ["Buyer", "sana.k@…"]], "actions": ["Mark refunded", "Investigate"], "hl": true, "note": ""}, {"cells": ["WD-55001", "₹500", "₹500 returned", "!Bounced", "Returned"], "title": "WD-55001", "lines": [["Reason", "Bank down"], ["Action", "Back to payable"]], "actions": ["Confirm"], "hl": false, "note": ""}]}, {"id": "fi4", "code": "FI4", "label": "Money disputes", "wave": 3, "title": "Money disputes", "desc": "Gig and settlement disputes with evidence from both sides. Decide and post the entries.", "primary": "Assign to me", "kpis": [["OPEN", "6", ""], ["OVERDUE", "1", "> 5 days"], ["HELD", "₹9,700", "in escrow"], ["STUDENT WIN RATE", "58%", "last 90 days"]], "cols": ["CASE", "PARTIES", "AMOUNT", "AGE", "STATUS"], "rows": [{"cells": ["D-2041", "Aarav S. vs Zepto", "₹1,500", "3 days", "!Evidence in"], "title": "D-2041 · Sampling stall", "lines": [["Claim", "Stall ran 2 hrs short"], ["Student evidence", "Geotagged 10:02 & 4:05 photos"], ["Brand evidence", "None uploaded"]], "actions": ["Pay student", "Split 50/50", "Refund brand"], "hl": true, "note": ""}, {"cells": ["D-2033", "GDG Atria vs Meera T.", "₹1,000", "6 days", "-Overdue"], "title": "D-2033", "lines": [["Claim", "Late delivery"]], "actions": ["Pay student", "Refund club"], "hl": false, "note": ""}]}, {"id": "fi5", "code": "FI5", "label": "Refunds", "wave": 3, "title": "Refunds", "desc": "Ticket and campaign refunds, following each event’s refund policy.", "primary": "New refund", "kpis": [["REQUESTED", "14", ""], ["AUTO-APPROVED", "11", "within policy"], ["MANUAL", "3", ""], ["REFUNDED", "₹2,926", "this week"]], "cols": ["REF", "WHO", "FOR", "AMOUNT", "STATUS"], "rows": [{"cells": ["RF-301", "Dev R.", "Hack the Canteen ticket", "₹209", "+Auto · in policy"], "title": "RF-301", "lines": [["Policy", "Full refund until 30 Oct"]], "actions": ["View"], "hl": false, "note": ""}, {"cells": ["RF-298", "Kabir M.", "Battle of Bands", "₹149", "!Outside policy"], "title": "RF-298", "lines": [["Reason", "Event moved"], ["Club says", "Approve"]], "actions": ["Approve", "Decline"], "hl": true, "note": ""}]}, {"id": "fi6", "code": "FI6", "label": "KYC review", "wave": 3, "title": "KYC review", "desc": "Failed name matches and manual checks. Payouts stay blocked until cleared.", "primary": "Next in queue", "kpis": [["QUEUE", "12", ""], ["NAME MISMATCH", "8", ""], ["PENNY DROP FAILED", "4", ""], ["AVG TIME", "4 h", ""]], "cols": ["STUDENT", "ISSUE", "PAN NAME", "BANK NAME", "ACTION"], "rows": [{"cells": ["Fatima K.", "Name mismatch", "FATIMA KHAN", "FATIMA K", "Review"], "title": "Fatima K.", "lines": [["Likely", "Abbreviation"], ["Match score", "86%"]], "actions": ["Approve", "Ask for document"], "hl": true, "note": ""}, {"cells": ["Rohan D.", "Penny drop failed", "ROHAN DAS", "—", "Review"], "title": "Rohan D.", "lines": [["UPI", "rohan@ybl · invalid"]], "actions": ["Ask to re-enter UPI"], "hl": false, "note": ""}]}, {"id": "fi7", "code": "FI7", "label": "Tax reports", "wave": 3, "title": "Tax reports", "desc": "TDS per student, GST on platform fees, exports for the accountant.", "primary": "Export for accountant", "kpis": [["TDS DEDUCTED", "₹38,200", "FY 26–27"], ["STUDENTS WITH TDS", "41", "above threshold"], ["GST ON FEES", "₹21,240", "this quarter"], ["16A ISSUED", "41", ""]], "cols": ["REPORT", "PERIOD", "STATUS"], "rows": [{"cells": ["GST on student fees", "Oct 2026", "+Decided"], "title": "GST on the student fee", "lines": [["Student fees this month", "₹46,700"], ["Decision", "Fee + 18% GST on the fee, charged extra"], ["Example", "₹2,500 gig: fee ₹125 + GST ₹22.50 → take-home ₹2,352.50"], ["Applies to", "student fees, ticket platform fees, brand fees"]], "actions": ["View GST invoices"], "hl": false, "note": "GST is never charged on the student’s pay, only on the Bunk3d fee."}, {"cells": ["TDS 194-O return", "Q2 FY27", "+Filed"], "title": "TDS return Q2", "lines": [["Filed", "15 Oct"]], "actions": ["Download"], "hl": false, "note": ""}, {"cells": ["GST GSTR-1", "Oct 2026", "!Due 11 Nov"], "title": "GSTR-1 October", "lines": [["Platform fee invoices", "1,842"]], "actions": ["Prepare"], "hl": true, "note": ""}, {"cells": ["Form 16A batch", "Q2 FY27", "+Issued"], "title": "Form 16A", "lines": [["Students", "41"]], "actions": ["Re-send"], "hl": false, "note": ""}]}, {"id": "fi8", "code": "FI8", "label": "Plans & credits", "wave": 3, "title": "Brand plans & credits", "desc": "Subscription revenue, credits sold and used, refunds and expiry. Credits never fund payouts or prize pools.", "primary": "Export MRR", "kpis": [["SUBSCRIPTION MRR", "₹4.9L", "14 paying brands, excl. GST"], ["CREDITS SOLD", "7,450", "this month, incl. 6 top-ups"], ["CREDITS REFUNDED", "186", "low response + moderation"], ["EXPIRING", "520", "at month end"]], "cols": ["BRAND", "PLAN", "CREDITS LEFT", "THIS MONTH", "STATUS"], "rows": [{"cells": ["Blu Smart", "Growth · ₹34,999", "59 / 400", "341 used", "!Low credits"], "title": "Blu Smart", "lines": [["Renews", "1 Nov"], ["Rollover", "up to 400"], ["Marketplace fee", "5%"]], "actions": ["Offer top-up", "Issue invoice"], "hl": true, "note": ""}, {"cells": ["Infinix", "Scale · ₹99,999", "610 / 1,300", "690 used", "+Healthy"], "title": "Infinix", "lines": [["Account manager", "Rohan K."], ["Marketplace fee", "4%"]], "actions": ["Issue invoice"], "hl": false, "note": ""}, {"cells": ["Zordie", "Launch · ₹9,999", "22 / 100", "78 used", "+Healthy"], "title": "Zordie", "lines": [["Commission gigs", "brand pays 15%, student 0%"]], "actions": ["Issue invoice"], "hl": false, "note": ""}, {"cells": ["Third Wave Coffee", "Starter · free", "0", "1 free gig post", "~Upgrade lead"], "title": "Third Wave Coffee", "lines": [["Wants", "Featured Radar spot (30 credits)"]], "actions": ["Send Launch offer"], "hl": false, "note": ""}, {"cells": ["Low-response refund", "Auto", "+15 to 4 brands", "24 Oct", "+Refunded"], "title": "Automatic refunds", "lines": [["Rule", "gig with fewer than 3 applicants in 7 days"], ["Credits returned", "15"]], "actions": ["View log"], "hl": false, "note": ""}]}];
+const ACC = '#3DDC97';
+const st = this.state;
+const s = SECTIONS.find((x) => x.id === st.cur) || SECTIONS[0];
+const say = (m) => this.setState({ toast: m });
+const nav = SECTIONS.map((x) => { const on = x.id === s.id; return { code: x.code, label: x.label, wave: 'W' + x.wave, bg: on ? ACC : 'transparent', fg: on ? '#121214' : '#C9C9C3', codeFg: on ? '#121214' : '#6E6E78', waveFg: on ? '#121214' : '#55555E', pick: () => this.setState({ cur: x.id, sel: 0, toast: '' }) }; });
+const tone = (t) => { const m = { '!': '#B26A00', '+': '#1A7F4B', '-': '#C62828', '~': '#62626C' }; const k = t.charAt(0); return m[k] ? { t: t.slice(1), c: m[k], w: 800 } : { t: t, c: '#121214', w: 500 }; };
+const rows = (s.rows || []).map((r, i) => ({ bg: i === st.sel ? '#F7FFE0' : (r.hl ? '#FFF7EC' : '#FFFFFF'), cells: r.cells.map((c, j) => { const o = tone(c); if (j === 0) o.w = 800; return o; }), pick: () => this.setState({ sel: i }) }));
+const sr = (s.rows || [])[st.sel] || (s.rows || [])[0] || { title: '', lines: [], actions: [], note: '' };
+const d = { title: sr.title, note: sr.note || '', lines: (sr.lines || []).map((l) => ({ k: l[0], v: l[1] })), actions: (sr.actions || []).map((a, i) => ({ label: a, bg: i === 0 ? '#121214' : '#FFFFFF', fg: i === 0 ? ACC : '#121214', border: i === 0 ? '0' : '1px solid #D6D3C9', go: () => say(a + ' · ' + sr.title + ' — saved and written to the audit log.') })) };
+const kpis = (s.kpis || []).map((k, i) => ({ label: k[0], value: k[1], sub: k[2], bg: i === 0 ? '#121214' : '#FFFFFF', fg: i === 0 ? ACC : '#121214', labelFg: i === 0 ? '#9A9AA5' : '#62626C', border: i === 0 ? '#121214' : '#E3E1D8' }));
+const mv = st.moved[s.id] || {};
+let kanban = [];
+if (s.kanban) {
+const cols = s.kanban.map((c) => ({ name: c.name, cards: [] }));
+s.kanban.forEach((c, ci) => c.cards.forEach((card, ki) => { const key = ci + '-' + ki; const at = Math.min(cols.length - 1, ci + (mv[key] || 0)); cols[at].cards.push({ key: key, card: card }); }));
+kanban = cols.map((c) => ({ name: c.name.toUpperCase(), count: c.cards.length, cards: c.cards.map((x) => ({ title: x.card[0], meta: x.card[1], tag: x.card[2], tagBg: x.card[2].indexOf('₹') >= 0 ? '#121214' : '#ECEAE2', tagFg: x.card[2].indexOf('₹') >= 0 ? ACC : '#121214', move: () => { const m = { ...mv, [x.key]: (mv[x.key] || 0) + 1 }; this.setState({ moved: { ...st.moved, [s.id]: m } }); } })) }));
+}
+return {
+nav: nav, s: { ...s, waveNum: s.wave }, kpis: kpis, cols: s.cols || [], gridCols: (s.cols || []).map((c, i) => i === 0 ? 'minmax(0, 1.6fr)' : 'minmax(0, 1fr)').join(' '), rows: rows, d: d, kanban: kanban,
+hasKanban: !!s.kanban, hasTable: !!(s.rows && s.rows.length), hasLock: !!s.lock, hasToast: !!st.toast, toast: st.toast,
+primaryAct: () => say(s.primary + ' — draft opened.'), clearToast: () => this.setState({ toast: '' })
+};
+}
+}
+</script>
+</body>
+</html>

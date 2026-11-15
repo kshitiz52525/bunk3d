@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Hustle · My Work</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B49CFF}a:hover{color:#CDBEFF}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px 8px">
+<div style="position: relative; width: 44px; height: 48px; flex-shrink: 0">
+<a href="#open-P4" onClick="{{ovOpen_P4}}" aria-label="My Hustle portfolio" style="position: absolute; left: 2px; top: 0; width: 40px; height: 40px; border-radius: 14px; background: #B49CFF; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 13px; text-decoration: none; transform: rotate(4deg)">AS</a>
+<a href="T1-Feed.dc.html" aria-label="Swipe up on your photo to switch back to the Vibe" style="position: absolute; left: 10px; bottom: -2px; width: 24px; height: 16px; border-radius: 8px; background: #0D0D0F; border: 1.5px solid #B49CFF; color: #B49CFF; display: grid; place-items: center; box-sizing: border-box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></a>
+</div>
+<div style="flex: 1; min-width: 0"><div style="display: flex; align-items: center; gap: 6px"><span style="font-family: Unbounded, sans-serif; font-size: 17px; font-weight: 800; letter-spacing: -0.6px">bunk<span style="color: #B49CFF">3</span>d</span><span style="background: #B49CFF; color: #0D0D0F; font-size: 9px; font-weight: 800; letter-spacing: 1px; padding: 3px 6px; border-radius: 6px; transform: rotate(-3deg)">HUSTLE</span></div><div style="font-size: 11px; color: #9A9AA5; font-weight: 700">Atria University · KYC ✓</div></div>
+<a href="D1-ChatList.dc.html" aria-label="Messages" style="width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
+<a href="#open-X1" onClick="{{ovOpen_X1}}" aria-label="Notices" style="width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></a>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 6px 16px 0; display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -1px">My Work</h1>
+<div style="display: flex; background: #17171B; border-radius: 14px; padding: 4px; gap: 4px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3"><button onClick="{{t.pick}}" style="flex: 1; border: 0; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 40px; border-radius: 11px">{{t.label}}</button></sc-for>
+</div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="3">
+<a href="#open-work" onClick="{{r.open}}" style="display: block; background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px; text-decoration: none; color: #F5F5F0">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 12px; color: #9A9AA5; font-weight: 700">{{r.payer}}</span><span style="font-size: 11px; font-weight: 800; color: {{r.stColor}}; background: {{r.stBg}}; padding: 3px 8px; border-radius: 8px">{{r.status}}</span></div>
+<div style="font-size: 15px; font-weight: 800; margin-top: 8px">{{r.title}}</div>
+<div style="height: 6px; border-radius: 3px; background: #26262D; margin-top: 10px; overflow: hidden; display: {{r.barShow}}"><div style="width: {{r.pct}}%; height: 100%; background: #B49CFF"></div></div>
+<div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px"><span style="color: #9A9AA5">{{r.next}}</span><b style="color: #B49CFF">{{r.pay}}</b></div>
+</a>
+</sc-for>
+</div>
+
+<nav aria-label="Hustle" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: #111114; border-top: 1px solid #24242A; padding: 8px 6px 24px">
+<a href="H1-Gigs.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 13h18"/></svg></span>Gigs</a>
+<a href="H4-MyWork.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #F5F5F0; font-size: 11px; font-weight: 800; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; border-radius: 16px; background: #B49CFF; color: #0D0D0F; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg></span>My Work</a>
+<a href="Q1-Swap.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></span>Swap</a>
+<a href="B1-Bag.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>My Bag</a>
+</nav>
+<sc-if value="{{ovShow_H2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="H2-GigDetail" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_H5}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="H5-Workspace" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_H6}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="H6-SubmitProof" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_H7}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="H7-Dispute" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_B2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="B2-EarningDetail" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_X1}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="X1-Notices" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_P4}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="P4-Portfolio" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { t: 'Active' }; }
+_rv() {
+const data = {
+Applied: [{ payer: 'Blu Smart · brand', title: 'Campus ambassador: 3 reels + stall', status: 'APPLIED', stColor: '#C9C9C3', stBg: '#26262D', next: 'Reply expected by Mon', pay: '₹2,500', pct: 0, href: 'H2-GigDetail.dc.html' }, { payer: 'Skillvine · startup', title: 'Transcribe Kannada lectures', status: 'SHORTLISTED', stColor: '#0D0D0F', stBg: '#B49CFF', next: 'Sample clip requested', pay: '₹60/clip', pct: 0, href: 'H2-GigDetail.dc.html' }],
+Active: [{ payer: 'GDG Atria · club', title: 'Design 4 event posters', status: 'IN PROGRESS', stColor: '#0D0D0F', stBg: '#5CC8FF', next: '2 of 4 done · due Sun', pay: '₹1,000', pct: 50, href: 'H5-Workspace.dc.html' }, { payer: 'E-Cell Atria · club', title: 'Startup expo help desk', status: 'CHANGES ASKED', stColor: '#0D0D0F', stBg: '#FFB547', next: 'Fix visitor sheet', pay: '₹800', pct: 80, href: 'H6-SubmitProof.dc.html' }, { payer: 'Zepto · brand', title: 'Sampling stall, Block C', status: 'IN DISPUTE', stColor: '#F5F5F0', stBg: '#5A1F1F', next: 'Ops reviewing · 2 days', pay: '₹1,500', pct: 100, href: 'H7-Dispute.dc.html' }],
+Done: [{ payer: 'Music Society · club', title: 'Sound check crew, fest night', status: 'PAID', stColor: '#0D0D0F', stBg: '#3DDC97', next: 'Paid 14 Oct', pay: '₹600', pct: 100, href: 'B2-EarningDetail.dc.html' }]
+};
+const t = this.state.t;
+const tabs = Object.keys(data).map((l) => { const on = l === t; return { label: l + ' · ' + data[l].length, bg: on ? '#B49CFF' : 'transparent', fg: on ? '#0D0D0F' : '#9A9AA5', pick: () => this.setState({ t: l }) }; });
+const rows = data[t].map((r) => ({ ...r, barShow: t === 'Active' ? 'block' : 'none', open: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: r.href.split('-')[0] }); } }));
+return { tabs: tabs, rows: rows };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["H2", "H5", "H6", "H7", "B2", "X1", "P4"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

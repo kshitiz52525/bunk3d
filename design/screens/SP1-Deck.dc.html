@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Discover · Spark</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px 8px">
+<div style="position: relative; width: 44px; height: 48px; flex-shrink: 0">
+<a href="#open-P1" onClick="{{ovOpen_P1}}" aria-label="My profile" style="position: absolute; left: 2px; top: 0; width: 40px; height: 40px; border-radius: 14px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 13px; text-decoration: none; transform: rotate(-4deg)">AS</a>
+<a href="H1-Gigs.dc.html" aria-label="Swipe up on your photo to switch to The Hustle" style="position: absolute; left: 10px; bottom: -2px; width: 24px; height: 16px; border-radius: 8px; background: #0D0D0F; border: 1.5px solid #D4FF3A; color: #D4FF3A; display: grid; place-items: center; box-sizing: border-box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></a>
+</div>
+<div style="flex: 1; min-width: 0"><div style="font-family: Unbounded, sans-serif; font-size: 17px; font-weight: 800; letter-spacing: -0.6px">bunk<span style="color: #D4FF3A">3</span>d</div><div style="font-size: 11px; color: #9A9AA5; font-weight: 700">Atria University</div></div>
+<a href="SP4-Invites.dc.html" aria-label="Invites, 2 new" style="position: relative; width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9 6 9-6M3 7h18v11H3z"/></svg><span style="position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; border-radius: 9px; background: #FF6B9A; color: #0D0D0F; font-size: 10px; font-weight: 800; display: grid; place-items: center; border: 2px solid #0D0D0F">2</span></a>
+<a href="SP2-Prefs.dc.html" aria-label="Discover settings" style="width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></a>
+</div>
+
+<div style="padding: 4px 16px 0">
+<div style="display: flex; background: #17171B; border-radius: 14px; padding: 4px; gap: 4px">
+<span style="flex: 1; background: #D4FF3A; color: #0D0D0F; font-size: 13px; font-weight: 800; min-height: 40px; border-radius: 11px; display: grid; place-items: center">People · Spark</span>
+<a href="R1-Map.dc.html" style="flex: 1; color: #9A9AA5; font-size: 13px; font-weight: 800; min-height: 40px; border-radius: 11px; display: grid; place-items: center; text-decoration: none">Places · Radar</a>
+</div>
+<div style="display: flex; gap: 6px; margin-top: 10px; overflow: hidden">
+<sc-for list="{{intents}}" as="i" hint-placeholder-count="5"><button onClick="{{i.pick}}" style="border: 1px solid {{i.border}}; background: {{i.bg}}; color: {{i.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 11px; min-height: 34px; border-radius: 17px; white-space: nowrap">{{i.label}}</button></sc-for>
+</div>
+</div>
+
+<div style="flex: 1; padding: 12px 16px 0; position: relative; overflow: hidden">
+<sc-if value="{{hasCard}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 26px; right: 26px; top: 20px; bottom: 96px; background: #1F1F25; border-radius: 28px; transform: rotate(3deg)"></div>
+<div style="position: absolute; left: 16px; right: 16px; top: 12px; bottom: 100px; background: {{c.tint}}; color: #0D0D0F; border-radius: 28px; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; transform: rotate({{rot}}deg); box-shadow: 5px 5px 0 #B49CFF">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="background: #0D0D0F; color: {{c.tint}}; font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 9px">{{c.intent}}</span><span style="font-size: 11px; font-weight: 800">✓ Verified · {{c.year}}</span></div>
+<div style="flex: 1; display: grid; place-items: center"><span style="width: 120px; height: 120px; border-radius: 40px; background: #0D0D0F; color: {{c.tint}}; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 36px; font-weight: 800; transform: rotate(-5deg)">{{c.ini}}</span></div>
+<div style="font-family: Unbounded, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -1px">{{c.name}}</div>
+<div style="font-size: 13px; font-weight: 700; margin-top: 2px">{{c.branch}}</div>
+<div style="background: rgba(13,13,15,0.12); border-radius: 14px; padding: 10px 12px; margin-top: 10px; font-size: 13px; font-weight: 600; line-height: 1.4"><b>Looking for:</b> {{c.prompt}}</div>
+<div style="display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap"><sc-for list="{{c.common}}" as="t" hint-placeholder-count="3"><span style="border: 1.5px solid #0D0D0F; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 9px">{{t}}</span></sc-for></div>
+</div>
+</sc-if>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: 16px; right: 16px; top: 12px; bottom: 100px; border: 1.5px dashed #4A4A54; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; padding: 24px; box-sizing: border-box">
+<div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800">That’s everyone for now</div>
+<div style="font-size: 13px; color: #9A9AA5; line-height: 1.5">New people show up as they turn Discover on. Try another intent or check Radar for meetups.</div>
+<button onClick="{{reset}}" style="border: 0; background: #F5F5F0; color: #0D0D0F; font: inherit; font-size: 14px; font-weight: 800; min-height: 46px; padding: 0 18px; border-radius: 14px">Start over</button>
+</div>
+</sc-if>
+
+<div style="position: absolute; left: 16px; right: 16px; bottom: 14px; display: flex; gap: 10px; align-items: center">
+<button onClick="{{pass}}" aria-label="Pass" style="width: 62px; height: 62px; border: 1.5px solid #2E2E36; background: #17171B; color: #F5F5F0; border-radius: 31px; display: grid; place-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<button onClick="{{connect}}" style="flex: 1; border: 0; background: #F5F5F0; color: #0D0D0F; font: inherit; font-size: 15px; font-weight: 800; min-height: 62px; border-radius: 20px">{{connectLabel}}</button>
+<a href="SP3-Shot.dc.html" style="flex: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 62px; background: #D4FF3A; color: #0D0D0F; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: 800; box-shadow: 4px 4px 0 #B49CFF">Shoot your shot<span style="font-size: 10px; font-weight: 800">{{left}} invites left today</span></a>
+</div>
+</div>
+
+<nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #111114; border-top: 1px solid #24242A; padding: 8px 6px 24px">
+<a href="T1-Feed.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2"/></svg></span>Tea</a>
+<a href="N1-NotesHome.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H19v-3"/></svg></span>Study</a>
+<a href="E1-Events.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V6h18v3a3 3 0 0 0 0 6v3H3v-3a3 3 0 0 0 0-6z"/><path d="M13 6v12" stroke-dasharray="2 2"/></svg></span>Poppin’</a>
+<a href="C1-Clubs.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span>Crew</a>
+<a href="SP1-Deck.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #F5F5F0; font-size: 11px; font-weight: 800; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; border-radius: 16px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Discover</a>
+</nav>
+<sc-if value="{{ovShow_P1}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="P1-MyProfile" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { intent: 'Friends', i: 0, sent: false, rot: -1 }; }
+_rv() {
+const people = {
+Friends: [{ name: 'Sana K.', ini: 'SK', year: '2nd yr', branch: 'B.Des · Communication', prompt: 'people to try every darshini in Hebbal with', common: ['Music Society', 'Indie rock', '2 mutuals'], tint: '#FF6B9A' }, { name: 'Dev R.', ini: 'DR', year: '1st yr', branch: 'B.Tech · CSE', prompt: 'a FIFA rival who loses gracefully', common: ['CUBS Sports', 'Gaming'], tint: '#5CC8FF' }],
+Study: [{ name: 'Nikhil V.', ini: 'NV', year: '3rd yr', branch: 'B.Tech · ECE', prompt: 'a DSA buddy for placement prep, 2 hrs a day', common: ['GDG Atria', 'Placement Season'], tint: '#D4FF3A' }],
+Sports: [{ name: 'Arjun P.', ini: 'AP', year: '2nd yr', branch: 'BBA', prompt: 'two more for 5-a-side, Sat mornings', common: ['CUBS Sports', 'Football'], tint: '#5CC8FF' }],
+Events: [{ name: 'Meera T.', ini: 'MT', year: '2nd yr', branch: 'B.Des · Interaction', prompt: 'a squad for the Nov hackathons', common: ['Hack the Canteen', 'Design Club'], tint: '#FFB547' }],
+Hangouts: [{ name: 'Kabir M.', ini: 'KM', year: '3rd yr', branch: 'B.Tech · AIML', prompt: 'open mic regulars, Thursdays at Lahe Lahe', common: ['Music Society', '4 mutuals'], tint: '#B49CFF' }]
+};
+const list = people[this.state.intent];
+const c = list[this.state.i];
+const intents = Object.keys(people).map((l) => { const on = l === this.state.intent; return { label: l, bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ intent: l, i: 0, sent: false }) }; });
+const next = () => this.setState({ i: this.state.i + 1, sent: false, rot: this.state.rot * -1 });
+const blank = { name: '', ini: '', year: '', branch: '', prompt: '', common: [], tint: '#17171B', intent: '' };
+return {
+intents: intents, hasCard: !!c, empty: !c, c: c ? { ...c, intent: this.state.intent.toUpperCase() } : blank, rot: this.state.rot,
+left: 3, connectLabel: this.state.sent ? 'Request sent ✓' : 'Connect',
+pass: () => { if (c) next(); },
+connect: () => { if (!c) return; if (this.state.sent) next(); else this.setState({ sent: true }); },
+reset: () => this.setState({ i: 0, sent: false })
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["P1"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

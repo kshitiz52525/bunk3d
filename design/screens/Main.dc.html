@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bunk3d design system</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 1280px; height: 1180px; box-sizing: border-box; padding: 52px 60px; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 28px; overflow: hidden">
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; align-items: center; gap: 22px">
+<div style="font-family: Unbounded, sans-serif; font-size: 72px; font-weight: 800; letter-spacing: -3px; line-height: 0.9">bunk<span style="color: #D4FF3A">3</span>d</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="align-self: flex-start; background: #D4FF3A; color: #0D0D0F; font-size: 13px; font-weight: 800; padding: 6px 12px; border-radius: 20px; transform: rotate(-4deg)">college happens outside class</span>
+<span style="align-self: flex-start; border: 1.5px solid #B49CFF; color: #B49CFF; font-size: 12px; font-weight: 800; padding: 5px 11px; border-radius: 20px; transform: rotate(3deg)">verified students only</span>
+</div>
+</div>
+<div style="text-align: right; font-size: 13px; color: #9A9AA5; line-height: 1.6">MVP design system v2 · dark-first, light supported<br>Unbounded (display) + Inter (UI) · 4-pt grid · 390 × 844</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.6px; color: #9A9AA5">COLOUR TOKENS · DARK / LIGHT</div>
+<div style="display: grid; grid-template-columns: 1fr 44px 44px; gap: 8px 10px; align-items: center; font-size: 12px">
+<b>brand</b><span style="height: 30px; border-radius: 8px; background: #D4FF3A"></span><span style="height: 30px; border-radius: 8px; background: #C2F000; border: 1px solid #3A3A42"></span>
+<b>brand-ink <span style="color: #9A9AA5; font-weight: 500">(text on lime)</span></b><span style="height: 30px; border-radius: 8px; background: #0D0D0F; border: 1px solid #3A3A42"></span><span style="height: 30px; border-radius: 8px; background: #0D0D0F"></span>
+<b>bg</b><span style="height: 30px; border-radius: 8px; background: #0D0D0F; border: 1px solid #3A3A42"></span><span style="height: 30px; border-radius: 8px; background: #F3F2EC"></span>
+<b>card</b><span style="height: 30px; border-radius: 8px; background: #17171B; border: 1px solid #3A3A42"></span><span style="height: 30px; border-radius: 8px; background: #FFFFFF"></span>
+<b>ink</b><span style="height: 30px; border-radius: 8px; background: #F5F5F0"></span><span style="height: 30px; border-radius: 8px; background: #121214"></span>
+<b>ink-muted</b><span style="height: 30px; border-radius: 8px; background: #9A9AA5"></span><span style="height: 30px; border-radius: 8px; background: #62626C"></span>
+<b>anon</b><span style="height: 30px; border-radius: 8px; background: #B49CFF"></span><span style="height: 30px; border-radius: 8px; background: #6A4FD8"></span>
+<b>hot <span style="color: #9A9AA5; font-weight: 500">(urgent, unread)</span></b><span style="height: 30px; border-radius: 8px; background: #FF6B9A"></span><span style="height: 30px; border-radius: 8px; background: #D6336C"></span>
+<b>success · warning · error</b><span style="height: 30px; border-radius: 8px; background: linear-gradient(90deg, #3DDC97 33%, #FFB547 33% 66%, #FF5D5D 66%)"></span><span style="height: 30px; border-radius: 8px; background: linear-gradient(90deg, #1E8A5C 33%, #B26A00 33% 66%, #C62828 66%)"></span>
+</div>
+</div>
+
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.6px; color: #9A9AA5">TYPE</div>
+<div style="font-family: Unbounded, sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -1px; line-height: 1.05">Display 30</div>
+<div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.4px">Section 20</div>
+<div style="font-size: 16px; font-weight: 700">Card title 16 / 700</div>
+<div style="font-size: 14px; font-weight: 500; line-height: 1.5; color: #E4E4DE">Body 14 / 1.5 — anyone else think the DBMS internal was set by a supervillain?</div>
+<div style="font-size: 12px; font-weight: 600; color: #9A9AA5">Meta 12 · 3rd yr CSE · 12m</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #D4FF3A">BADGE 11 / 800</div>
+<div style="font-size: 12px; color: #9A9AA5; line-height: 1.5; margin-top: 4px">Unbounded only for titles, the wordmark and big numbers. Everything you read is Inter.</div>
+</div>
+
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.6px; color: #9A9AA5">BUTTONS · CHIPS</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button style="border: 0; background: #D4FF3A; color: #0D0D0F; font: inherit; font-size: 14px; font-weight: 800; padding: 0 20px; min-height: 48px; border-radius: 14px; box-shadow: 4px 4px 0 #B49CFF">Primary</button>
+<button style="border: 0; background: #26262D; color: #F5F5F0; font: inherit; font-size: 14px; font-weight: 700; padding: 0 18px; min-height: 48px; border-radius: 14px">Secondary</button>
+<button style="border: 1.5px solid #F5F5F0; background: transparent; color: #F5F5F0; font: inherit; font-size: 14px; font-weight: 700; padding: 0 18px; min-height: 48px; border-radius: 14px">Outline</button>
+<button style="border: 0; background: #2A2A31; color: #6E6E78; font: inherit; font-size: 14px; font-weight: 700; padding: 0 18px; min-height: 48px; border-radius: 14px">Disabled</button>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="background: #D4FF3A; color: #0D0D0F; font-size: 13px; font-weight: 800; padding: 9px 14px; border-radius: 20px">Hot</span>
+<span style="background: #1F1F25; border: 1px solid #33333B; color: #E4E4DE; font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 20px">#Placements</span>
+<span style="background: #2A2140; color: #CDBEFF; font-size: 13px; font-weight: 700; padding: 9px 14px; border-radius: 20px">Anonymous</span>
+<span style="background: #1F1F25; border: 1px dashed #4A4A54; color: #9A9AA5; font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 20px">+ Interest</span>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.6px; color: #9A9AA5; margin-top: 4px">BADGES</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="background: #123D2C; color: #3DDC97; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 10px">✓ Verified student</span>
+<span style="background: #D4FF3A; color: #0D0D0F; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 10px">✓ Club</span>
+<span style="background: #F5F5F0; color: #0D0D0F; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 10px">Official college</span>
+<span style="background: #1E2A4A; color: #8FB8FF; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 10px">Campus Mod</span>
+<span style="background: #3D2E0D; color: #FFB547; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 10px">Pending verification</span>
+</div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 20px">
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.6px; color: #9A9AA5">POST CARD · ANON</div>
+<div style="background: #0D0D0F; border: 1px solid #26262D; border-radius: 20px; padding: 14px">
+<div style="display: flex; align-items: center; gap: 10px">
+<span style="width: 36px; height: 36px; border-radius: 12px; background: #2A2140; color: #B49CFF; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10c3-1 6-1 9 0s6 1 9 0v2a4 4 0 0 1-4 4c-2 0-3-1.5-5-1.5S9 16 7 16a4 4 0 0 1-4-4z"></path></svg></span>
+<div style="flex: 1"><div style="font-size: 13px; font-weight: 800; color: #CDBEFF">Anonymous</div><div style="font-size: 11px; color: #9A9AA5">12m · #Canteen</div></div>
+<span style="color: #9A9AA5; font-weight: 800">···</span>
+</div>
+<div style="font-size: 14px; line-height: 1.5; margin: 10px 0 12px">Block A samosa price went from ₹15 to ₹20 overnight and nobody’s talking about it.</div>
+<div style="display: flex; align-items: center; gap: 8px">
+<div style="display: flex; align-items: center; background: #D4FF3A; color: #0D0D0F; border-radius: 20px; padding: 2px"><span style="width: 32px; height: 32px; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></span><b style="font-size: 13px; min-width: 26px; text-align: center">248</b><span style="width: 32px; height: 32px; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg></span></div>
+<span style="background: #1F1F25; color: #E4E4DE; font-size: 12px; font-weight: 700; padding: 9px 12px; border-radius: 18px">41 replies</span>
+</div>
+</div>
+<div style="display: flex; background: #0D0D0F; border-radius: 16px; padding: 4px; gap: 4px">
+<span style="flex: 1; text-align: center; font-size: 12px; font-weight: 700; color: #9A9AA5; padding: 10px 0">Post as Aarav</span>
+<span style="flex: 1; text-align: center; font-size: 12px; font-weight: 800; color: #0D0D0F; background: #B49CFF; padding: 10px 0; border-radius: 12px">Post anonymously</span>
+</div>
+<div style="font-size: 11px; color: #9A9AA5">Identity toggle. Anonymous unlocks at karma 20 and a 7-day-old account.</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 20px">
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 24px; padding: 20px">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.6px; color: #9A9AA5; margin-bottom: 12px">TAB BAR — Tea · Notes · Poppin’ · Crew · DMs (no mode switch in MVP)</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #111114; border: 1px solid #24242A; border-radius: 20px; padding: 10px 6px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 800"><span style="width: 52px; height: 32px; border-radius: 16px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"></path><path d="M17 10h2a2 2 0 0 1 0 4h-2"></path></svg></span>Tea</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #8E8E99"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M14 3v5h5M9 13h7M9 17h5"></path></svg></span>Notes</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #8E8E99"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V6h18v3a3 3 0 0 0 0 6v3H3v-3a3 3 0 0 0 0-6z"></path><path d="M13 6v12" stroke-dasharray="2 2"></path></svg></span>Poppin’</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #8E8E99"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg></span>Crew</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #8E8E99"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg></span>DMs</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<div style="background: #D4FF3A; color: #0D0D0F; border-radius: 24px; padding: 20px">
+<div style="font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px">Hype in the look</div>
+<div style="font-size: 13px; line-height: 1.5; margin-top: 8px; font-weight: 500">Lime, stickers, chunky type, hard violet shadows on the one main action per screen.</div>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 24px; padding: 20px">
+<div style="font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px; color: #FF6B9A">Not in the mechanics</div>
+<div style="font-size: 13px; line-height: 1.5; margin-top: 8px; color: #C9C9C3">No streaks, no follower counts, no people rankings (spec §2). Karma is visible only to its owner.</div>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 24px; padding: 20px">
+<div style="font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px; color: #B49CFF">Anon looks normal</div>
+<div style="font-size: 13px; line-height: 1.5; margin-top: 8px; color: #C9C9C3">Violet mask mark, same card. Never red, never “warning”.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1180}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

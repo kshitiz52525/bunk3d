@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notices</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<h1 style="margin: 0; flex: 1; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">Notices</h1>
+<button onClick="{{readAll}}" style="border: 0; background: none; color: #D4FF3A; font: inherit; font-size: 13px; font-weight: 800; min-height: 44px">Mark all read</button>
+</div>
+<div style="display: flex; gap: 7px; padding: 0 16px 12px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="3">
+<button onClick="{{f.pick}}" style="border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 34px; border-radius: 17px">{{f.label}}</button>
+</sc-for>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{items}}" as="n" hint-placeholder-count="4">
+<button onClick="{{n.read}}" style="display: block; text-align: left; width: 100%; border: 1px solid {{n.border}}; background: {{n.bg}}; color: #F5F5F0; font: inherit; border-radius: 18px; padding: 14px">
+<span style="display: flex; align-items: center; gap: 10px">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 12px; background: {{n.tint}}; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 9px; font-weight: 800">{{n.short}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800">{{n.from}} <span style="background: {{n.badgeBg}}; color: #0D0D0F; font-size: 9px; font-weight: 800; padding: 2px 5px; border-radius: 6px">{{n.badge}}</span></span><span style="display: block; font-size: 11px; color: #9A9AA5; font-weight: 600">{{n.time}}</span></span>
+<sc-if value="{{n.unread}}" hint-placeholder-val="{{true}}"><span style="width: 10px; height: 10px; border-radius: 5px; background: #FF6B9A"></span></sc-if>
+</span>
+<sc-if value="{{n.urgent}}" hint-placeholder-val="{{false}}"><span style="display: inline-block; margin-top: 10px; background: #FF6B9A; color: #0D0D0F; font-size: 10px; font-weight: 800; letter-spacing: 1px; padding: 3px 8px; border-radius: 8px">URGENT</span></sc-if>
+<span style="display: block; font-size: 15px; font-weight: 800; margin-top: 8px">{{n.title}}</span>
+<span style="display: block; font-size: 13px; color: #C9C9C3; line-height: 1.45; margin-top: 4px">{{n.body}}</span>
+</button>
+</sc-for>
+<a href="#open-E8" onClick="{{ovOpen_E8}}" style="display: flex; align-items: center; gap: 10px; background: #D4FF3A; color: #0D0D0F; border-radius: 18px; padding: 14px; text-decoration: none"><span style="flex: 1"><span style="display: block; font-size: 11px; font-weight: 800; letter-spacing: 1px">GDG ATRIA · JUST NOW</span><span style="display: block; font-size: 15px; font-weight: 800; margin-top: 4px">Hack the Canteen results are out</span></span><span style="font-weight: 800">›</span></a>
+</div>
+<sc-if value="{{ovShow_E8}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="E8-Results" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { read: {}, f: 'All' }; }
+_rv() {
+const all = [
+{ id: 'a', type: 'College', short: 'AU', tint: '#F5F5F0', from: 'Atria Office of Students', badge: 'OFFICIAL', badgeBg: '#F5F5F0', time: '20m', urgent: true, title: 'Internals moved to Mon 3 Nov', body: 'All Sem 5 internal assessments shift by one week. Revised timetable attached (PDF).' },
+{ id: 'b', type: 'Clubs', short: 'GDG', tint: '#D4FF3A', from: 'GDG Atria', badge: '✓ CLUB', badgeBg: '#D4FF3A', time: '1h', urgent: false, title: 'Hack the Canteen: mentors confirmed', body: 'Razorpay and Zomato engineers mentoring from 9 PM. RSVP closes Thursday.' },
+{ id: 'c', type: 'College', short: 'AU', tint: '#F5F5F0', from: 'Atria Library', badge: 'OFFICIAL', badgeBg: '#F5F5F0', time: '1d', urgent: false, title: 'Library open 24×7 till 20 Nov', body: 'Exam season hours. Bring your ID after 10 PM.' },
+{ id: 'd', type: 'Clubs', short: 'CUBS', tint: '#5CC8FF', from: 'CUBS Sports', badge: '✓ CLUB', badgeBg: '#D4FF3A', time: '2d', urgent: false, title: 'Football cup team registrations open', body: '7-a-side, 8 Nov. Captains register by 5 Nov.' }
+];
+const r = this.state.read;
+const list = (this.state.f === 'All' ? all : all.filter((n) => n.type === this.state.f)).slice().sort((x, y) => (r[x.id] ? 1 : 0) - (r[y.id] ? 1 : 0));
+const items = list.map((n) => ({ ...n, unread: !r[n.id], bg: r[n.id] ? '#111114' : '#17171B', border: r[n.id] ? '#1C1C21' : (n.urgent ? '#FF6B9A' : '#2E2E36'), read: () => this.setState({ read: { ...r, [n.id]: true } }) }));
+const filters = ['All', 'College', 'Clubs'].map((l) => { const on = l === this.state.f; return { label: l, bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ f: l }) }; });
+return { items: items, filters: filters, readAll: () => this.setState({ read: { a: true, b: true, c: true, d: true } }) };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["E8"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

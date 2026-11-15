@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mod queue</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8FB8FF}a:hover{color:#B7D1FF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="background: #1E2A4A; padding: 12px 16px 18px; border-radius: 0 0 26px 26px">
+<div style="display: flex; align-items: center; gap: 10px">
+<a href="P1-MyProfile.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #0D0D0F; color: #8FB8FF; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<div style="flex: 1"><div style="font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800">Mod queue</div><div style="font-size: 11px; color: #B7C7E6; font-weight: 700">Atria University · Campus Mods</div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px">
+<div style="background: #0D0D0F; border-radius: 14px; padding: 10px; text-align: center"><div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; color: #8FB8FF">4</div><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">WAITING</div></div>
+<div style="background: #0D0D0F; border-radius: 14px; padding: 10px; text-align: center"><div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800">38m</div><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">OLDEST</div></div>
+<div style="background: #0D0D0F; border-radius: 14px; padding: 10px; text-align: center"><div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800">11</div><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">MODS ON</div></div>
+</div>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">OLDEST FIRST</div>
+<a href="M2-ModReview.dc.html" style="display: block; background: #17171B; border: 1.5px solid #8FB8FF; border-radius: 18px; padding: 14px; text-decoration: none; color: #F5F5F0">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="background: #3A1626; color: #FF9CBB; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 8px">Naming someone · 3 reports</span><span style="font-size: 11px; color: #9A9AA5; font-weight: 700">38m</span></div>
+<div style="font-size: 14px; line-height: 1.45; margin-top: 10px">“the guy in 3rd yr mech who sits in the last row of…”</div>
+<div style="display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; font-weight: 700; color: #9A9AA5"><span>Post · Anonymous</span><span>·</span><span style="color: #8FB8FF">1 Remove vote so far</span></div>
+</a>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="background: #3D2E0D; color: #FFD58A; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 8px">AI hold · harassment (medium)</span><span style="font-size: 11px; color: #9A9AA5; font-weight: 700">21m</span></div>
+<div style="font-size: 14px; line-height: 1.45; margin-top: 10px">Comment on “canteen prices” thread</div>
+<div style="font-size: 12px; font-weight: 700; color: #9A9AA5; margin-top: 10px">Not live yet · no votes</div>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="background: #26262D; color: #E4E4DE; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 8px">Spam · 4 reports</span><span style="font-size: 11px; color: #9A9AA5; font-weight: 700">9m</span></div>
+<div style="font-size: 14px; line-height: 1.45; margin-top: 10px">“DM me for assignment help ₹200/page”</div>
+</div>
+<div style="font-size: 11px; color: #9A9AA5; line-height: 1.5; text-align: center; padding: 4px 10px">You never see who posted, and never see your own posts here. Two matching votes decide; anything split goes to Bunk3d ops.</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

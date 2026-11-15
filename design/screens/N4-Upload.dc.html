@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Upload a note</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #222228">
+<a href="N1-NotesHome.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
+<span style="font-family: Unbounded, sans-serif; font-size: 15px; font-weight: 800">Drop your notes</span>
+<span style="width: 44px"></span>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 12px; background: #17171B; border: 1.5px solid #D4FF3A; border-radius: 16px; padding: 12px">
+<span style="width: 42px; height: 52px; border-radius: 9px; background: #FF6B9A; color: #0D0D0F; display: grid; place-items: center; font-size: 10px; font-weight: 800">PDF</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; font-weight: 800">dbms_endsem_2023.pdf</span><span style="display: block; font-size: 12px; color: #9A9AA5">4.2 MB of 20 MB · uploaded</span><span style="display: block; height: 5px; border-radius: 3px; background: #D4FF3A; margin-top: 6px"></span></span>
+<button aria-label="Remove file" style="width: 36px; height: 36px; border: 0; border-radius: 18px; background: #26262D; color: #F5F5F0; display: grid; place-items: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+</div>
+
+<div style="display: flex; background: #17171B; border-radius: 14px; padding: 4px; gap: 4px">
+<button onClick="{{setNote}}" style="flex: 1; border: 0; background: {{noteBg}}; color: {{noteFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 42px; border-radius: 11px">Notes</button>
+<button onClick="{{setPyq}}" style="flex: 1; border: 0; background: {{pyqBg}}; color: {{pyqFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 42px; border-radius: 11px">Past paper (PYQ)</button>
+</div>
+
+<div><label for="t" style="font-size: 12px; font-weight: 800; color: #9A9AA5">Title</label><input id="t" value="End-sem 2023" style="margin-top: 6px; width: 100%; box-sizing: border-box; height: 48px; padding: 0 14px; background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; color: #F5F5F0; font: inherit; font-size: 15px; font-weight: 700"></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div style="background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; padding: 9px 11px; grid-column: span 2"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">SUBJECT</div><div style="font-size: 14px; font-weight: 700">CS501 · DBMS ▾</div></div>
+<div style="background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; padding: 9px 11px"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">SEM</div><div style="font-size: 14px; font-weight: 700">5 ▾</div></div>
+</div>
+<sc-if value="{{pyq}}" hint-placeholder-val="{{true}}"><div style="background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; padding: 9px 11px"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">EXAM YEAR</div><div style="font-size: 14px; font-weight: 700">2023 · End-sem ▾</div></div></sc-if>
+
+<div style="display: flex; align-items: center; justify-content: space-between; background: #17171B; border: 1px solid #2E2E36; border-radius: 14px; padding: 10px 12px">
+<div><div style="font-size: 13px; font-weight: 800">Show as</div><div style="font-size: 11px; color: #9A9AA5">{{showHint}}</div></div>
+<div style="display: flex; background: #0D0D0F; border-radius: 12px; padding: 3px">
+<button onClick="{{named}}" style="border: 0; background: {{nmBg}}; color: {{nmFg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 10px; min-height: 34px; border-radius: 9px">Aarav</button>
+<button onClick="{{anon}}" style="border: 0; background: {{anBg}}; color: {{anFg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 10px; min-height: 34px; border-radius: 9px">Anon</button>
+</div>
+</div>
+
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.45; color: #C9C9C3; padding: 4px 0"><input type="checkbox" onChange="{{tick}}" style="width: 20px; height: 20px; accent-color: #D4FF3A; margin: 0; flex-shrink: 0">This is my own work or a past paper — not a copyrighted textbook.</label>
+<div style="flex: 1"></div>
+</div>
+<div style="padding: 10px 16px 26px">
+<sc-if value="{{ok}}" hint-placeholder-val="{{false}}"><a href="N2-Subject.dc.html" style="display: flex; justify-content: center; align-items: center; min-height: 56px; background: #D4FF3A; color: #0D0D0F; border-radius: 16px; font-size: 16px; font-weight: 800; text-decoration: none; box-shadow: 4px 4px 0 #B49CFF">Upload · +2 karma per save</a></sc-if>
+<sc-if value="{{notOk}}" hint-placeholder-val="{{true}}"><button disabled style="width: 100%; border: 0; background: #2A2A31; color: #6E6E78; font: inherit; font-size: 16px; font-weight: 800; min-height: 56px; border-radius: 16px">Tick the box to upload</button></sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { type: 'pyq', anon: false, ok: false }; }
+renderVals() {
+const p = this.state.type === 'pyq', a = this.state.anon;
+return {
+pyq: p, ok: this.state.ok, notOk: !this.state.ok,
+noteBg: p ? 'transparent' : '#D4FF3A', noteFg: p ? '#9A9AA5' : '#0D0D0F', pyqBg: p ? '#D4FF3A' : 'transparent', pyqFg: p ? '#0D0D0F' : '#9A9AA5',
+nmBg: a ? 'transparent' : '#F5F5F0', nmFg: a ? '#9A9AA5' : '#0D0D0F', anBg: a ? '#B49CFF' : 'transparent', anFg: a ? '#0D0D0F' : '#9A9AA5',
+showHint: a ? 'Karma still counts for you' : 'Your name on the note',
+setNote: () => this.setState({ type: 'note' }), setPyq: () => this.setState({ type: 'pyq' }),
+named: () => this.setState({ anon: false }), anon: () => this.setState({ anon: true }),
+tick: () => this.setState({ ok: !this.state.ok })
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rhea Nair profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+@keyframes bkOvUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.bk-ovs{animation:bkOvUp 260ms cubic-bezier(.2,.8,.2,1)}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="height: 140px; flex-shrink: 0; background: #B49CFF; position: relative; overflow: hidden; padding: 12px 16px; box-sizing: border-box">
+<span style="position: absolute; right: -40px; top: -40px; width: 200px; height: 200px; border-radius: 100px; border: 26px solid #9A7FF0" aria-hidden="true"></span>
+<div style="position: relative; display: flex; justify-content: space-between">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #0D0D0F; color: #B49CFF; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="D2-Chat.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #0D0D0F; color: #B49CFF; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<button onClick="{{menu}}" aria-label="Block or report" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #0D0D0F; color: #B49CFF; font-weight: 800">···</button>
+</div>
+</div>
+<div style="padding: 0 16px; margin-top: -42px; position: relative">
+<div style="width: 84px; height: 84px; border-radius: 42px; background: #0D0D0F; display: grid; place-items: center"><span style="width: 76px; height: 76px; border-radius: 38px; background: #F5F5F0; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800">RN</span></div>
+<div style="display: flex; align-items: center; gap: 8px; margin-top: 8px"><h1 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.8px">Rhea Nair</h1><span style="background: #123D2C; color: #3DDC97; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 9px">✓ Verified</span></div>
+<div style="font-size: 13px; color: #9A9AA5; margin-top: 2px">@rhea.builds · CS &amp; AI · 2nd yr</div>
+<div style="font-size: 14px; margin-top: 8px; line-height: 1.45">badminton at 6, ML papers at midnight</div>
+<div style="display: flex; gap: 8px; margin-top: 14px">
+<a href="D2-Chat.dc.html" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 48px; background: #D4FF3A; color: #0D0D0F; border-radius: 14px; font-size: 15px; font-weight: 800; text-decoration: none">Message</a>
+<button style="border: 1.5px solid #4A4A54; background: transparent; color: #F5F5F0; font: inherit; font-size: 14px; font-weight: 700; padding: 0 16px; min-height: 48px; border-radius: 14px">Connected ✓</button>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; gap: 8px; margin-top: 8px">
+<button style="flex: 1; border: 0; background: #3D1414; color: #FF8A8A; font: inherit; font-size: 14px; font-weight: 800; min-height: 46px; border-radius: 14px">Block</button>
+<a href="#open-X3" onClick="{{ovOpen_X3}}" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 46px; background: #3A1626; color: #FF9CBB; border-radius: 14px; font-size: 14px; font-weight: 800; text-decoration: none">Report</a>
+</div>
+</sc-if>
+</div>
+
+<div style="padding: 16px 16px 0">
+<div style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">CLUBS</div>
+<div style="display: flex; gap: 8px; margin-top: 8px"><span style="background: #D4FF3A; color: #0D0D0F; font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 12px">GDG Atria · admin</span><span style="background: #1F1F25; font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 12px">CUBS Sports</span></div>
+</div>
+<div style="display: flex; gap: 18px; padding: 16px 16px 0; border-bottom: 1px solid #222228"><span style="font-size: 14px; font-weight: 800; padding-bottom: 10px; border-bottom: 3px solid #D4FF3A">Posts</span><span style="font-size: 14px; font-weight: 800; color: #9A9AA5; padding-bottom: 10px">Notes</span></div>
+<div style="flex: 1; overflow: hidden; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px"><div style="font-size: 14px; line-height: 1.45">Settling this forever: best samosa on campus?</div><div style="font-size: 12px; color: #9A9AA5; margin-top: 6px">#Canteen · 40m · ▲ 118</div></div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px"><div style="font-size: 14px; line-height: 1.45">ML reading group, Thursdays 5 PM, library room 3. Bring nothing but curiosity.</div><div style="font-size: 12px; color: #9A9AA5; margin-top: 6px">#Academics · 3d · ▲ 72</div></div>
+<div style="font-size: 11px; color: #9A9AA5; text-align: center; margin-top: 4px">Only named posts show here. Karma is private.</div>
+</div>
+<sc-if value="{{ovShow_X3}}" hint-placeholder-val="{{false}}"><div class="bk-ovs" style="position: absolute; inset: 0; z-index: 60; overflow: hidden"><dc-import name="X3-Report" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { menu: false }; }
+_rv() { return { menuOpen: this.state.menu, menu: () => this.setState({ menu: !this.state.menu }) }; }
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["X3"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

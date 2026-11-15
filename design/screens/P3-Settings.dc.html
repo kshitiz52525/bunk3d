@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="P1-MyProfile.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<h1 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">Settings</h1>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 4px 16px 0">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.4px; color: #9A9AA5; margin: 6px 0 8px">NOTIFICATIONS</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 2px 14px">
+<sc-for list="{{toggles}}" as="t" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 52px; border-bottom: 1px solid {{t.line}}">
+<span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 700">{{t.label}}</span><sc-if value="{{t.hasSub}}" hint-placeholder-val="{{false}}"><span style="display: block; font-size: 11px; color: #9A9AA5">{{t.sub}}</span></sc-if></span>
+<button onClick="{{t.flip}}" role="switch" aria-checked="{{t.aria}}" aria-label="{{t.label}}" style="width: 50px; height: 30px; border: 0; border-radius: 15px; background: {{t.bg}}; position: relative; padding: 0"><span style="position: absolute; top: 3px; left: {{t.knob}}px; width: 24px; height: 24px; border-radius: 12px; background: {{t.knobBg}}"></span></button>
+</div>
+</sc-for>
+</div>
+
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.4px; color: #9A9AA5; margin: 18px 0 8px">PRIVACY &amp; SAFETY</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 2px 14px">
+<div style="display: flex; align-items: center; min-height: 50px; border-bottom: 1px solid #222228; font-size: 14px; font-weight: 700"><span style="flex: 1">Blocked users</span><span style="color: #9A9AA5">2 ›</span></div>
+<div style="display: flex; align-items: center; min-height: 50px; border-bottom: 1px solid #222228; font-size: 14px; font-weight: 700"><span style="flex: 1">Community guidelines</span><span style="color: #9A9AA5">›</span></div>
+<div style="display: flex; align-items: center; min-height: 50px; font-size: 14px; font-weight: 700"><span style="flex: 1">Privacy policy</span><span style="color: #9A9AA5">›</span></div>
+</div>
+
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.4px; color: #9A9AA5; margin: 18px 0 8px">YOUR DATA</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 2px 14px">
+<div style="display: flex; align-items: center; min-height: 50px; border-bottom: 1px solid #222228; font-size: 14px; font-weight: 700"><span style="flex: 1">Download my data</span><span style="color: #D4FF3A; font-size: 12px; font-weight: 800">JSON</span></div>
+<div style="display: flex; align-items: center; min-height: 50px; border-bottom: 1px solid #222228; font-size: 14px; font-weight: 700"><span style="flex: 1">Grievance officer</span><span style="color: #9A9AA5; font-size: 12px">[NAME · EMAIL]</span></div>
+<div style="display: flex; align-items: center; min-height: 50px; font-size: 14px; font-weight: 800; color: #FF5D5D"><span style="flex: 1">Delete account</span><span style="font-size: 11px; color: #9A9AA5; font-weight: 700">30-day grace</span></div>
+</div>
+<div style="text-align: center; font-size: 11px; color: #6E6E78; margin-top: 14px">bunk3d v0.1 · not run by your college</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { on: { replies: true, dms: true, notices: true, events: true, quiet: true, receipts: false } }; }
+renderVals() {
+const defs = [['replies', 'Replies to my posts', ''], ['dms', 'DMs & requests', ''], ['notices', 'Notices from accounts I follow', ''], ['events', 'Event reminders', '24 h and 1 h before'], ['quiet', 'Quiet hours', '10 PM – 8 AM · safety alerts still come through'], ['receipts', 'Read receipts in DMs', 'Off means you can’t see theirs either']];
+const on = this.state.on;
+const toggles = defs.map(([k, l, s], i) => ({
+label: l, sub: s, hasSub: !!s, aria: on[k] ? 'true' : 'false',
+bg: on[k] ? '#D4FF3A' : '#33333B', knob: on[k] ? 23 : 3, knobBg: on[k] ? '#0D0D0F' : '#9A9AA5',
+line: i === defs.length - 1 ? 'transparent' : '#222228',
+flip: () => this.setState({ on: { ...on, [k]: !on[k] } })
+}));
+return { toggles: toggles };
+}
+}
+</script>
+</body>
+</html>

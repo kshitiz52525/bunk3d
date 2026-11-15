@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Payout history</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B49CFF}a:hover{color:#CDBEFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="B1-Bag.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<h1 style="margin: 0; flex: 1; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">History</h1>
+</div>
+<div style="padding: 0 16px; display: flex; gap: 7px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="3"><button onClick="{{f.pick}}" style="border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 34px; border-radius: 17px">{{f.label}}</button></sc-for>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+<a href="{{r.href}}" style="display: flex; align-items: center; gap: 12px; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 11px 12px; text-decoration: none; color: #F5F5F0">
+<span style="width: 36px; height: 36px; border-radius: 12px; background: {{r.iconBg}}; color: {{r.iconFg}}; display: grid; place-items: center; font-size: 16px; font-weight: 800">{{r.icon}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; font-weight: 800">{{r.title}}</span><span style="display: block; font-size: 11px; color: #9A9AA5">{{r.meta}}</span></span>
+<span style="text-align: right"><span style="display: block; font-size: 14px; font-weight: 800; color: {{r.amtColor}}">{{r.amt}}</span><span style="display: block; font-size: 10px; font-weight: 800; color: {{r.stColor}}">{{r.status}}</span></span>
+</a>
+</sc-for>
+<div style="margin-top: 8px; background: #2A2140; border-radius: 16px; padding: 14px; display: flex; align-items: center; gap: 12px">
+<span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 800">TDS certificate · FY 2026–27</span><span style="display: block; font-size: 12px; color: #CDBEFF">Form 16A · ₹0 deducted so far · for your ITR</span></span>
+<button aria-label="Download TDS certificate" style="width: 44px; height: 44px; border: 0; border-radius: 14px; background: #B49CFF; color: #0D0D0F; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg></button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { f: 'All' }; }
+renderVals() {
+const all = [
+{ k: 'Withdrawals', title: 'Withdrawal to UPI', meta: '24 Oct · WD-55102', amt: '−₹1,240', status: 'PROCESSING', stColor: '#B49CFF', amtColor: '#F5F5F0', icon: '↑', iconBg: '#2A2140', iconFg: '#B49CFF', href: 'B4-Withdraw.dc.html' },
+{ k: 'Earnings', title: 'Design 4 event posters', meta: 'GDG Atria · 23 Oct · after 2.5% fee + GST', amt: '+₹970.50', status: 'PENDING', stColor: '#FFB547', amtColor: '#D4FF3A', icon: '+', iconBg: '#1F2410', iconFg: '#D4FF3A', href: 'B2-EarningDetail.dc.html' },
+{ k: 'Withdrawals', title: 'Withdrawal to UPI', meta: '15 Oct · WD-49920', amt: '−₹3,200', status: 'PAID', stColor: '#3DDC97', amtColor: '#F5F5F0', icon: '↑', iconBg: '#12301F', iconFg: '#3DDC97', href: 'B2-EarningDetail.dc.html' },
+{ k: 'Earnings', title: 'Sound check crew', meta: 'Music Society · 12 Oct · after 2.5% fee + GST', amt: '+₹582.30', status: 'PAID', stColor: '#3DDC97', amtColor: '#D4FF3A', icon: '+', iconBg: '#1F2410', iconFg: '#D4FF3A', href: 'B2-EarningDetail.dc.html' },
+{ k: 'Withdrawals', title: 'Withdrawal bounced', meta: '2 Oct · bank down · returned', amt: '₹500', status: 'RETURNED', stColor: '#FF5D5D', amtColor: '#9A9AA5', icon: '!', iconBg: '#3A1717', iconFg: '#FF5D5D', href: 'B2-EarningDetail.dc.html' }
+];
+const f = this.state.f;
+const rows = f === 'All' ? all : all.filter((r) => r.k === f);
+const filters = ['All', 'Earnings', 'Withdrawals'].map((l) => { const on = l === f; return { label: l, bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ f: l }) }; });
+return { rows: rows, filters: filters };
+}
+}
+</script>
+</body>
+</html>

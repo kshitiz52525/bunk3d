@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spill the Tea</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+.bk-scroll::-webkit-scrollbar{display:none}
+.bk-car::-webkit-scrollbar{display:none}
+.bk-chips::-webkit-scrollbar{display:none}
+@keyframes bkReveal{from{opacity:.15;transform:translateY(36px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes bkPlx{from{transform:translateY(-6%) scale(1.14)}to{transform:translateY(6%) scale(1.14)}}
+@keyframes bkBurst{0%{transform:scale(.2) rotate(-12deg);opacity:0}25%{transform:scale(1.25) rotate(4deg);opacity:1}55%{transform:scale(.95) rotate(0);opacity:1}100%{transform:scale(1.1) translateY(-30px);opacity:0}}
+@keyframes bkPill{from{transform:translate(-50%,-20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+@supports (animation-timeline: view()){
+.bk-reveal{animation:bkReveal linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+.bk-plx{animation:bkPlx linear both;animation-timeline:view()}
+}
+@media (prefers-reduced-motion: reduce){.bk-reveal,.bk-plx{animation:none!important}}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+@keyframes bkOvUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.bk-ovs{animation:bkOvUp 260ms cubic-bezier(.2,.8,.2,1)}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; position: relative; overflow: hidden">
+
+<div class="bk-scroll" ref="{{setRef}}" onScroll="{{onScroll}}" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: {{padTop}}px 12px 120px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+
+<div style="display: flex; align-items: center; gap: 10px; padding: 2px 4px 0; flex-shrink: 0">
+<div style="flex: 1; display: flex; gap: 14px; align-items: baseline"><h1 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.8px">Campus</h1><a href="T4-Communities.dc.html" style="font-family: Unbounded, sans-serif; font-size: 14px; font-weight: 700; color: #6E6E78; text-decoration: none">Communities</a></div>
+<div style="display: flex; background: #17171B; border-radius: 14px; padding: 3px">
+<button onClick="{{setHot}}" style="border: 0; background: {{hotBg}}; color: {{hotFg}}; font: inherit; font-size: 13px; font-weight: 800; padding: 0 14px; min-height: 36px; border-radius: 11px">Hot</button>
+<button onClick="{{setNew}}" style="border: 0; background: {{newBg}}; color: {{newFg}}; font: inherit; font-size: 13px; font-weight: 800; padding: 0 14px; min-height: 36px; border-radius: 11px">New</button>
+</div>
+</div>
+
+<div class="bk-chips" style="display: flex; gap: 7px; overflow-x: auto; scrollbar-width: none; padding: 0 4px; flex-shrink: 0">
+<sc-for list="{{topics}}" as="t" hint-placeholder-count="6">
+<button onClick="{{t.pick}}" style="flex-shrink: 0; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 13px; font-weight: 700; padding: 0 13px; min-height: 34px; border-radius: 17px; white-space: nowrap">{{t.label}}</button>
+</sc-for>
+</div>
+
+<a href="X1-Notices.dc.html" style="display: flex; align-items: center; gap: 10px; background: #FF6B9A; color: #0D0D0F; border-radius: 16px; padding: 10px 12px; text-decoration: none; flex-shrink: 0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/></svg>
+<span style="flex: 1; font-size: 13px; font-weight: 800">URGENT · Internals moved to Mon 3 Nov</span>
+<span style="font-size: 11px; font-weight: 800; background: #0D0D0F; color: #F5F5F0; padding: 3px 7px; border-radius: 8px">Official</span>
+</a>
+
+<sc-for list="{{posts}}" as="p" hint-placeholder-count="4">
+<article class="bk-reveal" style="background: #17171B; border: 1px solid #26262D; border-radius: 22px; overflow: hidden; flex-shrink: 0">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 14px 0">
+<sc-if value="{{p.anon}}" hint-placeholder-val="{{false}}"><span style="width: 36px; height: 36px; border-radius: 12px; background: #2A2140; color: #B49CFF; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10c3-1 6-1 9 0s6 1 9 0v2a4 4 0 0 1-4 4c-2 0-3-1.5-5-1.5S9 16 7 16a4 4 0 0 1-4-4z"/></svg></span></sc-if>
+<sc-if value="{{p.named}}" hint-placeholder-val="{{true}}"><span style="width: 36px; height: 36px; border-radius: {{p.avR}}; background: {{p.tint}}; color: #0D0D0F; display: grid; place-items: center; font-family: {{p.avFont}}; font-size: {{p.avSize}}; font-weight: 800">{{p.initials}}</span></sc-if>
+<a href="T2-PostDetail.dc.html" style="flex: 1; min-width: 0; text-decoration: none"><span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; color: {{p.nameColor}}">{{p.author}}<sc-if value="{{p.club}}" hint-placeholder-val="{{false}}"><span style="background: #D4FF3A; color: #0D0D0F; font-size: 9px; padding: 2px 5px; border-radius: 6px">✓ CLUB</span></sc-if></span><span style="display: block; font-size: 11px; color: #9A9AA5; font-weight: 600">{{p.meta}}</span></a>
+<sc-if value="{{p.carousel}}" hint-placeholder-val="{{false}}"><span style="border: 1px solid #2E2E36; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 9px">{{carCount}}</span></sc-if>
+<a href="#open-X3" onClick="{{ovOpen_X3}}" aria-label="Post options" style="width: 36px; height: 36px; display: grid; place-items: center; color: #9A9AA5; text-decoration: none; font-weight: 800">···</a>
+</div>
+<sc-if value="{{p.hasText}}" hint-placeholder-val="{{true}}"><a href="T2-PostDetail.dc.html" style="display: block; text-decoration: none; color: #F5F5F0; font-size: 15px; line-height: 1.5; font-weight: 500; padding: 10px 14px 12px">{{p.text}}</a></sc-if>
+
+<sc-if value="{{p.photo}}" hint-placeholder-val="{{false}}">
+<button onDoubleClick="{{p.like}}" aria-label="{{p.alt}}. Double-tap to upvote" style="display: block; position: relative; width: 100%; aspect-ratio: {{p.ratio}}; border: 0; padding: 0; margin: 0; overflow: hidden; background: #222228; cursor: pointer">
+<img class="bk-plx" src="{{p.src}}" alt="{{p.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: {{p.pos}}; display: block; transform: scale(1.14)">
+<sc-if value="{{p.badge}}" hint-placeholder-val="{{false}}"><span style="position: absolute; right: 10px; top: 10px; background: #D4FF3A; color: #0D0D0F; font-size: 10px; font-weight: 800; padding: 4px 7px; border-radius: 7px; transform: rotate(3deg)">{{p.badgeText}}</span></sc-if>
+<sc-if value="{{p.burst}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: 50%; top: 50%; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 36px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; animation: bkBurst 800ms cubic-bezier(.2,.8,.2,1) forwards; box-shadow: 6px 6px 0 #B49CFF"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></sc-if>
+</button>
+<a href="T9-PhotoViewer.dc.html" style="display: block; font-size: 11px; font-weight: 700; color: #9A9AA5; text-decoration: none; padding: 6px 14px 0">{{p.viewHint}}</a>
+</sc-if>
+
+<sc-if value="{{p.carousel}}" hint-placeholder-val="{{false}}">
+<div class="bk-car" onScroll="{{onCar}}" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; aspect-ratio: 4 / 5; background: #222228">
+<sc-for list="{{slides}}" as="s" hint-placeholder-count="3">
+<a href="T9-PhotoViewer.dc.html" aria-label="{{s.alt}}" style="flex: 0 0 100%; scroll-snap-align: center; scroll-snap-stop: always; display: block"><img src="{{s.src}}" alt="{{s.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: {{s.pos}}; display: block"></a>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: center; gap: 5px; padding: 10px 0 0">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><span style="width: {{d.w}}px; height: 6px; border-radius: 3px; background: {{d.bg}}; transition: width 220ms cubic-bezier(.2,.8,.2,1), background 220ms"></span></sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{p.poll}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 0 14px">
+<sc-for list="{{pollOpts}}" as="o" hint-placeholder-count="2"><button onClick="{{o.vote}}" style="position: relative; height: 42px; border: 0; border-radius: 12px; background: #222228; overflow: hidden; padding: 0; font: inherit; color: {{o.fg}}; text-align: left"><span style="position: absolute; top: 0; bottom: 0; left: 0; width: {{o.pct}}%; background: {{o.fill}}; transition: width 500ms cubic-bezier(.2,.8,.2,1)"></span><span style="position: relative; display: flex; justify-content: space-between; align-items: center; height: 100%; padding: 0 12px; font-size: 13px; font-weight: 800"><span>{{o.label}}</span><span>{{o.shown}}</span></span></button></sc-for>
+<div style="font-size: 11px; color: #9A9AA5; font-weight: 600">{{pollMeta}}</div>
+</div>
+</sc-if>
+
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px">
+<div style="display: flex; align-items: center; background: {{p.voteBg}}; color: {{p.voteFg}}; border-radius: 20px; padding: 2px; transition: background 180ms">
+<button onClick="{{p.up}}" aria-label="Upvote" style="width: 36px; height: 36px; border: 0; background: transparent; color: inherit; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<b style="font-size: 13px; min-width: 28px; text-align: center">{{p.score}}</b>
+<button onClick="{{p.down}}" aria-label="Downvote" style="width: 36px; height: 36px; border: 0; background: transparent; color: inherit; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
+</div>
+<a href="T2-PostDetail.dc.html" style="display: flex; align-items: center; gap: 6px; background: #1F1F25; color: #E4E4DE; font-size: 12px; font-weight: 700; padding: 0 12px; min-height: 40px; border-radius: 20px; text-decoration: none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>{{p.comments}}</a>
+<sc-if value="{{p.event}}" hint-placeholder-val="{{false}}"><a href="#open-E2" onClick="{{ovOpen_E2}}" style="display: flex; align-items: center; background: #1F2410; color: #D4FF3A; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 40px; border-radius: 20px; text-decoration: none">Event ›</a></sc-if>
+<span style="flex: 1"></span>
+<button aria-label="Save" style="width: 40px; height: 40px; border: 0; border-radius: 20px; background: #1F1F25; color: #E4E4DE; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+<button aria-label="Share" style="width: 40px; height: 40px; border: 0; border-radius: 20px; background: #1F1F25; color: #E4E4DE; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></button>
+</div>
+</article>
+</sc-for>
+
+<div style="text-align: center; padding: 18px 0 8px; flex-shrink: 0"><div style="font-family: Unbounded, sans-serif; font-size: 16px; font-weight: 800">{{endTitle}}</div><div style="font-size: 12px; color: #9A9AA5; margin-top: 4px">{{endSub}}</div></div>
+</div>
+
+<sc-if value="{{pending}}" hint-placeholder-val="{{false}}">
+<div role="status" style="position: absolute; left: 0; right: 0; top: 0; height: 46px; z-index: 6; background: #3D2E0D; color: #FFD58A; display: flex; align-items: center; gap: 10px; padding: 0 12px 0 16px; box-sizing: border-box; border-bottom: 1px solid #5A4415">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+<span style="flex: 1; min-width: 0; font-size: 12px; line-height: 1.3"><b>ID under review</b> · usually 24 h. Read and RSVP now; posting, votes and DMs unlock after.</span>
+<a href="#open-A5" onClick="{{ovOpen_A5}}" style="flex-shrink: 0; color: #FFD58A; font-size: 12px; font-weight: 800; text-decoration: underline; min-height: 44px; display: flex; align-items: center">Details</a>
+</div>
+</sc-if>
+<div style="position: absolute; left: 0; right: 0; top: {{bannerH}}px; z-index: 3; transform: translateY({{headY}}px); transition: transform 280ms cubic-bezier(.2,.8,.2,1), background 200ms; background: {{headBg}}; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid {{headLine}}">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px 8px; height: 64px; box-sizing: border-box">
+<div style="position: relative; width: 44px; height: 48px; flex-shrink: 0">
+<a href="P1-MyProfile.dc.html" aria-label="My profile" style="position: absolute; left: 2px; top: 0; width: 40px; height: 40px; border-radius: 14px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 13px; text-decoration: none; transform: rotate(-4deg)">AS</a>
+<a href="MS1-ModeSwitch.dc.html" aria-label="Swipe up on your photo to switch to The Hustle" style="position: absolute; left: 10px; bottom: -2px; width: 24px; height: 16px; border-radius: 8px; background: #0D0D0F; border: 1.5px solid #D4FF3A; color: #D4FF3A; display: grid; place-items: center; box-sizing: border-box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></a>
+</div>
+<div style="flex: 1; min-width: 0"><div style="font-family: Unbounded, sans-serif; font-size: 17px; font-weight: 800; letter-spacing: -0.6px">bunk<span style="color: #D4FF3A; display: inline-block; transform: rotate({{logoRot}}deg); transition: transform 300ms">3</span>d</div><div style="font-size: 11px; color: #9A9AA5; font-weight: 700">{{subline}}</div></div>
+<a href="D1-ChatList.dc.html" aria-label="DMs, 2 unread" style="position: relative; width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><span style="position: absolute; top: 2px; right: 2px; width: 10px; height: 10px; border-radius: 5px; background: #D4FF3A; border: 2px solid #0D0D0F"></span></a>
+<a href="X2-Search.dc.html" aria-label="Search" style="width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a>
+<a href="X1-Notices.dc.html" aria-label="Notices, 3 unread" style="position: relative; width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span style="position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; border-radius: 9px; background: #FF6B9A; color: #0D0D0F; font-size: 10px; font-weight: 800; display: grid; place-items: center; border: 2px solid #0D0D0F">3</span></a>
+</div>
+<div style="display: flex; gap: 12px; padding: 4px 16px 10px; height: 86px; box-sizing: border-box; overflow: hidden; opacity: {{storyOp}}; transition: opacity 200ms">
+<a href="#open-T11" onClick="{{ovOpen_T11}}" style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #C9C9C3; font-size: 11px; font-weight: 700"><span style="width: 54px; height: 54px; border-radius: 19px; border: 2px dashed #4A4A54; display: grid; place-items: center; color: #D4FF3A; box-sizing: border-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Your story</a>
+<sc-for list="{{stories}}" as="s" hint-placeholder-count="4">
+<a href="T10-PhotoStory.dc.html" style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: {{s.fg}}; font-size: 11px; font-weight: 700"><span style="width: 54px; height: 54px; border-radius: 19px; padding: 3px; background: {{s.ring}}; box-sizing: border-box"><img src="{{s.src}}" alt="" style="width: 100%; height: 100%; border-radius: 16px; object-fit: cover; border: 2px solid #0D0D0F; box-sizing: border-box; display: block"></span>{{s.name}}</a>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{showPill}}" hint-placeholder-val="{{false}}">
+<button onClick="{{toTop}}" style="position: absolute; left: 50%; top: {{pillTop}}px; z-index: 4; transform: translateX(-50%); border: 0; background: #D4FF3A; color: #0D0D0F; font: inherit; font-size: 13px; font-weight: 800; min-height: 40px; padding: 0 16px; border-radius: 20px; box-shadow: 3px 3px 0 #B49CFF; animation: bkPill 260ms cubic-bezier(.2,.8,.2,1); transition: top 280ms cubic-bezier(.2,.8,.2,1)">↑ 3 new posts</button>
+</sc-if>
+
+<sc-if value="{{verified}}" hint-placeholder-val="{{true}}"><a href="T3-Create.dc.html" aria-label="Create a post" style="position: absolute; right: 18px; bottom: {{fabBottom}}px; z-index: 3; height: 56px; width: {{fabW}}px; border-radius: 20px; background: #D4FF3A; color: #0D0D0F; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 4px 4px 0 #B49CFF; transform: rotate(-4deg); text-decoration: none; font-size: 15px; font-weight: 800; overflow: hidden; white-space: nowrap; transition: width 260ms cubic-bezier(.2,.8,.2,1), bottom 280ms cubic-bezier(.2,.8,.2,1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 5v14M5 12h14"/></svg><span style="display: {{fabLabelShow}}">Spill it</span></a></sc-if>
+<sc-if value="{{pending}}" hint-placeholder-val="{{false}}"><a href="#open-A5" onClick="{{ovOpen_A5}}" aria-label="Posting unlocks after verification" style="position: absolute; right: 18px; bottom: {{fabBottom}}px; z-index: 3; height: 56px; padding: 0 18px; border-radius: 20px; background: #26262D; color: #C9C9C3; display: flex; align-items: center; gap: 8px; text-decoration: none; font-size: 14px; font-weight: 800; border: 1.5px dashed #5A5A64"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Post after verify</a></sc-if>
+
+<nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; transform: translateY({{navY}}px); transition: transform 280ms cubic-bezier(.2,.8,.2,1); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: rgba(17,17,20,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid #24242A; padding: 8px 6px 24px">
+<a href="T1-Feed.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #F5F5F0; font-size: 11px; font-weight: 800; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; border-radius: 16px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2"/></svg></span>Tea</a>
+<a href="N1-NotesHome.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H19v-3"/></svg></span>Study</a>
+<a href="E1-Events.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V6h18v3a3 3 0 0 0 0 6v3H3v-3a3 3 0 0 0 0-6z"/><path d="M13 6v12" stroke-dasharray="2 2"/></svg></span>Poppin’</a>
+<a href="C1-Clubs.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span>Crew</a>
+<a href="SP1-Deck.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Discover</a>
+</nav>
+<sc-if value="{{ovShow_X3}}" hint-placeholder-val="{{false}}"><div class="bk-ovs" style="position: absolute; inset: 0; z-index: 60; overflow: hidden"><dc-import name="X3-Report" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_E2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="E2-EventDetail" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_T11}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="T11-PhotoComposer" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_A5}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="A5-Pending" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"verified":{"editor":"boolean","default":true,"section":"Account state"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { y: 0, dir: 'up', car: 0, sort: 'hot', topic: 'All', votes: {}, burst: '', poll: null };
+this.lastY = 0;
+this.el = null;
+this.setRef = (el) => { this.el = el; };
+this.onScroll = (e) => {
+const y = e.target.scrollTop;
+const dy = y - this.lastY;
+if (Math.abs(dy) < 6) return;
+this.lastY = y;
+this.setState({ y: y, dir: dy > 0 ? 'down' : 'up' });
+};
+this.onCar = (e) => {
+const i = Math.round(e.target.scrollLeft / Math.max(1, e.target.clientWidth));
+if (i !== this.state.car) this.setState({ car: i });
+};
+}
+componentWillUnmount() { clearTimeout(this.t); }
+_rv() {
+const st = this.state;
+const y = st.y;
+const down = st.dir === 'down';
+const atTop = y < 40;
+const verified = this.props.verified ?? true;
+const bannerH = verified ? 0 : 46;
+const headY = atTop ? 0 : (down && y > 150 ? -150 : -86);
+const navHidden = !atTop && down && y > 150;
+const P = {
+terrace: '/_blob/09c1b29936c1832cc7144a0d1e1d60f8', fest: '/_blob/5bd9a38aea31dec55561a0be0c1342bd', turf: '/_blob/1df49855430300ad51bc80671aa4e1b4',
+samosa: '/_blob/cc01344a09210f9823aeb58892696c75', hack: '/_blob/485e7da6913dc0d04b860ccc07ac7be3', rain: '/_blob/f5d6e2991b0170d112e2e8de040ac7bb'
+};
+const base = [
+{ id: 'p1', kind: 'text', anon: true, author: 'Anonymous', meta: '12m · #Rant', topic: 'Academics', text: 'DBMS internal had a question from a chapter that literally isn’t in our syllabus. Am I the only one?', score: 241, comments: 48 },
+{ id: 'p2', kind: 'photo', author: 'Kabir M.', initials: 'KM', tint: '#5CC8FF', meta: '4th yr · Mech · 2h · #Random', topic: 'Hostel & PG', text: 'sunset from the hostel terrace hits different after a 6-hour lab', src: P.terrace, alt: 'City skyline at sunset from a hostel terrace', ratio: '4 / 5', pos: '50% 50%', score: 76, comments: 9 },
+{ id: 'p3', kind: 'poll', author: 'Rhea Nair', initials: 'RN', tint: '#B49CFF', meta: '2nd yr · CS & AI · 40m · #Canteen', topic: 'Canteen', text: 'Settling this forever: best samosa on campus?', score: 118, comments: 63 },
+{ id: 'p4', kind: 'carousel', club: true, author: 'GDG Atria', initials: 'GDG', tint: '#D4FF3A', meta: '5h · #Events', topic: 'Events', text: 'Fest night recap. Swipe for the turf final and Hack the Canteen, hours 1–3', score: 412, comments: 27, event: true },
+{ id: 'p5', kind: 'photo', author: 'Ishaan P.', initials: 'IP', tint: '#FF6B9A', meta: '3rd yr · ECE · 6h · #Canteen', topic: 'Canteen', text: '₹15 samosa supremacy. Block A canteen, I’m sorry I ever doubted you', src: P.samosa, alt: 'Three samosas on a steel plate with chutneys and chai', ratio: '1 / 1', pos: '50% 50%', score: 64, comments: 12 },
+{ id: 'p6', kind: 'text', anon: true, author: 'Anonymous', meta: '7h · #Random', topic: 'Random', text: 'whoever keeps booking library pod 4 for “group study” and then sleeping in it, I see you', score: 98, comments: 21 },
+{ id: 'p7', kind: 'photo', author: 'Meera T.', initials: 'MT', tint: '#FFB547', meta: '2nd yr · B.Des · 8h · #Events', topic: 'Events', text: 'hour 3 and nobody has slept', src: P.hack, alt: 'Teams coding at laptops under string lights at Hack the Canteen', ratio: '1.91 / 1', pos: '50% 50%', badge: 'LIVE · HOUR 3', score: 57, comments: 6, event: true },
+{ id: 'p8', kind: 'photo', author: 'Sana K.', initials: 'SK', tint: '#FF6B9A', meta: '2nd yr · B.Des · 9h · #Random', topic: 'Random', text: 'Block C in the rain is a whole mood', src: P.rain, alt: 'Rainy evening outside Block C, a student with a lime umbrella', ratio: '4 / 5', pos: '50% 62%', tall: true, score: 133, comments: 15 }
+];
+const hot = st.sort === 'hot';
+let list = st.topic === 'All' ? base : base.filter((p) => p.topic === st.topic);
+if (!hot) list = list.slice().reverse();
+const votes = st.votes;
+const setV = (id, v) => this.setState({ votes: { ...votes, [id]: votes[id] === v ? 0 : v } });
+const like = (id) => { clearTimeout(this.t); this.setState({ votes: { ...votes, [id]: 1 }, burst: id }); this.t = setTimeout(() => this.setState({ burst: '' }), 820); };
+const posts = list.map((p) => {
+const v = votes[p.id] || 0;
+return {
+...p, named: !p.anon, anon: !!p.anon, club: !!p.club, event: !!p.event,
+photo: p.kind === 'photo', carousel: p.kind === 'carousel', poll: p.kind === 'poll', hasText: !!p.text,
+nameColor: p.anon ? '#CDBEFF' : '#F5F5F0', avR: p.club ? '12px' : '18px', avFont: p.club ? 'Unbounded, sans-serif' : 'inherit', avSize: p.club ? '9px' : '12px',
+badge: !!p.badge, badgeText: p.badge || '', burst: st.burst === p.id,
+viewHint: p.tall ? 'Tap to see the full 9:16 photo ›' : 'Open photo ›',
+score: p.score + v, voteBg: v === 1 ? '#D4FF3A' : (v === -1 ? '#3A1626' : '#1F1F25'), voteFg: v === 1 ? '#0D0D0F' : (v === -1 ? '#FF6B9A' : '#E4E4DE'),
+up: () => setV(p.id, 1), down: () => setV(p.id, -1), like: () => like(p.id)
+};
+});
+const slides = [
+{ src: P.fest, alt: 'Band on stage under lime, violet and pink beams', pos: '50% 50%' },
+{ src: P.turf, alt: 'Night turf final under floodlights', pos: '50% 50%' },
+{ src: P.hack, alt: 'Hack the Canteen teams at laptops', pos: '62% 50%' }
+];
+const pv = st.poll;
+const counts = { a: 520 + (pv === 'a' ? 1 : 0), b: 292 + (pv === 'b' ? 1 : 0) };
+const tot = counts.a + counts.b;
+const pollOpts = [['a', 'Block A canteen'], ['b', 'Food court']].map((o) => { const pct = Math.round(counts[o[0]] / tot * 100); const show = !!pv; return { label: (pv === o[0] ? '✓ ' : '') + o[1], pct: show ? pct : 0, shown: show ? pct + '%' : '', fill: pv === o[0] ? '#D4FF3A' : '#34343C', fg: pv === o[0] ? '#0D0D0F' : '#F5F5F0', vote: () => this.setState({ poll: o[0] }) }; });
+const topics = ['All', 'Academics', 'Placements', 'Hostel & PG', 'Canteen', 'Events', 'Rant', 'Random'].map((l) => { const on = l === st.topic; return { label: l, bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ topic: l }) }; });
+const stories = [
+{ name: 'Rhea', src: P.rain, ring: '#D4FF3A', fg: '#F5F5F0' },
+{ name: 'GDG Atria', src: P.hack, ring: '#D4FF3A', fg: '#F5F5F0' },
+{ name: 'Kabir', src: P.terrace, ring: '#3DDC97', fg: '#F5F5F0' },
+{ name: 'CUBS', src: P.turf, ring: '#33333B', fg: '#9A9AA5' }
+];
+return {
+setRef: this.setRef, onScroll: this.onScroll, onCar: this.onCar,
+headY: headY, headBg: atTop ? 'rgba(13,13,15,1)' : 'rgba(13,13,15,0.86)', headLine: atTop ? 'transparent' : '#24242A',
+storyOp: headY === 0 ? 1 : 0, logoRot: atTop ? 0 : 12, subline: atTop ? 'Atria University' : 'Campus · ' + (hot ? 'Hot' : 'New'),
+navY: navHidden ? 110 : 0, fabBottom: navHidden ? 28 : 100, fabW: atTop ? 124 : 56, fabLabelShow: atTop ? 'inline' : 'none',
+showPill: y > 900, pillTop: bannerH + (headY === 0 ? 166 : (headY === -86 ? 76 : 14)),
+verified: verified, pending: !verified, bannerH: bannerH, padTop: 158 + bannerH,
+toTop: () => { if (this.el) this.el.scrollTo({ top: 0, behavior: 'smooth' }); },
+topics: topics, posts: posts, stories: stories, slides: slides, carCount: (st.car + 1) + ' / ' + slides.length,
+dots: slides.map((s, i) => ({ w: i === st.car ? 18 : 6, bg: i === st.car ? '#D4FF3A' : '#4A4A54' })),
+pollOpts: pollOpts, pollMeta: (tot).toLocaleString('en-IN') + ' votes · 3 h left',
+hotBg: hot ? '#D4FF3A' : 'transparent', hotFg: hot ? '#0D0D0F' : '#9A9AA5', newBg: hot ? 'transparent' : '#D4FF3A', newFg: hot ? '#9A9AA5' : '#0D0D0F',
+setHot: () => this.setState({ sort: 'hot' }), setNew: () => this.setState({ sort: 'new' }),
+endTitle: posts.length ? 'You’re all caught up' : 'Nothing in ' + st.topic + ' yet',
+endSub: posts.length ? 'Older posts from Atria below' : 'Be the first: tap Spill it'
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["X3", "E2", "T11", "A5"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

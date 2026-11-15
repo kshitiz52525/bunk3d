@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Create meetup</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="R1-Map.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a></sc-if>
+<h1 style="margin: 0; flex: 1; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">New meetup</h1>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<input value="{{title}}" onInput="{{setTitle}}" aria-label="Meetup name" placeholder="What’s the plan?" style="min-height: 58px; border-radius: 16px; border: 1.5px solid #D4FF3A; background: #17171B; color: #F5F5F0; font-family: Unbounded, sans-serif; font-size: 17px; font-weight: 800; padding: 0 16px">
+<div style="display: flex; gap: 8px">
+<div style="flex: 1.4; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px"><div style="font-size: 11px; color: #9A9AA5; font-weight: 800">WHERE</div><div style="font-size: 14px; font-weight: 800; margin-top: 2px">Library L2 pods</div><div style="font-size: 11px; color: #3DDC97; font-weight: 700">Public spot ✓</div></div>
+<div style="flex: 1; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px"><div style="font-size: 11px; color: #9A9AA5; font-weight: 800">WHEN</div><div style="font-size: 14px; font-weight: 800; margin-top: 2px">Today 6 PM</div><div style="font-size: 11px; color: #9A9AA5">2 hrs</div></div>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">WHO CAN SEE IT</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{vis}}" as="v" hint-placeholder-count="3"><button onClick="{{v.pick}}" style="display: flex; align-items: center; gap: 12px; border: 1.5px solid {{v.border}}; background: #17171B; color: #F5F5F0; font: inherit; min-height: 56px; border-radius: 14px; padding: 0 14px; text-align: left"><span style="width: 18px; height: 18px; border-radius: 9px; border: 2px solid {{v.border}}; display: grid; place-items: center; box-sizing: border-box"><span style="width: 8px; height: 8px; border-radius: 4px; background: {{v.dot}}"></span></span><span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 800">{{v.label}}</span><span style="display: block; font-size: 12px; color: #9A9AA5">{{v.sub}}</span></span></button></sc-for>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 8px 8px 8px 14px">
+<span style="font-size: 14px; font-weight: 700">Max people</span>
+<span style="display: flex; align-items: center; gap: 6px"><button onClick="{{less}}" aria-label="Fewer" style="width: 40px; height: 40px; border: 0; border-radius: 12px; background: #26262D; color: #F5F5F0; font: inherit; font-size: 18px; font-weight: 800">−</button><span style="font-family: Unbounded, sans-serif; font-size: 16px; font-weight: 800; width: 34px; text-align: center">{{max}}</span><button onClick="{{more}}" aria-label="More" style="width: 40px; height: 40px; border: 0; border-radius: 12px; background: #26262D; color: #F5F5F0; font: inherit; font-size: 18px; font-weight: 800">+</button></span>
+</div>
+<div style="display: flex; gap: 10px; background: #1E2A4A; color: #DCE6FF; border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.45"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8FB8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><span>Meet in public spots first. Exact location shows only to people you approve, and only 1 hr before.</span></div>
+</div>
+<div style="padding: 10px 16px 26px"><a href="R4-MeetupDetail.dc.html" style="display: flex; justify-content: center; align-items: center; min-height: 56px; background: #D4FF3A; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none; box-shadow: 4px 4px 0 #B49CFF">Post meetup</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { title: 'Chai & Code', v: 'campus', max: 8 }; }
+_rv() {
+const vis = [['campus', 'My campus', 'Any verified Atria student · join with approval'], ['clubs', 'My clubs only', 'GDG Atria, E-Cell'], ['close', 'Close connections', 'People you’ve connected with']].map((r) => { const on = r[0] === this.state.v; return { label: r[1], sub: r[2], border: on ? '#D4FF3A' : '#2E2E36', dot: on ? '#D4FF3A' : 'transparent', pick: () => this.setState({ v: r[0] }) }; });
+const m = this.state.max;
+return { title: this.state.title, setTitle: (e) => this.setState({ title: e.target.value }), vis: vis, max: m, less: () => this.setState({ max: Math.max(2, m - 1) }), more: () => this.setState({ max: Math.min(30, m + 1) }) };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+[].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

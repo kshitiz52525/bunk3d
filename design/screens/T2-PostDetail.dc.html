@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Post detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+@keyframes bkOvUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.bk-ovs{animation:bkOvUp 260ms cubic-bezier(.2,.8,.2,1)}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a></sc-if>
+<div style="flex: 1; font-size: 15px; font-weight: 800">Post</div>
+<a href="#open-X3" onClick="{{ovOpen_X3}}" aria-label="Report or block" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center; text-decoration: none; font-weight: 800">···</a>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 0 16px">
+<div style="display: flex; align-items: center; gap: 10px">
+<span style="width: 40px; height: 40px; border-radius: 13px; background: #2A2140; color: #B49CFF; display: grid; place-items: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10c3-1 6-1 9 0s6 1 9 0v2a4 4 0 0 1-4 4c-2 0-3-1.5-5-1.5S9 16 7 16a4 4 0 0 1-4-4z"></path></svg></span>
+<div style="flex: 1"><div style="font-size: 14px; font-weight: 800; color: #CDBEFF">Anonymous <span style="background: #D4FF3A; color: #0D0D0F; font-size: 10px; padding: 2px 6px; border-radius: 6px; margin-left: 4px">OP</span></div><div style="font-size: 12px; color: #9A9AA5; font-weight: 600">12m · #Rant</div></div>
+</div>
+<div style="font-size: 18px; line-height: 1.45; font-weight: 600; margin: 14px 0">DBMS internal had a question from a chapter that literally isn’t in our syllabus. Am I the only one?</div>
+<div style="display: flex; align-items: center; gap: 8px; padding-bottom: 14px; border-bottom: 1px solid #222228">
+<div style="display: flex; align-items: center; background: {{voteBg}}; color: {{voteFg}}; border-radius: 20px; padding: 2px">
+<button onClick="{{up}}" aria-label="Upvote" style="width: 38px; height: 38px; border: 0; background: transparent; color: inherit; display: grid; place-items: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
+<b style="font-size: 14px; min-width: 30px; text-align: center">{{score}}</b>
+<button onClick="{{down}}" aria-label="Downvote" style="width: 38px; height: 38px; border: 0; background: transparent; color: inherit; display: grid; place-items: center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg></button>
+</div>
+<span style="background: #1F1F25; font-size: 12px; font-weight: 700; padding: 12px; border-radius: 20px">48 replies</span>
+<span style="flex: 1"></span>
+<span style="font-size: 12px; font-weight: 700; color: #9A9AA5">Top ▾</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px; padding-top: 14px">
+<div style="display: flex; gap: 10px">
+<span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 10px; background: #2A2140; color: #B49CFF; display: grid; place-items: center; font-size: 10px; font-weight: 800">A1</span>
+<div style="flex: 1"><div style="font-size: 12px; font-weight: 800; color: #CDBEFF">Anon 1 <span style="color: #9A9AA5; font-weight: 600">· 9m</span></div><div style="font-size: 14px; line-height: 1.45; margin-top: 3px">Unit 5 normalization. Sir said “not important” in class lol</div><div style="display: flex; gap: 14px; margin-top: 6px; font-size: 12px; font-weight: 700; color: #9A9AA5"><span style="color: #D4FF3A">▲ 86</span><span>Reply</span></div>
+<div style="display: flex; gap: 10px; margin-top: 12px; padding-left: 12px; border-left: 2px solid #26262D">
+<span style="width: 26px; height: 26px; flex-shrink: 0; border-radius: 9px; background: #2A2140; color: #B49CFF; display: grid; place-items: center; font-size: 9px; font-weight: 800">OP</span>
+<div><div style="font-size: 12px; font-weight: 800; color: #CDBEFF">OP <span style="color: #9A9AA5; font-weight: 600">· 6m</span></div><div style="font-size: 14px; line-height: 1.45; margin-top: 3px">exactly. we should all mail the HOD</div><div style="font-size: 12px; font-weight: 700; color: #9A9AA5; margin-top: 6px">▲ 31</div></div>
+</div>
+</div>
+</div>
+<div style="display: flex; gap: 10px">
+<span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 15px; background: #5CC8FF; color: #0D0D0F; display: grid; place-items: center; font-size: 10px; font-weight: 800">VP</span>
+<div style="flex: 1"><div style="font-size: 12px; font-weight: 800">Vikram P. <span style="color: #9A9AA5; font-weight: 600">· 3rd yr CSE · 5m</span></div><div style="font-size: 14px; line-height: 1.45; margin-top: 3px">Class rep here. Raising it with the dept tomorrow, will update.</div><div style="display: flex; gap: 14px; margin-top: 6px; font-size: 12px; font-weight: 700; color: #9A9AA5"><span>▲ 54</span><span>Reply</span></div></div>
+</div>
+<div style="display: flex; gap: 10px">
+<span style="width: 30px; height: 30px; flex-shrink: 0; border-radius: 10px; background: #2A2140; color: #B49CFF; display: grid; place-items: center; font-size: 10px; font-weight: 800">A2</span>
+<div style="flex: 1"><div style="font-size: 12px; font-weight: 800; color: #CDBEFF">Anon 2 <span style="color: #9A9AA5; font-weight: 600">· 2m</span></div><div style="font-size: 14px; line-height: 1.45; margin-top: 3px">PYQ from 2023 had the same thing. Check The Notes.</div></div>
+</div>
+</div>
+</div>
+
+<div style="background: #111114; border-top: 1px solid #24242A; padding: 10px 14px 24px">
+<div style="display: flex; gap: 6px; margin-bottom: 8px">
+<button onClick="{{asMe}}" style="border: 0; background: {{meBg}}; color: {{meFg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 32px; border-radius: 16px">As Aarav</button>
+<button onClick="{{asAnon}}" style="border: 0; background: {{anBg}}; color: {{anFg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 32px; border-radius: 16px">Anonymously</button>
+<span style="flex: 1; align-self: center; text-align: right; font-size: 11px; color: #9A9AA5">{{hint}}</span>
+</div>
+<div style="display: flex; gap: 8px; align-items: center">
+<input aria-label="Write a reply" placeholder="Add your two cents" style="flex: 1; min-width: 0; height: 46px; box-sizing: border-box; padding: 0 16px; background: #1F1F25; border: 1px solid #2E2E36; border-radius: 23px; color: #F5F5F0; font: inherit; font-size: 14px">
+<button aria-label="Send reply" style="width: 46px; height: 46px; border: 0; border-radius: 23px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
+</div>
+</div>
+<sc-if value="{{ovShow_X3}}" hint-placeholder-val="{{false}}"><div class="bk-ovs" style="position: absolute; inset: 0; z-index: 60; overflow: hidden"><dc-import name="X3-Report" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { v: 0, anon: false }; }
+_rv() {
+const v = this.state.v, a = this.state.anon;
+return {
+score: 241 + v,
+voteBg: v === 1 ? '#D4FF3A' : (v === -1 ? '#3A1626' : '#1F1F25'), voteFg: v === 1 ? '#0D0D0F' : (v === -1 ? '#FF6B9A' : '#E4E4DE'),
+up: () => this.setState({ v: v === 1 ? 0 : 1 }), down: () => this.setState({ v: v === -1 ? 0 : -1 }),
+meBg: a ? '#1F1F25' : '#F5F5F0', meFg: a ? '#C9C9C3' : '#0D0D0F', anBg: a ? '#B49CFF' : '#1F1F25', anFg: a ? '#0D0D0F' : '#C9C9C3',
+hint: a ? 'You’ll show as Anon 3' : 'Name shown',
+asMe: () => this.setState({ anon: false }), asAnon: () => this.setState({ anon: true })
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["X3"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

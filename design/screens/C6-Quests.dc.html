@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Side Quests</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="C1-Clubs.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<h1 style="margin: 0; flex: 1; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">Side Quests</h1>
+<a href="C7-CloutBoard.dc.html" style="font-size: 13px; font-weight: 800; text-decoration: none">Clout Board ›</a>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="background: #B49CFF; color: #0D0D0F; border-radius: 24px; padding: 16px; position: relative; overflow: hidden">
+<span style="position: absolute; right: -30px; bottom: -40px; width: 150px; height: 150px; border-radius: 75px; border: 22px solid #9A7FF0" aria-hidden="true"></span>
+<div style="position: relative; display: flex; justify-content: space-between"><span style="background: #0D0D0F; color: #B49CFF; font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 9px">ENROLLED · 2 DAYS LEFT</span><b style="font-size: 13px">+500 XP</b></div>
+<div style="position: relative; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px; margin-top: 12px; line-height: 1.15">Host a Chai &amp; Code meetup</div>
+<div style="position: relative; font-size: 13px; font-weight: 600; margin-top: 4px">Bring 15+ students. Proof: check-ins + 1 photo.</div>
+<div style="position: relative; height: 10px; border-radius: 5px; background: rgba(13,13,15,0.2); margin-top: 14px; overflow: hidden"><div style="width: {{pct}}%; height: 100%; background: #0D0D0F"></div></div>
+<div style="position: relative; display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; margin-top: 6px"><span>{{count}} / 15 checked in</span><span>Squad: GDG Atria (4)</span></div>
+<div style="position: relative; display: flex; gap: 8px; margin-top: 12px">
+<button onClick="{{checkin}}" style="flex: 1; border: 0; background: #0D0D0F; color: #B49CFF; font: inherit; font-size: 13px; font-weight: 800; min-height: 44px; border-radius: 12px">+ Check-in (demo)</button>
+<button style="flex: 1; border: 2px solid #0D0D0F; background: transparent; color: #0D0D0F; font: inherit; font-size: 13px; font-weight: 800; min-height: 44px; border-radius: 12px">Submit milestone</button>
+</div>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">OPEN QUESTS</div>
+<sc-for list="{{quests}}" as="q" hint-placeholder-count="3">
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 11px; font-weight: 800; color: {{q.color}}">{{q.scope}}</span><span style="font-size: 12px; font-weight: 800; color: #D4FF3A">{{q.xp}}</span></div>
+<div style="font-size: 15px; font-weight: 800; margin-top: 6px">{{q.title}}</div>
+<div style="font-size: 12px; color: #9A9AA5; margin-top: 2px">{{q.rule}}</div>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px"><span style="font-size: 12px; color: #9A9AA5">{{q.ends}}</span><button onClick="{{q.enroll}}" style="border: 1.5px solid {{q.border}}; background: {{q.bg}}; color: {{q.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 36px; border-radius: 12px">{{q.label}}</button></div>
+</div>
+</sc-for>
+<div style="font-size: 11px; color: #9A9AA5; text-align: center">Quests score clubs, never individual people.</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { n: 9, e: {} }; }
+renderVals() {
+const data = [
+{ id: 'a', scope: 'CAMPUS', color: '#5CC8FF', title: 'Notes drop: 30 PYQs in a week', rule: 'Upload verified PYQs for any subject', xp: '+300 XP', ends: 'Ends 5 Nov' },
+{ id: 'b', scope: 'INTER-COLLEGE', color: '#FF6B9A', title: 'Clean-up drive · Bengaluru', rule: '20 members, before/after photos, geotagged', xp: '+800 XP', ends: 'Ends 15 Nov' }
+];
+const e = this.state.e;
+const quests = data.map((q) => ({ ...q, label: e[q.id] ? 'Enrolled ✓' : 'Enroll squad', bg: e[q.id] ? 'transparent' : '#D4FF3A', fg: e[q.id] ? '#F5F5F0' : '#0D0D0F', border: e[q.id] ? '#4A4A54' : '#D4FF3A', enroll: () => this.setState({ e: { ...e, [q.id]: !e[q.id] } }) }));
+const n = this.state.n;
+return { quests: quests, count: n, pct: Math.min(100, Math.round(n / 15 * 100)), checkin: () => this.setState({ n: Math.min(15, n + 1) }) };
+}
+}
+</script>
+</body>
+</html>

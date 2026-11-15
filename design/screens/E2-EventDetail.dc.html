@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Event detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="height: 230px; flex-shrink: 0; background: #D4FF3A; color: #0D0D0F; position: relative; overflow: hidden; padding: 12px 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+<span style="position: absolute; right: -60px; top: 30px; width: 240px; height: 240px; border-radius: 120px; border: 30px solid #B8E020" aria-hidden="true"></span>
+<span style="position: absolute; left: -20px; top: 96px; width: 460px; height: 30px; background: #0D0D0F; color: #D4FF3A; transform: rotate(-6deg); font-size: 12px; font-weight: 800; letter-spacing: 3px; display: flex; align-items: center; white-space: nowrap; overflow: hidden" aria-hidden="true">&nbsp;12 HOURS · FREE PIZZA · 12 HOURS · FREE PIZZA · 12 HOURS</span>
+<div style="position: relative; display: flex; justify-content: space-between">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #0D0D0F; color: #D4FF3A; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="E1-Events.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #0D0D0F; color: #D4FF3A; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<button aria-label="Share" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #0D0D0F; color: #D4FF3A; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></button>
+</div>
+<div style="position: relative"><div style="font-size: 12px; font-weight: 800; letter-spacing: 1px">TECH · FREE</div><h1 style="margin: 2px 0 0; font-family: Unbounded, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -1px; line-height: 1.05">Hack the Canteen</h1></div>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<a href="#open-C2" onClick="{{ovOpen_C2}}" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F5F5F0">
+<span style="width: 38px; height: 38px; border-radius: 12px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 10px; font-weight: 800">GDG</span>
+<span style="flex: 1"><span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 800">GDG Atria <span style="background: #D4FF3A; color: #0D0D0F; font-size: 9px; font-weight: 800; padding: 2px 5px; border-radius: 6px">✓ Club</span></span><span style="display: block; font-size: 12px; color: #9A9AA5">Host</span></span>
+</a>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">WHEN</div><div style="font-size: 14px; font-weight: 800">Fri 31 Oct</div><div style="font-size: 12px; color: #C9C9C3">6 PM → Sat 6 AM</div></div>
+<a href="E2-EventDetail.dc.html" style="display: block; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px; text-decoration: none; color: #F5F5F0"><div style="font-size: 10px; font-weight: 800; color: #9A9AA5">WHERE</div><div style="font-size: 14px; font-weight: 800">Tech Lab 2</div><div style="font-size: 12px; color: #D4FF3A; font-weight: 700">Open in Maps ↗</div></a>
+</div>
+<div style="font-size: 14px; line-height: 1.55; color: #E4E4DE">Teams of 2–4 build anything that fixes campus life. Mentors from 9 PM, judging at 5 AM. Bring your laptop and college ID.</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 12px">
+<div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 800"><span>{{spotsLabel}}</span><span style="color: #9A9AA5">RSVP by Thu</span></div>
+<div style="height: 8px; border-radius: 4px; background: #26262D; margin-top: 8px; overflow: hidden"><div style="width: {{pct}}%; height: 100%; background: #D4FF3A"></div></div>
+</div>
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="display: flex"><span style="width: 30px; height: 30px; border-radius: 15px; background: #B49CFF; color: #0D0D0F; border: 2px solid #0D0D0F; display: grid; place-items: center; font-size: 10px; font-weight: 800">RN</span><span style="width: 30px; height: 30px; border-radius: 15px; background: #5CC8FF; color: #0D0D0F; border: 2px solid #0D0D0F; display: grid; place-items: center; font-size: 10px; font-weight: 800; margin-left: -8px">KM</span><span style="width: 30px; height: 30px; border-radius: 15px; background: #FF6B9A; color: #0D0D0F; border: 2px solid #0D0D0F; display: grid; place-items: center; font-size: 10px; font-weight: 800; margin-left: -8px">VP</span></div>
+<span style="font-size: 13px; font-weight: 600; color: #C9C9C3">Rhea, Kabir and Vikram are going</span>
+</div>
+<div style="font-size: 12px; color: #9A9AA5">Rules · code of conduct · no outside food after midnight</div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px 26px; background: #111114; border-top: 1px solid #24242A">
+<a href="#open-E6" onClick="{{ovOpen_E6}}" aria-label="Register as a team" style="width: 54px; height: 54px; border-radius: 16px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center; font-size: 11px; font-weight: 800; text-decoration: none">Team</a>
+<button aria-label="Add to calendar" style="width: 54px; height: 54px; border: 0; border-radius: 16px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg></button>
+<sc-if value="{{notGoing}}" hint-placeholder-val="{{true}}"><button onClick="{{rsvp}}" style="flex: 1; border: 0; background: #D4FF3A; color: #0D0D0F; font: inherit; font-size: 16px; font-weight: 800; min-height: 54px; border-radius: 16px; box-shadow: 4px 4px 0 #B49CFF">I’m going</button></sc-if>
+<sc-if value="{{going}}" hint-placeholder-val="{{false}}">
+<a href="#open-E3" onClick="{{ovOpen_E3}}" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 54px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">Going ✓ · View ticket</a>
+<button onClick="{{cancel}}" style="border: 0; background: #1F1F25; color: #F5F5F0; font: inherit; font-size: 13px; font-weight: 700; padding: 0 14px; min-height: 54px; border-radius: 16px">Can’t go</button>
+</sc-if>
+</div>
+<sc-if value="{{ovShow_C2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="C2-ClubPage" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_E3}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="E3-Ticket" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_E6}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="E6-TeamReg" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { going: false }; }
+_rv() {
+const g = this.state.going, n = 86 + (g ? 1 : 0);
+return {
+going: g, notGoing: !g,
+spotsLabel: n + ' / 120 going', pct: Math.round(n / 120 * 100),
+rsvp: () => this.setState({ going: true }), cancel: () => this.setState({ going: false })
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["C2", "E3", "E6"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

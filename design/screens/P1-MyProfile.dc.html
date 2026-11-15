@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>My profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<a href="P3-Settings.dc.html" aria-label="Settings" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></a>
+</div>
+
+<div style="padding: 0 16px; display: flex; gap: 14px; align-items: center">
+<div style="width: 86px; height: 86px; border-radius: 30px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 28px; font-weight: 800; transform: rotate(-5deg); box-shadow: 5px 5px 0 #B49CFF">AS</div>
+<div style="flex: 1; min-width: 0">
+<h1 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.8px">Aarav Sharma</h1>
+<div style="font-size: 13px; color: #9A9AA5; margin-top: 2px">@aarav.builds · CSE · 3rd yr</div>
+<div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap"><span style="background: #123D2C; color: #3DDC97; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 9px">✓ Verified</span><span style="background: #1E2A4A; color: #8FB8FF; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 9px">Campus Mod</span></div>
+</div>
+</div>
+
+<div style="margin: 16px 16px 0; background: #17171B; border: 1px solid #26262D; border-radius: 20px; padding: 14px; display: flex; align-items: center; gap: 14px">
+<div><div style="font-family: Unbounded, sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -1px; color: #D4FF3A; line-height: 1">142</div><div style="font-size: 11px; font-weight: 800; color: #9A9AA5; letter-spacing: 0.8px; margin-top: 4px">KARMA</div></div>
+<div style="flex: 1; font-size: 12px; color: #C9C9C3; line-height: 1.5; display: flex; align-items: center; gap: 6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9A9AA5" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Only you see this. Nobody gets ranked.</div>
+</div>
+
+<a href="M1-ModQueue.dc.html" style="margin: 10px 16px 0; display: flex; align-items: center; gap: 12px; background: #1E2A4A; border-radius: 16px; padding: 12px 14px; text-decoration: none; color: #F5F5F0">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8FB8FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/></svg>
+<span style="flex: 1; font-size: 14px; font-weight: 800">Mod queue</span><span style="background: #8FB8FF; color: #0D0D0F; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 10px">4 waiting</span>
+</a>
+
+<div style="display: flex; gap: 8px; padding: 14px 16px 0">
+<span style="background: #D4FF3A; color: #0D0D0F; font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 12px">GDG Atria · admin</span>
+<span style="background: #B49CFF; color: #0D0D0F; font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 12px">E-Cell</span>
+</div>
+
+<div style="display: flex; gap: 18px; padding: 16px 16px 0; border-bottom: 1px solid #222228">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+<button onClick="{{t.pick}}" style="border: 0; background: none; font: inherit; font-size: 14px; font-weight: 800; color: {{t.fg}}; padding: 2px 0 10px; border-bottom: 3px solid {{t.line}}; min-height: 36px">{{t.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{isTickets}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; overflow: hidden; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">UPCOMING · 2</div>
+<a href="#open-E3" onClick="{{ovOpen_E3}}" style="display: flex; align-items: stretch; background: #D4FF3A; color: #0D0D0F; border-radius: 18px; text-decoration: none; overflow: hidden">
+<span style="width: 64px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 2px dashed #0D0D0F"><span style="font-size: 10px; font-weight: 800">OCT</span><span style="font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800; line-height: 1">31</span></span>
+<span style="flex: 1; min-width: 0; padding: 12px"><span style="display: block; font-size: 11px; font-weight: 800; letter-spacing: 1px">TONIGHT · DOORS 5:30 PM</span><span style="display: block; font-family: Unbounded, sans-serif; font-size: 15px; font-weight: 800; margin-top: 2px">Hack the Canteen</span><span style="display: block; font-size: 12px; font-weight: 700; margin-top: 2px">Tech Lab 2 · team Samosa Stack · free</span></span>
+<span style="display: grid; place-items: center; padding: 0 12px; font-size: 12px; font-weight: 800">QR ›</span>
+</a>
+<a href="#open-E3" onClick="{{ovOpen_E3}}" style="display: flex; align-items: stretch; background: #17171B; border: 1px solid #26262D; color: #F5F5F0; border-radius: 18px; text-decoration: none; overflow: hidden">
+<span style="width: 64px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 2px dashed #3A3A42"><span style="font-size: 10px; font-weight: 800; color: #5CC8FF">NOV</span><span style="font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800; line-height: 1">08</span></span>
+<span style="flex: 1; min-width: 0; padding: 12px"><span style="display: block; font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">SAT · 4 PM</span><span style="display: block; font-family: Unbounded, sans-serif; font-size: 15px; font-weight: 800; margin-top: 2px">CUBS 7-a-side Cup</span><span style="display: block; font-size: 12px; color: #9A9AA5; font-weight: 700; margin-top: 2px">Main Grounds · spectator · free</span></span>
+<span style="display: grid; place-items: center; padding: 0 12px; font-size: 12px; font-weight: 800; color: #D4FF3A">QR ›</span>
+</a>
+<div style="display: flex; align-items: center; gap: 10px; background: #17171B; border: 1px dashed #4A4A54; border-radius: 16px; padding: 12px; font-size: 13px"><span style="background: #3D2E0D; color: #FFD58A; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 8px">WAITLIST #4</span><span style="flex: 1; font-weight: 700">Open Mic Night · Sat 1 Nov</span></div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5; margin-top: 6px">PAST</div>
+<div style="display: flex; align-items: center; gap: 12px; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px; opacity: 0.8"><span style="width: 36px; height: 36px; border-radius: 12px; background: #26262D; display: grid; place-items: center; font-size: 10px; font-weight: 800">USED</span><span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; font-weight: 700">Flutter Forward workshop</span><span style="display: block; font-size: 12px; color: #9A9AA5">Checked in 12 Oct · certificate on profile</span></span></div>
+<div style="font-size: 11px; color: #9A9AA5; text-align: center; margin-top: 4px">Tickets work offline. Only you see this tab.</div>
+</div>
+</sc-if>
+<sc-if value="{{notTickets}}" hint-placeholder-val="{{true}}">
+<div style="flex: 1; overflow: hidden; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{items}}" as="i" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 12px; background: {{i.tileBg}}; color: {{i.tileFg}}; display: grid; place-items: center; font-size: 10px; font-weight: 800">{{i.tile}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{i.title}}</span><span style="display: block; font-size: 12px; color: #9A9AA5">{{i.meta}}</span></span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ovShow_E3}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="E3-Ticket" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { tab: 'My posts' }; }
+_rv() {
+const t = this.state.tab;
+const tabs = ['My posts', 'My notes', 'Saved', 'Tickets'].map((l) => ({ label: l, fg: l === t ? '#F5F5F0' : '#9A9AA5', line: l === t ? '#D4FF3A' : 'transparent', pick: () => this.setState({ tab: l }) }));
+const sets = {
+'My posts': [
+{ tile: 'ME', tileBg: '#D4FF3A', tileFg: '#0D0D0F', title: 'Anyone up for a 2 AM Maggi run?', meta: 'Named · ▲ 64 · 22 replies' },
+{ tile: 'ANON', tileBg: '#2A2140', tileFg: '#B49CFF', title: 'Placement cell needs to stop sending 9 PM mails', meta: 'Anonymous — only you see this here · ▲ 188' },
+{ tile: 'ME', tileBg: '#D4FF3A', tileFg: '#0D0D0F', title: 'GDG build night photos are up', meta: 'Named · ▲ 31' }
+],
+'My notes': [
+{ tile: 'PYQ', tileBg: '#FF6B9A', tileFg: '#0D0D0F', title: 'DBMS end-sem 2023', meta: '▲ 204 · 388 saves' },
+{ tile: 'NOTE', tileBg: '#5CC8FF', tileFg: '#0D0D0F', title: 'CN — subnetting in 1 page', meta: '▲ 77 · 120 saves' }
+],
+'Saved': [
+{ tile: 'PYQ', tileBg: '#FF6B9A', tileFg: '#0D0D0F', title: 'DBMS end-sem 2024 · solved', meta: 'Saved offline' },
+{ tile: 'TEA', tileBg: '#26262D', tileFg: '#F5F5F0', title: 'Best samosa on campus? (poll)', meta: 'Post · Rhea Nair' }
+]
+};
+return { tabs: tabs, items: sets[t] || [], isTickets: t === 'Tickets', notTickets: t !== 'Tickets' };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["E3"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

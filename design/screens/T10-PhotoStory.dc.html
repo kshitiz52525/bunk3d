@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Photo stories</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkNext{from{transform:translateX(28px) scale(.98);opacity:.4}to{transform:none;opacity:1}}
+@keyframes bkUser{from{transform:perspective(900px) rotateY(-24deg) translateX(60px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes bkKen{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes bkStick{0%{transform:scale(.6) rotate(var(--r));opacity:0}60%{transform:scale(1.08) rotate(var(--r));opacity:1}100%{transform:scale(1) rotate(var(--r));opacity:1}}
+@media (prefers-reduced-motion: reduce){.bk-m{animation:none!important}}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #000000; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; position: relative; overflow: hidden">
+
+<sc-if value="{{f0}}" hint-placeholder-val="{{true}}">
+<div class="bk-m" style="position: absolute; inset: 0; animation: bkUser 380ms cubic-bezier(.2,.8,.2,1) both; overflow: hidden; border-radius: 0">
+<img class="bk-m" src="/_blob/f5d6e2991b0170d112e2e8de040ac7bb" alt="Rainy evening outside Block C, student with a lime umbrella" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: bkKen 5000ms linear both">
+<span class="bk-m" style="--r: -5deg; position: absolute; left: 34px; top: 300px; background: #D4FF3A; color: #0D0D0F; font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.8px; padding: 10px 14px; border-radius: 14px; box-shadow: 4px 4px 0 #B49CFF; animation: bkStick 420ms 180ms cubic-bezier(.2,.8,.2,1) both">monsoon said attendance optional</span>
+<span class="bk-m" style="--r: 3deg; position: absolute; right: 26px; top: 392px; display: flex; align-items: center; gap: 6px; background: #F5F5F0; color: #0D0D0F; font-size: 13px; font-weight: 800; padding: 8px 12px; border-radius: 12px; animation: bkStick 420ms 300ms cubic-bezier(.2,.8,.2,1) both"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>Block C · Atria</span>
+</div>
+</sc-if>
+
+<sc-if value="{{f1}}" hint-placeholder-val="{{false}}">
+<div class="bk-m" style="position: absolute; inset: 0; z-index: 2; pointer-events: none; animation: bkNext 300ms cubic-bezier(.2,.8,.2,1) both; overflow: hidden">
+<img src="/_blob/485e7da6913dc0d04b860ccc07ac7be3" alt="" style="position: absolute; inset: -60px; width: calc(100% + 120px); height: calc(100% + 120px); object-fit: cover; filter: blur(30px) brightness(0.55) saturate(1.3)">
+<img src="/_blob/485e7da6913dc0d04b860ccc07ac7be3" alt="Hack the Canteen teams coding under string lights" style="position: absolute; left: 0; right: 0; top: 260px; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; box-shadow: 0 20px 60px rgba(0,0,0,0.5)">
+<span class="bk-m" style="--r: -3deg; position: absolute; left: 20px; top: 200px; background: #0D0D0F; color: #D4FF3A; font-size: 14px; font-weight: 800; padding: 8px 12px; border-radius: 12px; border: 1.5px solid #D4FF3A; animation: bkStick 420ms 160ms cubic-bezier(.2,.8,.2,1) both">@gdg.atria</span>
+<div class="bk-m" style="--r: 2deg; position: absolute; left: 50px; right: 50px; top: 520px; background: #F5F5F0; color: #0D0D0F; border-radius: 20px; padding: 14px; pointer-events: auto; animation: bkStick 420ms 280ms cubic-bezier(.2,.8,.2,1) both; box-shadow: 5px 5px 0 #B49CFF">
+<div style="font-family: Unbounded, sans-serif; font-size: 16px; font-weight: 800; text-align: center">all-nighter?</div>
+<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 10px">
+<sc-for list="{{poll}}" as="o" hint-placeholder-count="2"><button onClick="{{o.vote}}" style="position: relative; border: 0; background: #E4E2DA; color: #0D0D0F; font: inherit; font-size: 14px; font-weight: 800; min-height: 44px; border-radius: 12px; overflow: hidden; padding: 0 12px; text-align: left; z-index: 2"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{o.pct}}%; background: {{o.fill}}; transition: width 500ms cubic-bezier(.2,.8,.2,1)"></span><span style="position: relative; display: flex; justify-content: space-between"><span>{{o.label}}</span><span>{{o.shown}}</span></span></button></sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{f2}}" hint-placeholder-val="{{false}}">
+<div class="bk-m" style="position: absolute; inset: 0; z-index: 2; pointer-events: none; animation: bkUser 380ms cubic-bezier(.2,.8,.2,1) both; overflow: hidden">
+<img src="/_blob/09c1b29936c1832cc7144a0d1e1d60f8" alt="" style="position: absolute; inset: -60px; width: calc(100% + 120px); height: calc(100% + 120px); object-fit: cover; filter: blur(34px) brightness(0.5)">
+<a href="T1-Feed.dc.html" class="bk-m" style="--r: -2deg; position: absolute; left: 40px; right: 40px; top: 190px; display: block; background: #17171B; border-radius: 22px; overflow: hidden; text-decoration: none; color: #F5F5F0; pointer-events: auto; box-shadow: 0 24px 60px rgba(0,0,0,0.55); animation: bkStick 460ms 120ms cubic-bezier(.2,.8,.2,1) both; z-index: 2">
+<span style="display: flex; align-items: center; gap: 8px; padding: 10px 12px"><span style="width: 26px; height: 26px; border-radius: 13px; background: #5CC8FF; color: #0D0D0F; display: grid; place-items: center; font-size: 9px; font-weight: 800">KM</span><span style="font-size: 12px; font-weight: 800">Kabir M. · Tea</span></span>
+<img src="/_blob/09c1b29936c1832cc7144a0d1e1d60f8" alt="Hostel terrace at sunset" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover">
+<span style="display: block; padding: 10px 12px 12px; font-size: 13px; line-height: 1.4">sunset from the hostel terrace hits different after a 6-hour lab</span>
+</a>
+<span style="position: absolute; left: 0; right: 0; top: 720px; text-align: center; font-size: 12px; font-weight: 800; color: #E4E4DE">Tap the card to open the post</span>
+</div>
+</sc-if>
+
+<sc-if value="{{f3}}" hint-placeholder-val="{{false}}">
+<div class="bk-m" style="position: absolute; inset: 0; animation: bkNext 300ms cubic-bezier(.2,.8,.2,1) both; overflow: hidden">
+<img src="/_blob/cc01344a09210f9823aeb58892696c75" alt="" style="position: absolute; inset: -60px; width: calc(100% + 120px); height: calc(100% + 120px); object-fit: cover; filter: blur(30px) brightness(0.6)">
+<img src="/_blob/cc01344a09210f9823aeb58892696c75" alt="Three samosas on a steel plate with chutneys and chai" style="position: absolute; left: 24px; right: 24px; top: 230px; width: calc(100% - 48px); aspect-ratio: 1 / 1; object-fit: cover; border-radius: 22px; box-shadow: 0 20px 60px rgba(0,0,0,0.5)">
+<span class="bk-m" style="--r: 6deg; position: absolute; right: 30px; top: 190px; background: #FF6B9A; color: #0D0D0F; font-family: Unbounded, sans-serif; font-size: 26px; font-weight: 800; padding: 8px 14px; border-radius: 14px; animation: bkStick 420ms 160ms cubic-bezier(.2,.8,.2,1) both">₹15. unreal.</span>
+</div>
+</sc-if>
+
+<button onClick="{{prev}}" onPointerDown="{{hold}}" onPointerUp="{{release}}" onPointerLeave="{{release}}" aria-label="Previous" style="position: absolute; left: 0; top: 90px; bottom: 96px; width: 30%; border: 0; background: transparent; cursor: w-resize; z-index: 1"></button>
+<button onClick="{{next}}" onPointerDown="{{hold}}" onPointerUp="{{release}}" onPointerLeave="{{release}}" aria-label="Next" style="position: absolute; right: 0; top: 90px; bottom: 96px; width: 70%; border: 0; background: transparent; cursor: e-resize; z-index: 1"></button>
+
+<div style="position: absolute; left: 0; right: 0; top: 0; padding: 10px 10px 30px; background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0)); z-index: 3; opacity: {{chromeOp}}; transition: opacity 180ms">
+<div style="display: flex; gap: 4px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="2"><span style="flex: 1; height: 3px; border-radius: 2px; background: rgba(245,245,240,0.3); overflow: hidden"><span style="display: block; height: 100%; width: {{b.pct}}%; background: #F5F5F0"></span></span></sc-for>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; margin-top: 10px">
+<span style="width: 36px; height: 36px; border-radius: 13px; padding: 2px; background: {{ring}}; box-sizing: border-box"><span style="display: grid; place-items: center; width: 100%; height: 100%; border-radius: 11px; background: {{tint}}; color: #0D0D0F; font-size: 11px; font-weight: 800; border: 2px solid #000000; box-sizing: border-box">{{ini}}</span></span>
+<span style="flex: 1; min-width: 0"><span style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800">{{name}} <span style="font-weight: 600; color: #C9C9C3">{{ago}}</span></span><span style="display: inline-block; margin-top: 2px; font-size: 10px; font-weight: 800; color: {{audFg}}; background: {{audBg}}; padding: 2px 6px; border-radius: 6px">{{aud}}</span></span>
+<sc-if value="{{paused}}" hint-placeholder-val="{{false}}"><span style="font-size: 11px; font-weight: 800; background: rgba(31,31,37,0.85); padding: 5px 8px; border-radius: 8px">PAUSED</span></sc-if>
+<a href="T1-Feed.dc.html" aria-label="Close stories" style="width: 40px; height: 40px; border-radius: 20px; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+</div>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 12px 22px; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.6)); z-index: 3; display: flex; flex-direction: column; gap: 8px; opacity: {{chromeOp}}; transition: opacity 180ms">
+<div style="display: flex; gap: 6px; justify-content: center">
+<sc-for list="{{reacts}}" as="r" hint-placeholder-count="4"><button onClick="{{r.send}}" style="border: 1px solid rgba(245,245,240,0.35); background: {{r.bg}}; color: {{r.fg}}; font: inherit; font-size: 12px; font-weight: 800; min-height: 34px; padding: 0 12px; border-radius: 17px">{{r.label}}</button></sc-for>
+</div>
+<div style="display: flex; gap: 8px; align-items: center">
+<input onFocus="{{hold}}" onBlur="{{release}}" placeholder="Reply to {{first}}…" aria-label="Reply" style="flex: 1; min-height: 46px; border-radius: 23px; border: 1px solid rgba(245,245,240,0.45); background: rgba(0,0,0,0.3); color: #F5F5F0; font: inherit; font-size: 14px; padding: 0 16px; box-sizing: border-box">
+<a href="#open-D2" onClick="{{ovOpen_D2}}" aria-label="Send" style="width: 46px; height: 46px; border-radius: 23px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+<sc-if value="{{ovShow_D2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="D2-Chat" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { f: 0, t: 0, held: false, vote: null, sent: null };
+this.FRAMES = [
+{ u: 0, ago: '22m' }, { u: 0, ago: '9m' }, { u: 1, ago: '1h' }, { u: 1, ago: '40m' }
+];
+this.USERS = [
+{ name: 'Rhea Nair', first: 'Rhea', ini: 'RN', tint: '#B49CFF', ring: '#D4FF3A', aud: 'CAMPUS', audBg: 'rgba(212,255,58,0.18)', audFg: '#D4FF3A' },
+{ name: 'Kabir M.', first: 'Kabir', ini: 'KM', tint: '#5CC8FF', ring: '#3DDC97', aud: 'CLOSE CONNECTIONS', audBg: 'rgba(61,220,151,0.18)', audFg: '#3DDC97' }
+];
+this.DUR = 5000;
+this.go = (d) => { const n = this.state.f + d; if (n < 0) this.setState({ t: 0 }); else this.setState({ f: n % this.FRAMES.length, t: 0 }); };
+this.hold = () => this.setState({ held: true });
+this.release = () => { if (this.state.held) this.setState({ held: false }); };
+}
+componentDidMount() {
+this.iv = setInterval(() => {
+if (this.state.held) return;
+const t = this.state.t + 100;
+if (t >= this.DUR) this.go(1); else this.setState({ t: t });
+}, 100);
+}
+componentWillUnmount() { clearInterval(this.iv); }
+_rv() {
+const st = this.state;
+const fr = this.FRAMES[st.f];
+const u = this.USERS[fr.u];
+const mine = this.FRAMES.map((x, i) => ({ x: x, i: i })).filter((o) => o.x.u === fr.u);
+const bars = mine.map((o) => ({ pct: o.i < st.f ? 100 : (o.i === st.f ? Math.round(st.t / this.DUR * 100) : 0) }));
+const v = st.vote;
+const base = { yes: 61, no: 39 };
+const poll = [['yes', 'yes, sleep is a myth'], ['no', 'no, 8 hrs or bust']].map((o) => ({ label: o[1], pct: v ? base[o[0]] + (v === o[0] ? 1 : 0) : 0, shown: v ? (base[o[0]] + (v === o[0] ? 1 : 0)) + '%' : '', fill: v === o[0] ? '#D4FF3A' : '#CFCCC2', vote: () => this.setState({ vote: o[0] }) }));
+const reacts = ['W', 'fr', 'no way', 'same'].map((l) => ({ label: l, bg: st.sent === l ? '#D4FF3A' : 'rgba(0,0,0,0.3)', fg: st.sent === l ? '#0D0D0F' : '#F5F5F0', send: () => this.setState({ sent: l }) }));
+return {
+f0: st.f === 0, f1: st.f === 1, f2: st.f === 2, f3: st.f === 3,
+bars: bars, name: u.name, first: u.first, ini: u.ini, tint: u.tint, ring: u.ring, aud: u.aud, audBg: u.audBg, audFg: u.audFg, ago: fr.ago,
+paused: st.held, chromeOp: st.held ? 0.35 : 1,
+prev: () => this.go(-1), next: () => this.go(1), hold: this.hold, release: this.release,
+poll: poll, reacts: reacts
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["D2"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

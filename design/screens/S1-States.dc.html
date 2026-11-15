@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>States and edge cases</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1300px; box-sizing: border-box; padding: 44px 52px; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 22px; overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div><div style="font-size: 12px; font-weight: 800; letter-spacing: 1.4px; color: #D4FF3A">MVP SPEC §7–8 · EVERY LIST HAS 4 STATES</div><h1 style="margin: 6px 0 0; font-family: Unbounded, sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -1.4px">States &amp; edge cases</h1></div>
+<div style="display: flex; gap: 16px; font-size: 12px; font-weight: 700; color: #C9C9C3">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #5CC8FF"></span>Info</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #FFB547"></span>Waiting / limited</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #FF5D5D"></span>Blocked / failed</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 4px; background: #9A9AA5"></span>Empty</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">LOADING · SKELETON</div>
+<div style="display: flex; gap: 10px; align-items: center"><span style="width: 34px; height: 34px; border-radius: 11px; background: #26262D"></span><div style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="height: 9px; width: 50%; border-radius: 5px; background: #26262D"></span><span style="height: 8px; width: 30%; border-radius: 4px; background: #222228"></span></div></div>
+<span style="height: 10px; border-radius: 5px; background: #26262D"></span><span style="height: 10px; width: 80%; border-radius: 5px; background: #26262D"></span>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">OFFLINE · BANNER + CACHE</div>
+<div style="display: flex; align-items: center; gap: 8px; background: #3D2E0D; color: #FFD58A; border-radius: 12px; padding: 10px 12px; font-size: 13px; font-weight: 700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M2 9a16 16 0 0 1 20 0M5 13a11 11 0 0 1 14 0M8.5 16.5a6 6 0 0 1 7 0M4 4l16 16"/></svg>You’re offline · showing posts from 10 min ago</div>
+<div style="font-size: 12px; color: #9A9AA5">Votes and replies send when you’re back.</div>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+<div style="font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">ERROR · RETRY</div>
+<div style="font-family: Unbounded, sans-serif; font-size: 16px; font-weight: 800">That didn’t load.</div>
+<div style="font-size: 12px; color: #C9C9C3">Our bad, not yours.</div>
+<span style="background: #F5F5F0; color: #0D0D0F; font-size: 12px; font-weight: 800; padding: 8px 14px; border-radius: 10px">Try again</span>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start">
+<div style="font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">EMPTY · NEXT ACTION</div>
+<div style="font-family: Unbounded, sans-serif; font-size: 16px; font-weight: 800">Nothing here yet.</div>
+<div style="font-size: 12px; color: #C9C9C3">Never a dead end — always one button.</div>
+<span style="background: #D4FF3A; color: #0D0D0F; font-size: 12px; font-weight: 800; padding: 8px 14px; border-radius: 10px">Be the first</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px">
+<sc-for list="{{states}}" as="s" hint-placeholder-count="20">
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; min-height: 140px; box-sizing: border-box">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">{{s.domain}}</span><span style="font-size: 10px; font-weight: 800; color: #0D0D0F; background: {{s.accent}}; padding: 3px 7px; border-radius: 7px">{{s.kind}}</span></div>
+<div style="font-size: 15px; font-weight: 800">{{s.title}}</div>
+<div style="font-size: 12px; color: #C9C9C3; line-height: 1.5; flex: 1">{{s.body}}</div>
+<div style="display: flex; gap: 6px"><span style="background: {{s.btnBg}}; color: #0D0D0F; font-size: 12px; font-weight: 800; padding: 7px 12px; border-radius: 10px">{{s.cta}}</span><sc-if value="{{s.hasAlt}}" hint-placeholder-val="{{false}}"><span style="background: #26262D; color: #F5F5F0; font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 10px">{{s.alt}}</span></sc-if></div>
+</div>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+renderVals() {
+const K = { info: ['INFO', '#5CC8FF'], wait: ['WAITING', '#FFB547'], err: ['BLOCKED', '#FF5D5D'], empty: ['EMPTY', '#9A9AA5'] };
+const raw = [
+['ONBOARDING', 'err', 'Too many tries', '4 wrong codes. Try again in 10 minutes — or skip the SMS entirely.', 'Use Google', ''],
+['ONBOARDING', 'wait', 'Your college isn’t live yet', 'You’re on the waitlist. 25 classmates on it and your campus jumps the queue.', 'Share link', ''],
+['ONBOARDING', 'err', 'ID didn’t pass', 'Blurry photo and the name didn’t match. Your profile is saved.', 'Retake photo', 'College email'],
+['ONBOARDING', 'empty', '18+ for now', 'Bunk3d is only for students 18 and over. What you entered has been deleted.', 'Close', ''],
+['TEA', 'wait', 'Verification pending', 'You can read Tea, notices and public events. Posting, votes and DMs unlock when you’re verified.', 'Check status', ''],
+['TEA', 'info', 'Your post is with the Mods', 'Our safety check flagged it. Two Campus Mods will look, usually within an hour.', 'Got it', 'Edit post'],
+['TEA', 'wait', 'Under review', '3 people reported this, so it’s hidden from Hot and New until Mods decide. Only you see it.', 'Guidelines', ''],
+['TEA', 'empty', 'Low-rated post', 'Net −5 or lower. Collapsed for everyone.', 'Tap to show', ''],
+['TEA', 'info', 'Anon’s still locked', 'Unlocks at 20 karma, 7-day-old account and no active strike. You’re at 6 karma, day 3.', 'Post as you', ''],
+['TEA', 'err', 'Muted for 24 hours', 'Strike 2 of 4. You can read and DM but can’t post or comment till 11:40 AM tomorrow.', 'See why', 'Appeal'],
+['NOTES', 'empty', 'No PYQs for TOC yet', 'Be the first upload. Every save earns you +2 karma.', 'Upload a PYQ', ''],
+['NOTES', 'err', 'File too big', 'That PDF is 34 MB. Max is 20 MB — or upload up to 10 photos.', 'Pick another', ''],
+['POPPIN’', 'wait', 'Full — you’re #4 on waitlist', 'If a spot opens we’ll push you and hold it for 2 hours.', 'Leave waitlist', ''],
+['POPPIN’', 'err', 'Event cancelled', 'GDG Atria cancelled Build Night #7. Removed from your calendar.', 'See other events', ''],
+['POPPIN’', 'err', 'Old QR', 'That code expired 3 minutes ago. Codes refresh every 60 s so screenshots don’t work.', 'Reopen ticket', ''],
+['DMS', 'info', 'Message request', 'Dev S. doesn’t share a club with you. They can’t see if you read it.', 'Accept', 'Ignore'],
+['DMS', 'err', 'Can’t send', 'You can’t message this person.', 'Back', ''],
+['DMS', 'wait', 'Request limit hit', '20 new DM requests a day. Resets at midnight. Existing chats work as normal.', 'OK', ''],
+['SAFETY', 'err', 'Post removed · strike 1', 'Two Campus Mods found it broke rule 2 (naming a student). Strikes expire after 90 days.', 'Appeal once', 'Rules'],
+['SAFETY', 'info', 'Appeal decided', 'Bunk3d ops restored your post and removed the strike. Sorry about that.', 'View post', '']
+];
+const states = raw.map(([domain, k, title, body, cta, alt]) => ({ domain: domain, kind: K[k][0], accent: K[k][1], title: title, body: body, cta: cta, alt: alt, hasAlt: !!alt, btnBg: k === 'err' ? '#FF6B9A' : '#D4FF3A' }));
+return { states: states };
+}
+}
+</script>
+</body>
+</html>

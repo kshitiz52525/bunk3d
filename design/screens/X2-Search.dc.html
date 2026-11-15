@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Search</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px">
+<div style="flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 14px; background: #17171B; border: 1.5px solid #D4FF3A; border-radius: 16px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4FF3A" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+<input aria-label="Search posts, notes, events, clubs" value="dbms" style="flex: 1; min-width: 0; border: 0; background: transparent; color: #F5F5F0; font: inherit; font-size: 16px; font-weight: 700; outline: none">
+</div>
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" style="font-size: 14px; font-weight: 700; color: #F5F5F0; text-decoration: none; min-height: 44px; display: flex; align-items: center; flex-shrink: 0; padding: 0 2px">Cancel</a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" style="font-size: 14px; font-weight: 700; color: #F5F5F0; text-decoration: none; min-height: 44px; display: flex; align-items: center; flex-shrink: 0; padding: 0 2px">Cancel</a></sc-if>
+</div>
+<div style="display: flex; gap: 7px; padding: 0 16px 12px; overflow: hidden">
+<sc-for list="{{types}}" as="t" hint-placeholder-count="5">
+<button onClick="{{t.pick}}" style="border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 34px; border-radius: 17px; white-space: nowrap">{{t.label}}</button>
+</sc-for>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 16px">
+<sc-if value="{{showNotes}}" hint-placeholder-val="{{true}}">
+<div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5; margin-bottom: 8px"><span>NOTES</span><span>51</span></div>
+<a href="#open-N3" onClick="{{ovOpen_N3}}" style="display: flex; align-items: center; gap: 12px; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 10px 12px; text-decoration: none; color: #F5F5F0; margin-bottom: 8px"><span style="width: 36px; height: 44px; border-radius: 8px; background: #FF6B9A; color: #0D0D0F; display: grid; place-items: center; font-size: 9px; font-weight: 800">PYQ</span><span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 800"><mark style="background: #D4FF3A; color: #0D0D0F; border-radius: 3px; padding: 0 2px">DBMS</mark> end-sem 2024 · solved</span><span style="display: block; font-size: 12px; color: #9A9AA5">▲ 312 · 540 saves</span></span></a>
+<a href="#open-N2" onClick="{{ovOpen_N2}}" style="display: flex; align-items: center; gap: 12px; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 10px 12px; text-decoration: none; color: #F5F5F0"><span style="width: 36px; height: 44px; border-radius: 8px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-size: 9px; font-weight: 800">SUBJ</span><span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 800">CS501 · <mark style="background: #D4FF3A; color: #0D0D0F; border-radius: 3px; padding: 0 2px">DBMS</mark></span><span style="display: block; font-size: 12px; color: #9A9AA5">42 notes · 9 PYQs</span></span></a>
+</div>
+</sc-if>
+<sc-if value="{{showPosts}}" hint-placeholder-val="{{true}}">
+<div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5; margin-bottom: 8px"><span>POSTS</span><span>23</span></div>
+<a href="#open-T2" onClick="{{ovOpen_T2}}" style="display: block; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px; text-decoration: none; color: #F5F5F0"><span style="display: block; font-size: 12px; font-weight: 800; color: #CDBEFF">Anonymous · 12m</span><span style="display: block; font-size: 14px; line-height: 1.45; margin-top: 4px"><mark style="background: #D4FF3A; color: #0D0D0F; border-radius: 3px; padding: 0 2px">DBMS</mark> internal had a question from a chapter that isn’t in our syllabus…</span></a>
+</div>
+</sc-if>
+<sc-if value="{{showEvents}}" hint-placeholder-val="{{true}}">
+<div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5; margin-bottom: 8px"><span>EVENTS</span><span>1</span></div>
+<a href="#open-E2" onClick="{{ovOpen_E2}}" style="display: flex; align-items: center; gap: 12px; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 10px 12px; text-decoration: none; color: #F5F5F0"><span style="background: #B49CFF; color: #0D0D0F; border-radius: 10px; padding: 6px 8px; text-align: center; font-weight: 800"><span style="display: block; font-size: 9px">NOV</span><span style="display: block; font-family: Unbounded, sans-serif; font-size: 15px">05</span></span><span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 800"><mark style="background: #D4FF3A; color: #0D0D0F; border-radius: 3px; padding: 0 2px">DBMS</mark> doubt-clearing session</span><span style="display: block; font-size: 12px; color: #9A9AA5">GDG Atria · Seminar Hall 2</span></span></a>
+</div>
+</sc-if>
+<sc-if value="{{showClubs}}" hint-placeholder-val="{{false}}">
+<div style="background: #17171B; border: 1px dashed #3A3A42; border-radius: 16px; padding: 18px; text-align: center"><div style="font-size: 14px; font-weight: 800">No clubs match “dbms”</div><div style="font-size: 12px; color: #9A9AA5; margin-top: 4px">Try “tech” or browse The Crew</div></div>
+</sc-if>
+</div>
+<sc-if value="{{ovShow_T2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="T2-PostDetail" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_E2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="E2-EventDetail" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_N2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="N2-Subject" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_N3}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="N3-Viewer" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { t: 'All' }; }
+_rv() {
+const t = this.state.t;
+const types = ['All', 'Posts', 'Notes', 'Events', 'Clubs'].map((l) => { const on = l === t; return { label: l, bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ t: l }) }; });
+return { types: types, showNotes: t === 'All' || t === 'Notes', showPosts: t === 'All' || t === 'Posts', showEvents: t === 'All' || t === 'Events', showClubs: t === 'Clubs' };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["T2", "E2", "N2", "N3"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

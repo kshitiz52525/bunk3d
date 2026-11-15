@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vendor portal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3A5000}a:hover{color:#121214}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F3F2EC; color: #121214; font-family: Inter, system-ui, sans-serif; display: flex; flex-wrap: wrap">
+<aside style="flex: 1 1 230px; max-width: 100%; box-sizing: border-box; background: #121214; color: #F5F5F0; padding: 22px 14px; display: flex; flex-direction: column; gap: 3px">
+<div style="padding: 0 10px 16px"><div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.8px">bunk<span style="color: #FFB547">3</span>d <span style="font-family: Inter, sans-serif; font-size: 12px; color: #9A9AA5; font-weight: 700">vendor</span></div><div style="font-size: 11px; color: #9A9AA5; margin-top: 4px">PrintKart · invited by Blu Smart</div></div>
+<div style="margin: 0 4px 12px; background: #1F1F25; border-radius: 10px; padding: 10px 12px; font-size: 13px; font-weight: 800; display: flex; justify-content: space-between">PrintKart<span style="color: #9A9AA5">▾</span></div>
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+<button onClick="{{n.pick}}" style="display: flex; align-items: center; gap: 8px; text-align: left; border: 0; background: {{n.bg}}; color: {{n.fg}}; font: inherit; font-size: 13px; font-weight: 700; padding: 0 10px; min-height: 40px; border-radius: 10px"><span style="font-size: 10px; font-weight: 800; color: {{n.codeFg}}; width: 30px">{{n.code}}</span><span style="flex: 1">{{n.label}}</span><span style="font-size: 9px; font-weight: 800; color: {{n.waveFg}}; border: 1px solid {{n.waveFg}}; padding: 1px 4px; border-radius: 5px">{{n.wave}}</span></button>
+</sc-for>
+<div style="flex: 1"></div>
+<div style="padding: 14px 10px 0; font-size: 11px; color: #6E6E78; line-height: 1.5">Vendors see only the activations assigned to them.</div>
+</aside>
+
+<main style="flex: 999 1 600px; min-width: 0; box-sizing: border-box; padding: 28px 32px 40px">
+<div style="max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+<div style="min-width: 0"><div style="font-size: 12px; font-weight: 800; color: #62626C; letter-spacing: 1px">{{s.code}} · WAVE {{s.waveNum}}</div><h1 style="margin: 2px 0 0; font-family: Unbounded, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -1px">{{s.title}}</h1><div style="font-size: 14px; color: #62626C; margin-top: 4px; max-width: 640px; line-height: 1.45">{{s.desc}}</div></div>
+<button onClick="{{primaryAct}}" style="border: 0; background: #121214; color: #FFB547; font: inherit; font-size: 14px; font-weight: 800; min-height: 46px; padding: 0 18px; border-radius: 12px; box-shadow: 3px 3px 0 #B49CFF">{{s.primary}}</button>
+</div>
+
+<sc-if value="{{hasLock}}" hint-placeholder-val="{{false}}"><div style="background: #FFF4DE; color: #6B4500; border: 1px solid #F2D49A; border-radius: 12px; padding: 12px 14px; font-size: 13px; font-weight: 700">{{s.lock}}</div></sc-if>
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}"><div style="background: #E6F8EE; color: #0F5B34; border: 1px solid #A9E3C3; border-radius: 12px; padding: 12px 14px; font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; gap: 10px"><span>{{toast}}</span><button onClick="{{clearToast}}" style="border: 0; background: transparent; color: #0F5B34; font: inherit; font-weight: 800; cursor: pointer">Dismiss</button></div></sc-if>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+<div style="background: {{k.bg}}; color: {{k.fg}}; border: 1px solid {{k.border}}; border-radius: 16px; padding: 14px 16px"><div style="font-size: 11px; font-weight: 800; letter-spacing: 0.8px; color: {{k.labelFg}}">{{k.label}}</div><div style="font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -1px; margin-top: 4px">{{k.value}}</div><div style="font-size: 12px; color: {{k.labelFg}}; margin-top: 2px">{{k.sub}}</div></div>
+</sc-for>
+</div>
+
+<sc-if value="{{hasKanban}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+<sc-for list="{{kanban}}" as="col" hint-placeholder-count="4">
+<div style="background: #ECEAE2; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #62626C"><span>{{col.name}}</span><span>{{col.count}}</span></div>
+<sc-for list="{{col.cards}}" as="c" hint-placeholder-count="2">
+<button onClick="{{c.move}}" style="display: block; width: 100%; text-align: left; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 12px; padding: 10px 12px; font: inherit; color: #121214; cursor: pointer"><span style="display: block; font-size: 14px; font-weight: 800">{{c.title}}</span><span style="display: block; font-size: 12px; color: #62626C; margin-top: 3px">{{c.meta}}</span><span style="display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 800; background: {{c.tagBg}}; color: {{c.tagFg}}; padding: 2px 6px; border-radius: 6px">{{c.tag}}</span></button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 12px; color: #62626C">Click a card to move it to the next column.</div>
+</sc-if>
+
+<sc-if value="{{hasTable}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<div style="flex: 999 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; overflow: hidden">
+<div style="overflow-x: auto"><div style="min-width: 640px; font-size: 13px">
+<div style="display: grid; grid-template-columns: {{gridCols}}; font-size: 11px; font-weight: 800; color: #62626C; letter-spacing: 0.8px; background: #FAFAF6"><sc-for list="{{cols}}" as="h" hint-placeholder-count="5"><div style="padding: 12px 14px">{{h}}</div></sc-for></div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
+<button onClick="{{r.pick}}" style="display: grid; grid-template-columns: {{gridCols}}; width: 100%; border: 0; border-top: 1px solid #EEEDE6; background: {{r.bg}}; font: inherit; font-size: 13px; color: #121214; text-align: left; padding: 0; cursor: pointer"><sc-for list="{{r.cells}}" as="c" hint-placeholder-count="5"><span style="padding: 12px 14px; font-weight: {{c.w}}; color: {{c.c}}; min-width: 0">{{c.t}}</span></sc-for></button>
+</sc-for>
+</div></div>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E1D8; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 16px; font-weight: 800">{{d.title}}</div>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{d.lines}}" as="l" hint-placeholder-count="4"><div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid #EEEDE6; font-size: 13px"><span style="color: #62626C">{{l.k}}</span><b style="text-align: right">{{l.v}}</b></div></sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{d.actions}}" as="a" hint-placeholder-count="2"><button onClick="{{a.go}}" style="flex: 1 1 120px; border: {{a.border}}; background: {{a.bg}}; color: {{a.fg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 42px; border-radius: 10px; cursor: pointer">{{a.label}}</button></sc-for>
+</div>
+<div style="font-size: 12px; color: #62626C; line-height: 1.45">{{d.note}}</div>
+</div>
+</div>
+</sc-if>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { cur: '', sel: 0, toast: '', moved: {} }; }
+renderVals() {
+const SECTIONS = [{"id": "vn1", "code": "VN1", "label": "My assignments", "wave": 4, "title": "PrintKart · assignments", "desc": "Activations brands have assigned to you, with scope, dates and locations.", "primary": "Contact brand", "kpis": [["ACTIVE", "2", ""], ["DUE THIS WEEK", "1", ""], ["COMPLETED", "5", ""], ["RATING", "4.7", "from brands"]], "cols": ["ACTIVATION", "BRAND", "COLLEGE", "DATE", "STATUS"], "rows": [{"cells": ["Stall banners ×6", "Blu Smart", "Atria + RVCE", "Sat 8 Nov", "!Due this week"], "title": "Stall banners", "lines": [["Scope", "6 banners, 6×3 ft"], ["Deliver to", "Atria Gate 2 · RVCE Hall A"], ["Contact", "Karan P. (Blu)"]], "actions": ["Mark delivered", "Message brand"], "hl": true, "note": ""}, {"cells": ["Standees ×4", "Skillvine", "Atria", "15 Nov", "In progress"], "title": "Standees", "lines": [["Scope", "4 roll-up standees"]], "actions": ["Message brand"], "hl": false, "note": ""}]}, {"id": "vn2", "code": "VN2", "label": "Proof & invoices", "wave": 4, "title": "Proof & invoices", "desc": "Upload proof for each activation and invoice against it. Payment status from Bunk3d Finance.", "primary": "Upload invoice", "kpis": [["INVOICED", "₹36,000", ""], ["APPROVED", "₹18,000", ""], ["PAID", "₹18,000", ""], ["AVG PAY TIME", "3 days", "after approval"]], "cols": ["INVOICE", "ACTIVATION", "PROOF", "AMOUNT", "PAYMENT"], "rows": [{"cells": ["INV-2210", "Stall banners", "+6 photos", "₹18,000", "!Awaiting brand approval"], "title": "INV-2210", "lines": [["Proof", "6 geotagged photos"], ["GST", "Included"]], "actions": ["Add proof", "Withdraw invoice"], "hl": true, "note": ""}, {"cells": ["INV-2188", "Skillvine posters", "+Approved", "₹18,000", "+Paid 21 Oct"], "title": "INV-2188", "lines": [["UTR", "AXIS2210…"], ["Paid", "21 Oct"]], "actions": ["Download receipt"], "hl": false, "note": ""}]}];
+const ACC = '#FFB547';
+const st = this.state;
+const s = SECTIONS.find((x) => x.id === st.cur) || SECTIONS[0];
+const say = (m) => this.setState({ toast: m });
+const nav = SECTIONS.map((x) => { const on = x.id === s.id; return { code: x.code, label: x.label, wave: 'W' + x.wave, bg: on ? ACC : 'transparent', fg: on ? '#121214' : '#C9C9C3', codeFg: on ? '#121214' : '#6E6E78', waveFg: on ? '#121214' : '#55555E', pick: () => this.setState({ cur: x.id, sel: 0, toast: '' }) }; });
+const tone = (t) => { const m = { '!': '#B26A00', '+': '#1A7F4B', '-': '#C62828', '~': '#62626C' }; const k = t.charAt(0); return m[k] ? { t: t.slice(1), c: m[k], w: 800 } : { t: t, c: '#121214', w: 500 }; };
+const rows = (s.rows || []).map((r, i) => ({ bg: i === st.sel ? '#F7FFE0' : (r.hl ? '#FFF7EC' : '#FFFFFF'), cells: r.cells.map((c, j) => { const o = tone(c); if (j === 0) o.w = 800; return o; }), pick: () => this.setState({ sel: i }) }));
+const sr = (s.rows || [])[st.sel] || (s.rows || [])[0] || { title: '', lines: [], actions: [], note: '' };
+const d = { title: sr.title, note: sr.note || '', lines: (sr.lines || []).map((l) => ({ k: l[0], v: l[1] })), actions: (sr.actions || []).map((a, i) => ({ label: a, bg: i === 0 ? '#121214' : '#FFFFFF', fg: i === 0 ? ACC : '#121214', border: i === 0 ? '0' : '1px solid #D6D3C9', go: () => say(a + ' · ' + sr.title + ' — saved and written to the audit log.') })) };
+const kpis = (s.kpis || []).map((k, i) => ({ label: k[0], value: k[1], sub: k[2], bg: i === 0 ? '#121214' : '#FFFFFF', fg: i === 0 ? ACC : '#121214', labelFg: i === 0 ? '#9A9AA5' : '#62626C', border: i === 0 ? '#121214' : '#E3E1D8' }));
+const mv = st.moved[s.id] || {};
+let kanban = [];
+if (s.kanban) {
+const cols = s.kanban.map((c) => ({ name: c.name, cards: [] }));
+s.kanban.forEach((c, ci) => c.cards.forEach((card, ki) => { const key = ci + '-' + ki; const at = Math.min(cols.length - 1, ci + (mv[key] || 0)); cols[at].cards.push({ key: key, card: card }); }));
+kanban = cols.map((c) => ({ name: c.name.toUpperCase(), count: c.cards.length, cards: c.cards.map((x) => ({ title: x.card[0], meta: x.card[1], tag: x.card[2], tagBg: x.card[2].indexOf('₹') >= 0 ? '#121214' : '#ECEAE2', tagFg: x.card[2].indexOf('₹') >= 0 ? ACC : '#121214', move: () => { const m = { ...mv, [x.key]: (mv[x.key] || 0) + 1 }; this.setState({ moved: { ...st.moved, [s.id]: m } }); } })) }));
+}
+return {
+nav: nav, s: { ...s, waveNum: s.wave }, kpis: kpis, cols: s.cols || [], gridCols: (s.cols || []).map((c, i) => i === 0 ? 'minmax(0, 1.6fr)' : 'minmax(0, 1fr)').join(' '), rows: rows, d: d, kanban: kanban,
+hasKanban: !!s.kanban, hasTable: !!(s.rows && s.rows.length), hasLock: !!s.lock, hasToast: !!st.toast, toast: st.toast,
+primaryAct: () => say(s.primary + ' — draft opened.'), clearToast: () => this.setState({ toast: '' })
+};
+}
+}
+</script>
+</body>
+</html>

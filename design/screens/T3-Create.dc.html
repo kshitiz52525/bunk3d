@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Create post</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #222228">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></a></sc-if>
+<span style="font-family: Unbounded, sans-serif; font-size: 15px; font-weight: 800">Spill it</span>
+<button onClick="{{submit}}" style="border: 0; background: {{postBg}}; color: {{postFg}}; font: inherit; font-size: 14px; font-weight: 800; padding: 0 18px; min-height: 40px; border-radius: 12px">Post</button>
+</div>
+
+<sc-if value="{{editing}}" hint-placeholder-val="{{true}}">
+<div style="flex: 1; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; background: #17171B; border-radius: 16px; padding: 4px; gap: 4px">
+<button onClick="{{asMe}}" style="flex: 1; border: 0; background: {{meBg}}; color: {{meFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 44px; border-radius: 12px">Post as Aarav</button>
+<button onClick="{{asAnon}}" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; border: 0; background: {{anBg}}; color: {{anFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 44px; border-radius: 12px"><sc-if value="{{locked}}" hint-placeholder-val="{{false}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></sc-if>Post anonymously</button>
+</div>
+<sc-if value="{{locked}}" hint-placeholder-val="{{false}}"><div style="margin-top: -6px; background: #17171B; border: 1px dashed #4A4A54; border-radius: 12px; padding: 10px 12px; font-size: 12px; color: #C9C9C3; line-height: 1.45">Anon unlocks at <b style="color: #D4FF3A">20 karma</b> and a 7-day-old account. You’re at 6 karma, day 3.</div></sc-if>
+
+<div style="display: flex; align-items: center; gap: 6px; margin-top: -4px; overflow-x: auto; scrollbar-width: none">
+<span style="flex-shrink: 0; font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5; margin-right: 2px">POST IN</span>
+<sc-for list="{{wheres}}" as="w" hint-placeholder-count="3"><button onClick="{{w.pick}}" aria-pressed="{{w.pressed}}" style="flex-shrink: 0; border: 1.5px solid {{w.border}}; background: {{w.bg}}; color: {{w.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 11px; min-height: 34px; border-radius: 17px">{{w.label}}</button></sc-for>
+</div>
+<div style="margin-top: -8px; font-size: 11px; font-weight: 700; color: {{whereFg}}">{{whereNote}}</div>
+<label for="txt" style="position: absolute; left: -9999px">Post text</label>
+<textarea id="txt" onChange="{{type}}" value="{{text}}" placeholder="what’s the tea?" style="height: 92px; border: 0; resize: none; background: transparent; color: #F5F5F0; font: inherit; font-size: 19px; font-weight: 600; line-height: 1.4; outline: none"></textarea>
+<div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #9A9AA5; margin-top: -8px"><span>Don’t name students in anon posts.</span><span>{{count}} / 1000</span></div>
+
+<sc-if value="{{poll}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<input aria-label="Option 1" value="Block A canteen" style="height: 46px; box-sizing: border-box; padding: 0 14px; background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; color: #F5F5F0; font: inherit; font-size: 14px; font-weight: 600">
+<input aria-label="Option 2" value="Food court" style="height: 46px; box-sizing: border-box; padding: 0 14px; background: #17171B; border: 1px solid #2E2E36; border-radius: 12px; color: #F5F5F0; font: inherit; font-size: 14px; font-weight: 600">
+<div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700"><span style="color: #9A9AA5">+ option (max 4)</span><span>Ends in <span style="color: #D4FF3A">1 day ▾</span></span></div>
+</div>
+</sc-if>
+
+<div>
+<div style="font-size: 12px; font-weight: 800; color: #9A9AA5; margin-bottom: 8px">Topic <span style="color: #FF6B9A">*</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{topics}}" as="t" hint-placeholder-count="8">
+<button onClick="{{t.pick}}" style="border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 12px; font-weight: 700; padding: 0 11px; min-height: 32px; border-radius: 16px">{{t.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="flex: 1"></div>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; padding: 10px 16px 26px; border-top: 1px solid #222228">
+<a href="#open-T11" onClick="{{ovOpen_T11}}" aria-label="Add photos: camera or device" style="height: 46px; padding: 0 14px; border-radius: 14px; background: #1F1F25; color: #F5F5F0; display: flex; align-items: center; gap: 8px; text-decoration: none; font-size: 13px; font-weight: 800"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="M21 16l-5-5-8 8"></path></svg>Photo</a>
+<button onClick="{{togglePoll}}" aria-label="Add poll" style="width: 46px; height: 46px; border: 0; border-radius: 14px; background: {{pollBg}}; color: {{pollFg}}; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M4 12h16M4 17h7"></path></svg></button>
+<span style="flex: 1"></span>
+<button onClick="{{toggleLock}}" style="border: 0; background: none; color: #9A9AA5; font: inherit; font-size: 11px; font-weight: 700; min-height: 36px">Preview: new account</button>
+</div>
+</sc-if>
+
+<sc-if value="{{checking}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center">
+<div style="width: 90px; height: 90px; border-radius: 30px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; transform: rotate(-6deg); box-shadow: 5px 5px 0 #B49CFF"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+<h2 style="margin: 24px 0 8px; font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.8px">Posted. It’s live.</h2>
+<p style="margin: 0; font-size: 14px; color: #9A9AA5; line-height: 1.5">Passed the quick safety check. If something gets flagged, it goes to your Campus Mods first and we tell you why.</p>
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" style="margin-top: 26px; display: flex; justify-content: center; align-items: center; min-height: 52px; padding: 0 28px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">See it in the feed</a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" style="margin-top: 26px; display: flex; justify-content: center; align-items: center; min-height: 52px; padding: 0 28px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">See it in the feed</a></sc-if>
+<button onClick="{{reset}}" style="margin-top: 8px; border: 0; background: none; color: #9A9AA5; font: inherit; font-size: 13px; font-weight: 700; min-height: 44px">Write another</button>
+</div>
+</sc-if>
+<sc-if value="{{ovShow_T11}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="T11-PhotoComposer" back="{{ovClose}}" caption="{{capOut}}" anon="{{anonOut}}" topic="{{topicOut}}" locked="{{lockedOut}}" hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); const c = props.community; this.state = { anon: !c, locked: false, where: c || 'Atria campus', topic: c ? 'Interview exp' : 'Canteen', poll: !c, text: c ? 'Anyone done the Zepto SDE OA this week? How hard was the DSA round?' : 'Settling this forever: best samosa on campus?', done: false }; }
+_rv() {
+const s = this.state;
+const anonOn = s.anon && !s.locked;
+const W = { 'Atria campus': { note: 'Only verified Atria students see this', fg: '#9A9AA5', topics: ['Academics', 'Placements', 'Hostel & PG', 'Canteen', 'Events', 'Rant', 'Random'] }, 'Placement Season 2027': { note: 'Community · 14 colleges see this · your college name shows', fg: '#D4FF3A', topics: ['Interview exp', 'OA prep', 'Offers', 'Referrals', 'Rant'] }, 'Bengaluru PG Life': { note: 'Community · 9 colleges see this · your college name shows', fg: '#B49CFF', topics: ['Rooms', 'Food', 'Roommates', 'Rant'] } };
+const wh = W[s.where] || W['Atria campus'];
+const wheres = Object.keys(W).map((k) => { const on = k === s.where; return { label: k === 'Atria campus' ? 'Atria campus' : k, pressed: on ? 'true' : 'false', bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ where: k, topic: W[k].topics[0] }) }; });
+const topics = wh.topics.map((l) => {
+const on = l === s.topic;
+return { label: l, bg: on ? '#D4FF3A' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#D4FF3A' : '#2E2E36', pick: () => this.setState({ topic: l }) };
+});
+const ready = s.text.trim().length > 0 && !!s.topic;
+return {
+wheres: wheres, whereNote: wh.note, whereFg: wh.fg, capOut: s.text, anonOut: anonOn, topicOut: s.topic, lockedOut: s.locked,
+editing: !s.done, checking: s.done, locked: s.locked, poll: s.poll, text: s.text, count: s.text.length, topics: topics,
+meBg: anonOn ? 'transparent' : '#F5F5F0', meFg: anonOn ? '#9A9AA5' : '#0D0D0F',
+anBg: anonOn ? '#B49CFF' : 'transparent', anFg: anonOn ? '#0D0D0F' : (s.locked ? '#5A5A64' : '#9A9AA5'),
+pollBg: s.poll ? '#D4FF3A' : '#1F1F25', pollFg: s.poll ? '#0D0D0F' : '#F5F5F0',
+postBg: ready ? '#D4FF3A' : '#2A2A31', postFg: ready ? '#0D0D0F' : '#6E6E78',
+asMe: () => this.setState({ anon: false }),
+asAnon: () => { if (!s.locked) this.setState({ anon: true }); },
+type: (e) => this.setState({ text: e.target.value.slice(0, 1000) }),
+togglePoll: () => this.setState({ poll: !s.poll }),
+toggleLock: () => this.setState({ locked: !s.locked }),
+submit: () => { if (ready) this.setState({ done: true }); },
+reset: () => this.setState({ done: false })
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["T11"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

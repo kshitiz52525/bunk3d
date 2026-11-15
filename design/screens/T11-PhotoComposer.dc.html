@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Photo post composer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+.bk-strip::-webkit-scrollbar{display:none}
+@keyframes bkSwap{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes bkFlash{from{opacity:.9}to{opacity:0}}
+@keyframes bkDone{0%{transform:scale(.6) rotate(-8deg);opacity:0}60%{transform:scale(1.06) rotate(-2deg);opacity:1}100%{transform:rotate(-2deg);opacity:1}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<sc-if value="{{isCamera}}" hint-placeholder-val="{{false}}">
+<div style="position: relative; flex: 1; background: #000000; overflow: hidden">
+<img src="/_blob/f5d6e2991b0170d112e2e8de040ac7bb" alt="Live camera view" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: {{camFilter}}; transform: scaleX({{mirror}}); transition: filter 200ms">
+<sc-if value="{{flashShot}}" hint-placeholder-val="{{false}}"><span style="position: absolute; inset: 0; background: #FFFFFF; animation: bkFlash 260ms ease-out forwards"></span></sc-if>
+<div style="position: absolute; left: 0; right: 0; top: 0; padding: 12px 16px; display: flex; align-items: center; gap: 10px; background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0))">
+<button onClick="{{backToSource}}" aria-label="Close camera" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: rgba(31,31,37,0.75); color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+<span style="flex: 1"></span>
+<button onClick="{{toggleFlash}}" aria-label="Flash" style="height: 44px; padding: 0 12px; border: 0; border-radius: 22px; background: {{flashBg}}; color: {{flashFg}}; font: inherit; font-size: 12px; font-weight: 800">Flash {{flashLabel}}</button>
+<button onClick="{{flip}}" aria-label="Switch camera" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: rgba(31,31,37,0.75); color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h4l2-3h4l2 3h4v12H4z"></path><path d="M9 13a3 3 0 0 0 5.5 1.5M15 12a3 3 0 0 0-5.5-1.5"></path></svg></button>
+</div>
+<div style="position: absolute; left: 0; right: 0; top: 64px; text-align: center"><span style="display: inline-block; background: rgba(13,13,15,0.7); font-size: 12px; font-weight: 800; padding: 6px 12px; border-radius: 14px">{{filterName}}</span></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 0 26px; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.75)); display: flex; flex-direction: column; gap: 16px">
+<div class="bk-strip" style="display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding: 0 16px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="6"><button onClick="{{f.pick}}" aria-label="Filter: {{f.name}}" style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 5px; border: 0; background: transparent; color: {{f.fg}}; font: inherit; font-size: 11px; font-weight: 800; padding: 0"><span style="width: 56px; height: 56px; border-radius: 18px; overflow: hidden; border: 2.5px solid {{f.border}}; box-sizing: border-box; transform: scale({{f.scale}}); transition: transform 180ms cubic-bezier(.2,.8,.2,1)"><img src="/_blob/f5d6e2991b0170d112e2e8de040ac7bb" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: {{f.css}}"></span>{{f.name}}</button></sc-for>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-around; padding: 0 30px">
+<button onClick="{{openUpload}}" aria-label="Upload from device instead" style="width: 48px; height: 48px; border: 2px solid #F5F5F0; border-radius: 14px; padding: 0; overflow: hidden; background: #222228"><img src="/_blob/09c1b29936c1832cc7144a0d1e1d60f8" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></button>
+<button onClick="{{shoot}}" aria-label="Take photo" style="width: 78px; height: 78px; border: 5px solid #F5F5F0; border-radius: 39px; background: transparent; padding: 5px; box-sizing: border-box"><span style="display: block; width: 100%; height: 100%; border-radius: 30px; background: #D4FF3A"></span></button>
+<span style="width: 48px; font-size: 11px; font-weight: 800; color: #C9C9C3; text-align: center">PHOTO</span>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{notCamera}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back to your post" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T3-Create.dc.html" aria-label="Back to your post" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></a></sc-if>
+<h1 style="margin: 0; flex: 1; font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.6px">New photo post</h1>
+<span style="font-size: 12px; font-weight: 800; color: #9A9AA5">{{countLabel}}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{isSource}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; padding: 8px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 14px; color: #9A9AA5">Where’s the pic coming from?</div>
+<button onClick="{{openCam}}" style="display: flex; align-items: center; gap: 14px; border: 0; background: #D4FF3A; color: #0D0D0F; font: inherit; text-align: left; padding: 20px 18px; border-radius: 22px; box-shadow: 4px 4px 0 #B49CFF"><span style="width: 56px; height: 56px; border-radius: 18px; background: #0D0D0F; color: #D4FF3A; display: grid; place-items: center; flex-shrink: 0"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h4l2-3h4l2 3h4v12H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span><span><span style="display: block; font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px">Click from camera</span><span style="display: block; font-size: 13px; font-weight: 600; margin-top: 3px">Filters, flash, front camera</span></span></button>
+<button onClick="{{openUpload}}" style="display: flex; align-items: center; gap: 14px; border: 1px solid #26262D; background: #17171B; color: #F5F5F0; font: inherit; text-align: left; padding: 20px 18px; border-radius: 22px"><span style="width: 56px; height: 56px; border-radius: 18px; background: #2A2140; color: #CDBEFF; display: grid; place-items: center; flex-shrink: 0"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 16l5-5 4 4 3-3 6 6"></path><circle cx="15.5" cy="9.5" r="1.5"></circle></svg></span><span><span style="display: block; font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px">Upload from device</span><span style="display: block; font-size: 13px; color: #9A9AA5; margin-top: 3px">Up to 10 photos, any shape</span></span></button>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5; margin-top: 8px">RECENT ON THIS PHONE</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{recent}}" as="r" hint-placeholder-count="6"><button onClick="{{r.pick}}" aria-label="Use {{r.alt}}" style="aspect-ratio: 1 / 1; border: 0; padding: 0; border-radius: 12px; overflow: hidden; background: #222228"><img src="{{r.src}}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></button></sc-for>
+</div>
+<div style="font-size: 11px; color: #6E6E78; text-align: center">Bunk3d only sees the photos you pick.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{editing}}" hint-placeholder-val="{{true}}">
+<div style="padding: 0 16px 8px"><div role="radiogroup" aria-label="Post as" style="display: flex; background: #17171B; border-radius: 14px; padding: 4px; gap: 4px">
+<button onClick="{{asMe}}" role="radio" aria-checked="{{meAria}}" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; border: 0; background: {{meBg}}; color: {{meFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 40px; border-radius: 11px"><span style="width: 20px; height: 20px; border-radius: 10px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-size: 7px; font-weight: 800">AS</span>Post as Aarav</button>
+<button onClick="{{asAnon}}" role="radio" aria-checked="{{anonAria}}" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; border: 0; background: {{anonBg}}; color: {{anonFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 40px; border-radius: 11px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10c3-1 6-1 9 0s6 1 9 0v2a4 4 0 0 1-4 4c-2 0-3-1.5-5-1.5S9 16 7 16a4 4 0 0 1-4-4z"></path></svg><sc-if value="{{locked}}" hint-placeholder-val="{{false}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></sc-if>Anonymously</button>
+</div>
+<sc-if value="{{locked}}" hint-placeholder-val="{{false}}"><div style="margin-top: 6px; background: #17171B; border: 1px dashed #4A4A54; border-radius: 12px; padding: 8px 12px; font-size: 12px; color: #C9C9C3; line-height: 1.45">Anon unlocks at <b style="color: #D4FF3A">20 karma</b> and a 7-day-old account. You’re at 6 karma, day 3.</div></sc-if></div>
+<div style="padding: 0 16px; display: flex; align-items: center; gap: 8px">
+<span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">POST TO</span>
+<sc-for list="{{dests}}" as="d" hint-placeholder-count="2"><button onClick="{{d.pick}}" aria-pressed="{{d.pressed}}" aria-disabled="{{d.dis}}" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; border: 1.5px solid {{d.border}}; background: {{d.bg}}; color: {{d.fg}}; font: inherit; font-size: 14px; font-weight: 800; min-height: 44px; border-radius: 14px; text-decoration: {{d.strike}}; transition: background 180ms, border-color 180ms"><span style="width: 18px; height: 18px; border-radius: 6px; border: 2px solid {{d.boxBorder}}; background: {{d.boxBg}}; color: {{d.boxFg}}; display: grid; place-items: center; font-size: 11px; box-sizing: border-box">{{d.tick}}</span>{{d.label}}<span style="width: 6px; height: 6px; border-radius: 3px; background: #0D0D0F; display: {{d.dotShow}}" aria-hidden="true"></span></button></sc-for>
+</div>
+<sc-if value="{{showTopics}}" hint-placeholder-val="{{true}}"><div style="display: flex; align-items: center; gap: 6px; padding: 8px 16px 0; overflow-x: auto; scrollbar-width: none">
+<span style="flex-shrink: 0; font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">TOPIC <span style="color: #FF6B9A">*</span></span>
+<sc-for list="{{topics}}" as="t" hint-placeholder-count="6"><button onClick="{{t.pick}}" aria-pressed="{{t.pressed}}" style="flex-shrink: 0; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 12px; font-weight: 700; padding: 0 10px; min-height: 32px; border-radius: 16px">{{t.label}}</button></sc-for>
+</div></sc-if>
+<div style="height: {{prevH}}px; flex-shrink: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 12px 16px; box-sizing: border-box">
+<sc-if value="{{showFeed}}" hint-placeholder-val="{{true}}">
+<div style="width: {{feedW}}px; background: #17171B; border: 1px solid #26262D; border-radius: 16px; overflow: hidden; flex-shrink: 0; transition: width 260ms cubic-bezier(.2,.8,.2,1)">
+<div style="display: flex; align-items: center; gap: 6px; padding: 7px 9px">
+<sc-if value="{{named}}" hint-placeholder-val="{{true}}"><span style="width: 20px; height: 20px; border-radius: 10px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-size: 7px; font-weight: 800">AS</span><span style="font-size: 10px; font-weight: 800">Aarav S. · now</span></sc-if>
+<sc-if value="{{anon}}" hint-placeholder-val="{{false}}"><span style="width: 20px; height: 20px; border-radius: 7px; background: #2A2140; color: #CDBEFF; display: grid; place-items: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10c3-1 6-1 9 0s6 1 9 0v2a4 4 0 0 1-4 4c-2 0-3-1.5-5-1.5S9 16 7 16a4 4 0 0 1-4-4z"></path></svg></span><span style="font-size: 10px; font-weight: 800; color: #CDBEFF">Anonymous · now</span></sc-if>
+<span style="flex: 1"></span><span style="font-size: 8px; font-weight: 800; color: #9A9AA5">FEED</span></div>
+<div style="position: relative; width: 100%; aspect-ratio: {{ar}}; overflow: hidden; background: #222228; transition: aspect-ratio 260ms">
+<img src="{{cur.src}}" alt="{{cur.alt}}" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: {{camFilter}}; animation: bkSwap 240ms cubic-bezier(.2,.8,.2,1)">
+<span style="position: absolute; inset: 0; background-image: linear-gradient(rgba(245,245,240,0.35), rgba(245,245,240,0.35)), linear-gradient(rgba(245,245,240,0.35), rgba(245,245,240,0.35)), linear-gradient(rgba(245,245,240,0.35), rgba(245,245,240,0.35)), linear-gradient(rgba(245,245,240,0.35), rgba(245,245,240,0.35)); background-size: 1px 100%, 1px 100%, 100% 1px, 100% 1px; background-position: 33.3% 0, 66.6% 0, 0 33.3%, 0 66.6%; background-repeat: no-repeat; opacity: {{gridOp}}; transition: opacity 200ms"></span>
+<sc-if value="{{blurOn}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: 6px; bottom: 6px; background: #2A2140; color: #CDBEFF; font-size: 8px; font-weight: 800; padding: 3px 6px; border-radius: 6px">FACES BLURRED</span></sc-if>
+<sc-if value="{{multi}}" hint-placeholder-val="{{false}}"><span style="position: absolute; right: 6px; top: 6px; background: rgba(13,13,15,0.75); font-size: 9px; font-weight: 800; padding: 3px 6px; border-radius: 6px">1 / {{count}}</span></sc-if>
+</div>
+<div style="font-size: 10px; line-height: 1.35; padding: 7px 9px 9px; color: #E4E4DE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{captionShown}}</div>
+</div>
+</sc-if>
+<sc-if value="{{showStory}}" hint-placeholder-val="{{false}}">
+<div style="position: relative; width: 158px; height: 281px; border-radius: 18px; overflow: hidden; background: #000000; flex-shrink: 0; box-shadow: 0 0 0 1px #26262D">
+<sc-if value="{{storyFill}}" hint-placeholder-val="{{false}}"><img src="{{cur.src}}" alt="{{cur.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: {{camFilter}}; animation: bkSwap 240ms"></sc-if>
+<sc-if value="{{storyFit}}" hint-placeholder-val="{{true}}">
+<img src="{{cur.src}}" alt="" style="position: absolute; inset: -30px; width: calc(100% + 60px); height: calc(100% + 60px); object-fit: cover; filter: blur(18px) brightness(0.55)">
+<img src="{{cur.src}}" alt="{{cur.alt}}" style="position: absolute; left: 0; right: 0; top: 50%; width: 100%; aspect-ratio: {{nat}}; transform: translateY(-50%); object-fit: cover; animation: bkSwap 240ms">
+</sc-if>
+<div style="position: absolute; left: 8px; right: 8px; top: 8px; display: flex; gap: 3px"><span style="flex: 1; height: 2px; border-radius: 1px; background: #F5F5F0"></span><span style="flex: 1; height: 2px; border-radius: 1px; background: rgba(245,245,240,0.3)"></span></div>
+<div style="position: absolute; left: 8px; top: 16px; display: flex; align-items: center; gap: 5px"><span style="width: 18px; height: 18px; border-radius: 7px; border: 1.5px solid {{audRing}}; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-size: 6px; font-weight: 800; box-sizing: border-box">AS</span><span style="font-size: 9px; font-weight: 800">You</span><span style="font-size: 7px; font-weight: 800; color: {{audRing}}">{{audLabel}}</span></div>
+<sc-if value="{{hasCap}}" hint-placeholder-val="{{true}}"><span style="position: absolute; left: 14px; right: 14px; bottom: 54px; text-align: center"><span style="display: inline-block; background: #D4FF3A; color: #0D0D0F; font-family: Unbounded, sans-serif; font-size: 11px; font-weight: 800; padding: 5px 8px; border-radius: 8px; transform: rotate(-3deg); box-shadow: 2px 2px 0 #B49CFF">{{caption}}</span></span></sc-if>
+<span style="position: absolute; left: 8px; right: 8px; bottom: 10px; height: 24px; border-radius: 12px; border: 1px solid rgba(245,245,240,0.4); font-size: 8px; color: #C9C9C3; display: flex; align-items: center; padding-left: 8px">Reply…</span>
+</div>
+</sc-if>
+</div>
+
+<div style="display: flex; gap: 6px; padding: 0 16px; justify-content: center; min-height: 36px">
+<sc-if value="{{showFeed}}" hint-placeholder-val="{{true}}">
+<sc-for list="{{ratios}}" as="r" hint-placeholder-count="4"><button onClick="{{r.pick}}" style="border: 1.5px solid {{r.border}}; background: {{r.bg}}; color: {{r.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 36px; border-radius: 18px">{{r.label}}</button></sc-for>
+</sc-if>
+<sc-if value="{{storyOnly}}" hint-placeholder-val="{{false}}">
+<sc-for list="{{auds}}" as="a" hint-placeholder-count="2"><button onClick="{{a.pick}}" style="border: 1.5px solid {{a.border}}; background: {{a.bg}}; color: {{a.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 36px; border-radius: 18px">{{a.label}}</button></sc-for>
+</sc-if>
+</div>
+
+<sc-if value="{{anon}}" hint-placeholder-val="{{false}}">
+
+</sc-if>
+
+<sc-if value="{{fromCam}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px 4px">
+<button onClick="{{openCam}}" style="border: 1.5px solid #2E2E36; background: transparent; color: #F5F5F0; font: inherit; font-size: 12px; font-weight: 800; padding: 0 14px; min-height: 40px; border-radius: 20px">Retake</button>
+<div class="bk-strip" style="flex: 1; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="6"><button onClick="{{f.pick}}" style="flex: 0 0 auto; border: 1.5px solid {{f.border}}; background: {{f.bg}}; color: {{f.chipFg}}; font: inherit; font-size: 11px; font-weight: 800; padding: 0 10px; min-height: 36px; border-radius: 18px">{{f.name}}</button></sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{fromUpload}}" hint-placeholder-val="{{true}}">
+<div class="bk-strip" style="display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 12px 16px 4px; flex-shrink: 0">
+<sc-for list="{{gallery}}" as="g" hint-placeholder-count="6">
+<button onClick="{{g.pick}}" aria-label="{{g.aria}}" style="position: relative; flex: 0 0 72px; height: 72px; border: 2px solid {{g.border}}; border-radius: 14px; padding: 0; overflow: hidden; background: #222228; transform: scale({{g.scale}}); transition: transform 180ms cubic-bezier(.2,.8,.2,1)">
+<img src="{{g.src}}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block; opacity: {{g.op}}">
+<span style="position: absolute; right: 4px; top: 4px; width: 20px; height: 20px; border-radius: 10px; background: {{g.badgeBg}}; border: 1.5px solid #F5F5F0; color: #0D0D0F; font-size: 11px; font-weight: 800; display: grid; place-items: center; box-sizing: border-box">{{g.n}}</span>
+<span style="position: absolute; left: 4px; bottom: 4px; font-size: 8px; font-weight: 800; background: rgba(13,13,15,0.7); color: #F5F5F0; padding: 1px 4px; border-radius: 4px">{{g.ratio}}</span>
+</button>
+</sc-for>
+</div>
+</sc-if>
+
+<div style="padding: 10px 16px 0; display: flex; flex-direction: column; gap: 8px">
+<label style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">{{capLabel}}</span><input value="{{caption}}" onInput="{{setCap}}" maxlength="1000" style="min-height: 44px; border-radius: 12px; border: 1px solid #2E2E36; background: #17171B; color: #F5F5F0; font: inherit; font-size: 14px; padding: 0 12px"></label>
+<label style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #9A9AA5">ALT TEXT · FOR SCREEN READERS</span><input value="{{alt}}" onInput="{{setAlt}}" style="min-height: 44px; border-radius: 12px; border: 1px solid #2E2E36; background: #17171B; color: #F5F5F0; font: inherit; font-size: 14px; padding: 0 12px"></label>
+</div>
+<div style="flex: 1"></div>
+<div style="padding: 10px 16px 24px"><button onClick="{{share}}" style="width: 100%; border: 0; background: {{ctaBg}}; color: {{ctaFg}}; font: inherit; font-size: 15px; font-weight: 800; min-height: 54px; border-radius: 16px; box-shadow: 4px 4px 0 #B49CFF">{{cta}}</button></div>
+</sc-if>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 0 24px">
+<div style="width: 220px; border-radius: 22px; overflow: hidden; background: #D4FF3A; color: #0D0D0F; box-shadow: 6px 6px 0 #B49CFF; animation: bkDone 520ms cubic-bezier(.2,.8,.2,1) both">
+<img src="{{cur.src}}" alt="{{cur.alt}}" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; filter: {{camFilter}}">
+<div style="padding: 12px; font-family: Unbounded, sans-serif; font-size: 16px; font-weight: 800">{{doneTitle}}</div>
+</div>
+<div style="font-size: 13px; color: #9A9AA5; text-align: center; line-height: 1.5">{{doneSub}}</div>
+</div>
+<div style="padding: 10px 16px 24px; display: flex; gap: 8px"><sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 54px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">See it in the feed</a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="T1-Feed.dc.html" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 54px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">See it in the feed</a></sc-if><a href="T10-PhotoStory.dc.html" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 54px; background: #1F1F25; color: #F5F5F0; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">View stories</a></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"newAccount":{"editor":"boolean","default":false,"section":"Account state"},"caption":{"editor":null},"topic":{"editor":null},"anon":{"editor":null},"locked":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+const startAnon = !!props.anon && !props.locked;
+this.state = { sel: ['hack'], dest: startAnon ? 'feed' : 'both', ratio: 'orig', aud: 'campus', caption: props.caption ?? 'hour 3, still shipping', topic: props.topic || '', alt: 'Teams coding at laptops under string lights at Hack the Canteen', done: false, anon: !!props.anon && !props.locked, blur: true, prevDest: 'both', step: 'source', src: 'upload', filt: 0, flash: false, front: false, shot: false };
+}
+_rv() {
+const st = this.state;
+const G = [
+{ id: 'hack', src: '/_blob/485e7da6913dc0d04b860ccc07ac7be3', nat: 1.7778, label: '16:9', alt: 'Hack the Canteen' },
+{ id: 'rain', src: '/_blob/f5d6e2991b0170d112e2e8de040ac7bb', nat: 0.5625, label: '9:16', alt: 'Block C in the rain' },
+{ id: 'terrace', src: '/_blob/09c1b29936c1832cc7144a0d1e1d60f8', nat: 0.8, label: '4:5', alt: 'Terrace sunset' },
+{ id: 'samosa', src: '/_blob/cc01344a09210f9823aeb58892696c75', nat: 1, label: '1:1', alt: 'Samosas' },
+{ id: 'fest', src: '/_blob/5bd9a38aea31dec55561a0be0c1342bd', nat: 0.8, label: '4:5', alt: 'Fest stage' },
+{ id: 'turf', src: '/_blob/1df49855430300ad51bc80671aa4e1b4', nat: 0.8, label: '4:5', alt: 'Turf final' }
+];
+const CAM = { id: 'cam', src: '/_blob/f5d6e2991b0170d112e2e8de040ac7bb', nat: 0.5625, label: '9:16', alt: 'Photo from camera' };
+const F = [['Original', 'none'], ['Golden hour', 'sepia(.3) saturate(1.35) contrast(1.05)'], ['Night flash', 'contrast(1.3) brightness(1.12) saturate(.9)'], ['Lime pop', 'saturate(1.7) hue-rotate(-12deg) contrast(1.1)'], ['Mono', 'grayscale(1) contrast(1.25)'], ['Monsoon', 'saturate(.7) hue-rotate(18deg) brightness(.95)']];
+const fromCam = st.src === 'camera';
+const filters = F.map((f, i) => { const on = i === st.filt; return { name: f[0], css: f[1], fg: on ? '#D4FF3A' : '#F5F5F0', border: on ? '#D4FF3A' : (fromCam && st.step === 'compose' ? '#2E2E36' : 'transparent'), scale: on ? 1.08 : 1, bg: on ? '#D4FF3A' : 'transparent', chipFg: on ? '#0D0D0F' : '#F5F5F0', pick: () => this.setState({ filt: i }) }; });
+const sel = st.sel;
+const cur = fromCam ? CAM : (G.find((g) => g.id === sel[0]) || G[0]);
+const recent = G.map((g) => ({ src: g.src, alt: g.alt, pick: () => this.setState({ src: 'upload', sel: [g.id], step: 'compose', filt: 0 }) }));
+const gallery = G.map((g) => { const k = sel.indexOf(g.id); const on = k >= 0; return { src: g.src, ratio: g.label, n: on ? k + 1 : '', badgeBg: on ? '#D4FF3A' : 'rgba(13,13,15,0.4)', border: on ? '#D4FF3A' : 'transparent', op: on ? 1 : 0.7, scale: on ? 0.94 : 1, aria: (on ? 'Selected ' + (k + 1) + ': ' : 'Select ') + g.alt, pick: () => { let s = sel.slice(); if (on) { if (s.length > 1) s.splice(k, 1); } else if (s.length < 10) s.push(g.id); this.setState({ sel: s }); } }; });
+const clampAr = Math.min(1.91, Math.max(0.8, cur.nat));
+const arMap = { orig: clampAr, '45': 0.8, '11': 1, '191': 1.91 };
+const ar = arMap[st.ratio];
+const ratios = [['orig', 'Original'], ['45', '4:5'], ['11', '1:1'], ['191', '1.91:1']].map((r) => { const on = r[0] === st.ratio; return { label: r[1], bg: on ? '#D4FF3A' : 'transparent', fg: on ? '#0D0D0F' : '#F5F5F0', border: on ? '#D4FF3A' : '#2E2E36', pick: () => this.setState({ ratio: r[0] }) }; });
+const both = st.dest === 'both';
+const dFeed = st.dest !== 'story';
+const dStory = st.dest !== 'feed';
+const pv = both ? (st.pv || 'feed') : (dFeed ? 'feed' : 'story');
+const showFeed = pv === 'feed';
+const showStory = pv === 'story';
+const locked = !!(this.props.locked || this.props.newAccount);
+const anon = st.anon && !locked;
+const toggleDest = (k) => {
+const isOn = k === 'feed' ? dFeed : dStory;
+if (isOn && both && pv !== k) { this.setState({ pv: k }); return; }
+const f = k === 'feed' ? !dFeed : dFeed;
+const s = k === 'story' ? !dStory : dStory;
+if (!f && !s) return;
+this.setState({ dest: f && s ? 'both' : (f ? 'feed' : 'story'), pv: (k === 'feed' ? f : s) ? k : (f ? 'feed' : 'story') });
+};
+const acc = anon ? '#B49CFF' : '#D4FF3A';
+const dests = [['feed', 'Feed', dFeed], ['story', 'Story', dStory]].map((d) => { const on = d[2]; const dis = anon && d[0] === 'story'; return { label: d[1], pressed: on ? 'true' : 'false', dis: dis ? 'true' : 'false', strike: dis ? 'line-through' : 'none', bg: on ? acc : '#17171B', fg: on ? '#0D0D0F' : (dis ? '#4A4A54' : '#C9C9C3'), border: on ? acc : '#2E2E36', boxBorder: on ? '#0D0D0F' : (dis ? '#3A3A42' : '#6E6E78'), boxBg: on ? '#0D0D0F' : 'transparent', boxFg: acc, tick: on ? '✓' : '', dotShow: on && both && pv === d[0] ? 'block' : 'none', pick: () => { if (!dis) toggleDest(d[0]); } }; });
+const pvTabs = [['feed', 'Feed'], ['story', 'Story']].map((p) => { const on = p[0] === pv; return { label: p[1], pressed: on ? 'true' : 'false', bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#9A9AA5', pick: () => this.setState({ pv: p[0] }) }; });
+const auds = [['campus', 'Campus'], ['close', 'Close connections']].map((a) => { const on = a[0] === st.aud; return { label: a[1], bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ aud: a[0] }) }; });
+let hint = '';
+if (anon) hint = 'Anonymous posts go to the Tea feed only. Stories always show your name.';
+else if (showFeed && st.ratio === 'orig' && cur.nat < 0.8) hint = 'Taller than 4:5 — the feed crops to 4:5. The viewer shows it whole.';
+else if (showFeed && st.ratio === 'orig' && cur.nat > 1.91) hint = 'Wider than 1.91:1 — the feed crops the sides.';
+else if (showFeed && sel.length > 1) hint = 'Every photo in a carousel uses photo 1’s shape.';
+else if (showStory && cur.nat > 0.6) hint = 'Story: not 9:16, so it sits on a blurred copy of itself.';
+else if (showStory) hint = 'Story: 9:16 fills the screen edge to edge.';
+const ctaMap = { feed: 'Share to feed', story: 'Share to story', both: 'Share to feed + story' };
+const prevH = dFeed ? 258 : 300;
+const needTopic = dFeed && !st.topic;
+const topics = ['Academics', 'Placements', 'Hostel & PG', 'Canteen', 'Events', 'Rant', 'Random'].map((l) => { const on = l === st.topic; return { label: l, pressed: on ? 'true' : 'false', bg: on ? '#D4FF3A' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#D4FF3A' : '#2E2E36', pick: () => this.setState({ topic: l }) }; });
+const blurOn = anon && st.blur;
+const step = st.done ? 'done' : st.step;
+return {
+isSource: step === 'source', isCamera: step === 'camera', notCamera: step !== 'camera', fromCam: fromCam, fromUpload: !fromCam,
+countLabel: step === 'source' ? '' : (fromCam ? 'camera' : sel.length + '/10'),
+recent: recent, filters: filters, filterName: F[st.filt][0], camFilter: (fromCam || step === 'camera') ? F[st.filt][1] : 'none', mirror: st.front ? -1 : 1,
+flashBg: st.flash ? '#D4FF3A' : 'rgba(31,31,37,0.75)', flashFg: st.flash ? '#0D0D0F' : '#F5F5F0', flashLabel: st.flash ? 'on' : 'off', flashShot: st.shot,
+openCam: () => this.setState({ step: 'camera', shot: false }), openUpload: () => this.setState({ step: 'compose', src: 'upload', filt: 0 }),
+backToSource: () => this.setState({ step: 'source' }), toggleFlash: () => this.setState({ flash: !st.flash }), flip: () => this.setState({ front: !st.front }),
+shoot: () => { this.setState({ shot: true }); clearTimeout(this.t); this.t = setTimeout(() => this.setState({ step: 'compose', src: 'camera', shot: false }), 280); },
+anon: anon, named: !anon, blurOn: blurOn,
+meAria: anon ? 'false' : 'true', anonAria: anon ? 'true' : 'false',
+meBg: anon ? 'transparent' : '#D4FF3A', meFg: anon ? '#9A9AA5' : '#0D0D0F',
+anonBg: anon ? '#B49CFF' : 'transparent', anonFg: anon ? '#0D0D0F' : (locked ? '#5A5A64' : '#9A9AA5'), locked: locked,
+asMe: () => { if (anon) this.setState({ anon: false, dest: st.prevDest }); },
+asAnon: () => { if (!anon && !locked) this.setState({ anon: true, prevDest: st.dest, dest: 'feed' }); },
+toggleBlur: () => this.setState({ blur: !st.blur }), blurAria: st.blur ? 'true' : 'false', blurLabel: st.blur ? 'on' : 'off',
+blurBg: st.blur ? '#CDBEFF' : 'transparent', blurFg: st.blur ? '#0D0D0F' : '#CDBEFF',
+editing: step === 'compose', done: st.done, dests: dests, pvTabs: pvTabs, both: both, showFeed: showFeed, showStory: showStory, storyOnly: showStory,
+feedW: Math.round(Math.min(250, (prevH - 24 - 62) * ar)), prevH: prevH, showTopics: dFeed, topics: topics, ar: String(ar), gridOp: st.ratio === 'orig' ? 0 : 1, cur: cur, nat: String(cur.nat), multi: sel.length > 1, count: sel.length,
+storyFill: cur.nat <= 0.6, storyFit: cur.nat > 0.6, audRing: st.aud === 'close' ? '#3DDC97' : '#D4FF3A', audLabel: st.aud === 'close' ? 'CLOSE' : 'CAMPUS',
+caption: st.caption, captionShown: st.caption || 'Add a caption', hasCap: !!st.caption, alt: st.alt,
+capLabel: both ? 'CAPTION · ALSO THE STORY TEXT STICKER' : (showStory ? 'TEXT STICKER' : 'CAPTION'),
+setCap: (e) => this.setState({ caption: e.target.value }), setAlt: (e) => this.setState({ alt: e.target.value }),
+ratios: ratios, auds: auds, hint: hint, gallery: gallery,
+cta: needTopic ? 'Pick a topic to post' : (anon ? 'Post anonymously to feed' : ctaMap[st.dest]), ctaBg: needTopic ? '#2A2A31' : (anon ? '#B49CFF' : '#D4FF3A'), ctaFg: needTopic ? '#6E6E78' : '#0D0D0F',
+share: () => { if (!needTopic) this.setState({ done: true }); },
+doneTitle: anon ? 'Posted anonymously' : (st.dest === 'story' ? 'On your story' : (both ? 'Posted + on your story' : 'Posted to Tea')),
+doneSub: anon ? 'Your name is hidden from other students. Location and camera details were removed' + (st.blur ? ' and faces blurred' : '') + '. Mods can act on serious reports.' : st.dest === 'feed' ? 'Live on the Atria feed. Mods can still review it if it’s reported.' : 'Story disappears in 24 hours. ' + (st.aud === 'close' ? 'Only close connections can see it.' : 'All verified Atria students can see it.')
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+[].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

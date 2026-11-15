@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meetup detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+@keyframes bkOvUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.bk-ovs{animation:bkOvUp 260ms cubic-bezier(.2,.8,.2,1)}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="R1-Map.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<div style="flex: 1; font-size: 15px; font-weight: 800">Meetup</div>
+<a href="#open-X3" onClick="{{ovOpen_X3}}" style="font-size: 13px; font-weight: 800; color: #FF5D5D; text-decoration: none">Report</a>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="background: #D4FF3A; color: #0D0D0F; border-radius: 26px; padding: 18px; transform: rotate(-1deg); box-shadow: 5px 5px 0 #B49CFF">
+<div style="display: flex; justify-content: space-between"><span style="background: #0D0D0F; color: #D4FF3A; font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 9px">TODAY · 6–8 PM</span><span style="font-size: 12px; font-weight: 800">by GDG Atria</span></div>
+<div style="font-family: Unbounded, sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -1.2px; margin-top: 14px">Chai &amp; Code</div>
+<div style="font-size: 13px; font-weight: 700; margin-top: 4px">Bring a laptop and a bug. We fix things, someone buys chai.</div>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 4px 14px">
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 13px"><span style="color: #9A9AA5">Where</span><b>{{where}}</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 13px"><span style="color: #9A9AA5">Who can join</span><b>Atria students · approval</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; font-size: 13px"><span style="color: #9A9AA5">Spots</span><b>{{going}} / 8</b></div>
+</div>
+<div style="display: flex; align-items: center; gap: 10px"><div style="display: flex"><sc-for list="{{avs}}" as="a" hint-placeholder-count="5"><span style="width: 34px; height: 34px; border-radius: 12px; background: {{a.t}}; color: #0D0D0F; display: grid; place-items: center; font-size: 10px; font-weight: 800; margin-right: -8px; border: 2px solid #0D0D0F">{{a.i}}</span></sc-for></div><span style="font-size: 13px; color: #9A9AA5; margin-left: 12px">Rhea, Kabir and {{others}} more</span></div>
+<sc-if value="{{pending}}" hint-placeholder-val="{{false}}"><div style="background: #3D2E0D; color: #FFD58A; border-radius: 14px; padding: 12px; font-size: 13px; font-weight: 700">Request sent. Rhea approves joins — you’ll get the exact spot once approved.</div></sc-if>
+<sc-if value="{{inn}}" hint-placeholder-val="{{false}}"><div style="background: #12301F; color: #9FF0C6; border-radius: 14px; padding: 12px; font-size: 13px; font-weight: 700">You’re in. Group chat unlocked · location reveals at 5 PM.</div></sc-if>
+<a href="R5-LocationShare.dc.html" style="display: flex; align-items: center; gap: 10px; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 12px 14px; text-decoration: none; color: #F5F5F0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5CC8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span style="flex: 1; font-size: 14px; font-weight: 700">Share live location with a friend</span><span style="color: #9A9AA5">›</span></a>
+</div>
+<div style="padding: 10px 16px 26px"><button onClick="{{join}}" style="width: 100%; border: 0; background: {{ctaBg}}; color: {{ctaFg}}; font: inherit; font-size: 15px; font-weight: 800; min-height: 56px; border-radius: 16px">{{cta}}</button></div>
+<sc-if value="{{ovShow_X3}}" hint-placeholder-val="{{false}}"><div class="bk-ovs" style="position: absolute; inset: 0; z-index: 60; overflow: hidden"><dc-import name="X3-Report" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { s: 0 }; }
+_rv() {
+const s = this.state.s;
+const avs = [['RN', '#D4FF3A'], ['KM', '#B49CFF'], ['SK', '#FF6B9A'], ['DR', '#5CC8FF'], ['MT', '#FFB547']].map((r) => ({ i: r[0], t: r[1] }));
+return {
+avs: avs, going: s === 2 ? 7 : 6, others: s === 2 ? 5 : 4, pending: s === 1, inn: s === 2,
+where: s === 2 ? 'Library L2, pod 4' : 'Library L2 · exact spot after approval',
+cta: ['Request to join', 'Pending · tap to simulate approve', 'Open group chat'][s],
+ctaBg: s === 1 ? '#26262D' : '#D4FF3A', ctaFg: s === 1 ? '#C9C9C3' : '#0D0D0F',
+join: () => this.setState({ s: Math.min(2, s + 1) })
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["X3"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

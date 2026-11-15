@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The DMs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+.bk-chips::-webkit-scrollbar{display:none}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+@keyframes bkOvUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.bk-ovs{animation:bkOvUp 260ms cubic-bezier(.2,.8,.2,1)}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px 8px">
+<div style="position: relative; width: 44px; height: 48px; flex-shrink: 0">
+<a href="#open-P1" onClick="{{ovOpen_P1}}" aria-label="My profile" style="position: absolute; left: 2px; top: 0; width: 40px; height: 40px; border-radius: 14px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 13px; text-decoration: none; transform: rotate(-4deg)">AS</a>
+<a href="H1-Gigs.dc.html" aria-label="Swipe up on your photo to switch to The Hustle" style="position: absolute; left: 10px; bottom: -2px; width: 24px; height: 16px; border-radius: 8px; background: #0D0D0F; border: 1.5px solid #D4FF3A; color: #D4FF3A; display: grid; place-items: center; box-sizing: border-box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></a>
+</div>
+<div style="flex: 1; min-width: 0"><div style="font-family: Unbounded, sans-serif; font-size: 17px; font-weight: 800; letter-spacing: -0.6px">bunk<span style="color: #D4FF3A">3</span>d</div><div style="font-size: 11px; color: #9A9AA5; font-weight: 700">Atria University</div></div>
+<a href="D1-ChatList.dc.html" aria-label="DMs, current page" aria-current="page" style="position: relative; width: 42px; height: 42px; border-radius: 21px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
+<a href="#open-X2" onClick="{{ovOpen_X2}}" aria-label="Search" style="width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a>
+<a href="#open-X1" onClick="{{ovOpen_X1}}" aria-label="Notices, 3 unread" style="position: relative; width: 42px; height: 42px; border-radius: 21px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span style="position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; border-radius: 9px; background: #FF6B9A; color: #0D0D0F; font-size: 10px; font-weight: 800; display: grid; place-items: center; border: 2px solid #0D0D0F">3</span></a>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 6px 16px 0">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h1 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -1px">The DMs</h1>
+<button aria-label="New message" style="width: 44px; height: 44px; border: 0; border-radius: 15px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; transform: rotate(-5deg)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+</div>
+
+<button onClick="{{toggleReq}}" style="width: 100%; display: flex; align-items: center; gap: 12px; margin-top: 14px; border: 1.5px solid #B49CFF; background: #1A1626; color: #F5F5F0; font: inherit; text-align: left; border-radius: 18px; padding: 12px">
+<span style="width: 44px; height: 44px; border-radius: 15px; background: #B49CFF; color: #0D0D0F; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M12 8v4M12 14.5v.5"/></svg></span>
+<span style="flex: 1"><span style="display: block; font-size: 15px; font-weight: 800">Message requests · 2</span><span style="display: block; font-size: 12px; color: #C9C9C3">From people you don’t share a club with</span></span>
+<span style="font-size: 18px; color: #B49CFF">{{chev}}</span>
+</button>
+<sc-if value="{{showReq}}" hint-placeholder-val="{{false}}">
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px; margin-top: 8px">
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 18px; background: #FFB547; color: #0D0D0F; display: grid; place-items: center; font-size: 11px; font-weight: 800">DS</span><div style="flex: 1"><div style="font-size: 14px; font-weight: 800">Dev S. <span style="color: #3DDC97">✓</span></div><div style="font-size: 12px; color: #9A9AA5">“hey, saw your DBMS notes — can I ask a doubt?”</div></div></div>
+<div style="display: flex; gap: 8px; margin-top: 10px"><button style="flex: 1; border: 0; background: #D4FF3A; color: #0D0D0F; font: inherit; font-size: 13px; font-weight: 800; min-height: 40px; border-radius: 12px">Accept</button><button style="flex: 1; border: 0; background: #26262D; color: #F5F5F0; font: inherit; font-size: 13px; font-weight: 700; min-height: 40px; border-radius: 12px">Ignore</button><a href="#open-X3" onClick="{{ovOpen_X3}}" style="display: flex; align-items: center; padding: 0 12px; background: #26262D; color: #F5F5F0; border-radius: 12px; font-size: 13px; font-weight: 700; text-decoration: none">Report</a></div>
+</div>
+</sc-if>
+
+<div class="bk-chips" role="tablist" aria-label="Filter chats" style="display: flex; gap: 6px; margin-top: 12px; overflow-x: auto; scrollbar-width: none">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="5"><button onClick="{{f.pick}}" role="tab" aria-selected="{{f.sel}}" style="flex-shrink: 0; border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 34px; border-radius: 17px">{{f.label}}</button></sc-for>
+</div>
+<div class="bk-chips" style="display: flex; flex-direction: column; margin-top: 4px; height: 470px; overflow-y: auto; scrollbar-width: none">
+<sc-for list="{{rows}}" as="c" hint-placeholder-count="6">
+<sc-if value="{{c.isPerson}}" hint-placeholder-val="{{true}}"><a href="D2-Chat.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1C1C21; text-decoration: none; color: #F5F5F0">
+<span style="position: relative; width: 48px; height: 48px; flex-shrink: 0; border-radius: 24px; background: {{c.tint}}; color: #0D0D0F; display: grid; place-items: center; font-size: 14px; font-weight: 800">{{c.ini}}<span style="position: absolute; right: 0; bottom: 0; width: 12px; height: 12px; border-radius: 6px; background: #3DDC97; border: 2.5px solid #0D0D0F; display: {{c.online}}"></span></span>
+<span style="flex: 1; min-width: 0"><span style="display: flex; justify-content: space-between; gap: 8px"><b style="font-size: 15px">{{c.name}}</b><span style="font-size: 11px; font-weight: 800; color: {{c.timeFg}}">{{c.time}}</span></span><span style="display: block; font-size: 13px; font-weight: {{c.weight}}; color: {{c.msgFg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.msg}}</span></span>
+<span style="min-width: 22px; height: 22px; border-radius: 11px; background: #D4FF3A; color: #0D0D0F; font-size: 11px; font-weight: 800; display: {{c.badge}}; place-items: center">{{c.unread}}</span>
+</a></sc-if>
+<sc-if value="{{c.isSquad}}" hint-placeholder-val="{{false}}"><a href="D3-GroupChat.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1C1C21; text-decoration: none; color: #F5F5F0">
+<span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 16px; background: {{c.tint}}; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 11px; font-weight: 800">{{c.ini}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: flex; justify-content: space-between; gap: 8px"><span style="display: flex; align-items: center; gap: 6px; min-width: 0"><b style="font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.name}}</b><span style="flex-shrink: 0; background: #26262D; color: #C9C9C3; font-size: 9px; font-weight: 800; letter-spacing: 0.6px; padding: 3px 6px; border-radius: 6px">{{c.tag}}</span></span><span style="font-size: 11px; font-weight: 800; color: {{c.timeFg}}">{{c.time}}</span></span><span style="display: block; font-size: 13px; font-weight: {{c.weight}}; color: {{c.msgFg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.msg}}</span></span>
+<span style="min-width: 22px; height: 22px; border-radius: 11px; background: #D4FF3A; color: #0D0D0F; font-size: 11px; font-weight: 800; display: {{c.badge}}; place-items: center">{{c.unread}}</span>
+</a></sc-if>
+<sc-if value="{{c.isClub}}" hint-placeholder-val="{{false}}"><a href="#open-club" onClick="{{c.open}}" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1C1C21; text-decoration: none; color: #F5F5F0">
+<span style="position: relative; width: 48px; height: 48px; flex-shrink: 0; border-radius: 16px; background: {{c.tint}}; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 10px; font-weight: 800">{{c.ini}}<span style="position: absolute; right: -4px; bottom: -4px; width: 20px; height: 20px; border-radius: 7px; background: #0D0D0F; color: #F5F5F0; display: grid; place-items: center; font-size: 11px; font-weight: 800; border: 1.5px solid #3A3A42">#</span></span>
+<span style="flex: 1; min-width: 0"><span style="display: flex; justify-content: space-between; gap: 8px"><span style="display: flex; align-items: center; gap: 6px; min-width: 0"><b style="font-size: 15px; white-space: nowrap">{{c.name}}</b><span style="font-size: 13px; font-weight: 700; color: #9A9AA5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.channel}}</span></span><span style="font-size: 11px; font-weight: 800; color: {{c.timeFg}}">{{c.time}}</span></span><span style="display: block; font-size: 13px; font-weight: {{c.weight}}; color: {{c.msgFg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.msg}}</span></span>
+<span style="min-width: 22px; height: 22px; border-radius: 11px; background: #D4FF3A; color: #0D0D0F; font-size: 11px; font-weight: 800; display: {{c.badge}}; place-items: center">{{c.unread}}</span>
+</a></sc-if>
+</sc-for>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}"><div style="text-align: center; color: #9A9AA5; font-size: 14px; padding: 30px 0">{{emptyText}}</div></sc-if>
+</div>
+</div>
+
+<nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #111114; border-top: 1px solid #24242A; padding: 8px 6px 24px">
+<a href="T1-Feed.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2"/></svg></span>Tea</a>
+<a href="N1-NotesHome.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H19v-3"/></svg></span>Study</a>
+<a href="E1-Events.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V6h18v3a3 3 0 0 0 0 6v3H3v-3a3 3 0 0 0 0-6z"/><path d="M13 6v12" stroke-dasharray="2 2"/></svg></span>Poppin’</a>
+<a href="C1-Clubs.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span>Crew</a>
+<a href="SP1-Deck.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8E8E99; font-size: 11px; font-weight: 700; text-decoration: none; min-height: 48px"><span style="width: 52px; height: 32px; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>Discover</a>
+</nav>
+<sc-if value="{{ovShow_X3}}" hint-placeholder-val="{{false}}"><div class="bk-ovs" style="position: absolute; inset: 0; z-index: 60; overflow: hidden"><dc-import name="X3-Report" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_C8}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="C8-ClubChat" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_X2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="X2-Search" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_X1}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="X1-Notices" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_P1}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="P1-MyProfile" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { req: false, f: 'All' }; }
+_rv() {
+const st = this.state;
+const R = [
+{ kind: 'person', name: 'Rhea Nair', ini: 'RN', tint: '#B49CFF', msg: 'wait you’re in Hack the Canteen too?? team?', time: '2m', unread: 2, online: true },
+{ kind: 'club', name: 'GDG Atria', channel: '#general', ini: 'GDG', tint: '#D4FF3A', msg: 'Rhea (admin): team lock closes Fri 6 PM', time: '12m', unread: 5 },
+{ kind: 'squad', name: 'Hack the Canteen squad', tag: 'SQUAD · 4', ini: 'HTC', tint: '#D4FF3A', msg: 'Kabir: who’s bringing the extension board', time: '20m', unread: 0 },
+{ kind: 'person', name: 'Kabir M.', ini: 'KM', tint: '#5CC8FF', msg: 'You: sending the OS cheat sheet tonight', time: '1h', unread: 0 },
+{ kind: 'club', name: 'E-Cell Atria', channel: '#announcements', ini: 'E-C', tint: '#FF6B9A', msg: 'Tanvi (admin): expo help-desk shifts are up', time: '3h', unread: 1 },
+{ kind: 'person', name: 'Vikram P.', ini: 'VP', tint: '#FF6B9A', msg: 'Sent a photo', time: 'Yesterday', unread: 0 },
+{ kind: 'club', name: 'CUBS Sports', channel: '#football-cup', ini: 'CUBS', tint: '#5CC8FF', msg: 'Arjun: draws go up Saturday morning', time: 'Mon', unread: 0 },
+{ kind: 'person', name: 'Tanvi J.', ini: 'TJ', tint: '#3DDC97', msg: 'lol same', time: 'Mon', unread: 0 }
+];
+const F = [['All', () => true], ['Unread', (r) => r.unread > 0], ['People', (r) => r.kind === 'person'], ['Squads', (r) => r.kind === 'squad'], ['Clubs', (r) => r.kind === 'club']];
+const filters = F.map((x) => { const on = x[0] === st.f; const n = R.filter(x[1]).length; return { label: x[0] + ' · ' + n, sel: on ? 'true' : 'false', bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ f: x[0] }) }; });
+const test = (F.find((x) => x[0] === st.f) || F[0])[1];
+const rows = R.filter(test).map((r) => ({ ...r, channel: r.channel || '', tag: r.tag || '', isPerson: r.kind === 'person', isSquad: r.kind === 'squad', isClub: r.kind === 'club', online: r.online ? 'block' : 'none', badge: r.unread ? 'grid' : 'none', timeFg: r.unread ? '#D4FF3A' : '#9A9AA5', msgFg: r.unread ? '#F5F5F0' : '#9A9AA5', weight: r.unread ? 700 : 500, open: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: 'C8' }); } }));
+return { showReq: st.req, chev: st.req ? '⌃' : '›', toggleReq: () => this.setState({ req: !st.req }), filters: filters, rows: rows, empty: rows.length === 0, emptyText: 'Nothing unread. You’re caught up.' };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["X3", "C8", "X2", "X1", "P1"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

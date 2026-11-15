@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DBMS subject</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="background: #D4FF3A; color: #0D0D0F; padding: 12px 16px 18px; border-radius: 0 0 28px 28px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #0D0D0F; color: #D4FF3A; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="N1-NotesHome.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #0D0D0F; color: #D4FF3A; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<button style="border: 2px solid #0D0D0F; background: transparent; color: #0D0D0F; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 36px; border-radius: 18px">★ My subject</button>
+</div>
+<div style="font-size: 12px; font-weight: 800; letter-spacing: 1px; margin-top: 14px">CS501 · SEM 5 · CSE</div>
+<h1 style="margin: 2px 0 0; font-family: Unbounded, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -1px; line-height: 1.05">Database Management Systems</h1>
+</div>
+
+<div style="display: flex; gap: 20px; padding: 16px 16px 0; border-bottom: 1px solid #222228">
+<button onClick="{{showNotes}}" style="border: 0; background: none; font: inherit; font-size: 15px; font-weight: 800; color: {{nColor}}; padding: 4px 0 10px; border-bottom: 3px solid {{nLine}}; min-height: 40px">Notes · 42</button>
+<button onClick="{{showPyq}}" style="border: 0; background: none; font: inherit; font-size: 15px; font-weight: 800; color: {{pColor}}; padding: 4px 0 10px; border-bottom: 3px solid {{pLine}}; min-height: 40px">PYQs · 9</button>
+</div>
+<div style="display: flex; gap: 7px; padding: 12px 16px; overflow: hidden">
+<span style="background: #1F1F25; border: 1px solid #2E2E36; font-size: 12px; font-weight: 700; padding: 8px 12px; border-radius: 16px; white-space: nowrap">{{filterA}} ▾</span>
+<span style="background: #1F1F25; border: 1px solid #2E2E36; font-size: 12px; font-weight: 700; padding: 8px 12px; border-radius: 16px; white-space: nowrap">Unit: All ▾</span>
+<span style="background: #F5F5F0; color: #0D0D0F; font-size: 12px; font-weight: 800; padding: 8px 12px; border-radius: 16px; white-space: nowrap">Top</span>
+<span style="background: #1F1F25; border: 1px solid #2E2E36; font-size: 12px; font-weight: 700; padding: 8px 12px; border-radius: 16px; white-space: nowrap">New</span>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{items}}" as="n" hint-placeholder-count="5">
+<a href="N3-Viewer.dc.html" style="display: flex; align-items: center; gap: 12px; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px; text-decoration: none; color: #F5F5F0">
+<span style="width: 42px; height: 52px; flex-shrink: 0; border-radius: 9px; background: {{n.tint}}; color: #0D0D0F; display: grid; place-items: center; font-size: 10px; font-weight: 800">{{n.kind}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; font-weight: 800">{{n.title}}</span><span style="display: block; font-size: 12px; color: #9A9AA5; margin-top: 2px">{{n.meta}}</span></span>
+<span style="text-align: right"><span style="display: block; font-size: 13px; font-weight: 800; color: #D4FF3A">▲ {{n.up}}</span><span style="display: block; font-size: 11px; color: #9A9AA5; font-weight: 700">{{n.saves}} saves</span></span>
+</a>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { tab: 'pyq' }; }
+_rv() {
+const pyq = this.state.tab === 'pyq';
+const pyqs = [
+{ kind: 'PYQ', tint: '#FF6B9A', title: 'End-sem 2024 · solved', meta: 'PDF · 14 pages · Vikram P.', up: 312, saves: 540 },
+{ kind: 'PYQ', tint: '#FF6B9A', title: 'End-sem 2023', meta: 'PDF · 4 pages · Anonymous', up: 204, saves: 388 },
+{ kind: 'PYQ', tint: '#FF6B9A', title: 'Mid-sem 2024 · Set B', meta: 'Images · 3 · Rhea N.', up: 97, saves: 150 },
+{ kind: 'PYQ', tint: '#FF6B9A', title: 'End-sem 2022', meta: 'PDF · 4 pages · Campus Crew', up: 88, saves: 132 },
+{ kind: 'PYQ', tint: '#FF6B9A', title: 'Supplementary 2023', meta: 'PDF · 4 pages · Anonymous', up: 41, saves: 70 }
+];
+const notes = [
+{ kind: 'NOTE', tint: '#5CC8FF', title: 'Unit 3 · Normalization (1NF → BCNF)', meta: 'PDF · 22 pages · Ananya P.', up: 276, saves: 410 },
+{ kind: 'NOTE', tint: '#5CC8FF', title: 'SQL joins with diagrams', meta: 'Images · 8 · Anonymous', up: 190, saves: 302 },
+{ kind: 'NOTE', tint: '#5CC8FF', title: 'Transactions & ACID — short notes', meta: 'PDF · 6 pages · Kabir M.', up: 122, saves: 180 },
+{ kind: 'NOTE', tint: '#5CC8FF', title: 'ER diagrams practice set', meta: 'PDF · 10 pages · GDG Atria', up: 64, saves: 91 }
+];
+return {
+items: pyq ? pyqs : notes, filterA: pyq ? 'Exam year: All' : 'Semester 5',
+nColor: pyq ? '#9A9AA5' : '#F5F5F0', nLine: pyq ? 'transparent' : '#D4FF3A',
+pColor: pyq ? '#F5F5F0' : '#9A9AA5', pLine: pyq ? '#D4FF3A' : 'transparent',
+showNotes: () => this.setState({ tab: 'notes' }), showPyq: () => this.setState({ tab: 'pyq' })
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+[].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

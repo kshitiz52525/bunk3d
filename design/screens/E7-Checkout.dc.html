@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ticket checkout</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="E1-Events.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<div style="flex: 1; font-size: 15px; font-weight: 800">Checkout</div>
+<span style="background: #1F1F25; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 10px; color: #FFB547">Seat held 9:42</span>
+</div>
+
+<sc-if value="{{form}}" hint-placeholder-val="{{true}}">
+<div style="flex: 1; overflow: hidden; padding: 4px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 12px; align-items: center; background: #B49CFF; color: #0D0D0F; border-radius: 20px; padding: 14px">
+<span style="background: #0D0D0F; color: #F5F5F0; border-radius: 12px; padding: 7px 10px; text-align: center; transform: rotate(-5deg)"><span style="display: block; font-size: 10px; font-weight: 800; color: #D4FF3A">NOV</span><span style="display: block; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; line-height: 1">07</span></span>
+<div style="flex: 1"><div style="font-family: Unbounded, sans-serif; font-size: 17px; font-weight: 800; letter-spacing: -0.5px">Atria Fest — Night 1</div><div style="font-size: 12px; font-weight: 700">Central Quad · 5 PM · Cultural Committee ✓</div></div>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 4px 14px">
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 14px"><span style="color: #C9C9C3">General entry × 1</span><b>₹199</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 14px"><span style="color: #C9C9C3">Platform fee (5%)</span><b>₹10</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 14px"><span style="color: #C9C9C3">GST on platform fee (18%)</span><b>₹1.80</b></div>
+<div style="display: flex; justify-content: space-between; padding: 12px 0; font-size: 16px"><b>You pay</b><b style="font-family: Unbounded, sans-serif; color: #D4FF3A">₹210.80</b></div>
+</div>
+<div style="font-size: 12px; font-weight: 800; color: #9A9AA5; letter-spacing: 1px">PAY WITH</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{methods}}" as="m" hint-placeholder-count="3">
+<button onClick="{{m.pick}}" style="display: flex; align-items: center; gap: 12px; text-align: left; border: 1.5px solid {{m.border}}; background: #17171B; color: #F5F5F0; font: inherit; border-radius: 14px; padding: 12px; min-height: 52px"><span style="width: 18px; height: 18px; border-radius: 9px; border: {{m.dot}}; box-sizing: border-box"></span><span style="flex: 1; font-size: 14px; font-weight: 800">{{m.label}}</span><span style="font-size: 12px; color: #9A9AA5">{{m.sub}}</span></button>
+</sc-for>
+</div>
+<div style="font-size: 12px; color: #9A9AA5; line-height: 1.5">Refunds: full refund until 48 h before, none after. Automatic if the host cancels. Payment is handled by Razorpay — Bunk3d never holds your money.</div>
+<div style="flex: 1"></div>
+</div>
+<div style="padding: 10px 16px 26px; display: flex; gap: 8px">
+<button onClick="{{fail}}" style="border: 0; background: #1F1F25; color: #9A9AA5; font: inherit; font-size: 12px; font-weight: 700; padding: 0 12px; min-height: 56px; border-radius: 16px">Preview fail</button>
+<button onClick="{{pay}}" style="flex: 1; border: 0; background: #D4FF3A; color: #0D0D0F; font: inherit; font-size: 16px; font-weight: 800; min-height: 56px; border-radius: 16px; box-shadow: 4px 4px 0 #B49CFF">Pay ₹210.80</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ok}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center">
+<div style="width: 90px; height: 90px; border-radius: 30px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; transform: rotate(-6deg); box-shadow: 5px 5px 0 #B49CFF"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+<h2 style="margin: 22px 0 6px; font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800">You’re in. See you there.</h2>
+<p style="margin: 0; font-size: 14px; color: #9A9AA5">₹210.80 paid · ref pay_PQ82…X1 · receipt emailed</p>
+<a href="E3-Ticket.dc.html" style="margin-top: 24px; display: flex; justify-content: center; align-items: center; min-height: 54px; padding: 0 30px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">Open ticket</a>
+</div>
+</sc-if>
+
+<sc-if value="{{failed}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center">
+<div style="width: 90px; height: 90px; border-radius: 30px; background: #FF5D5D; color: #0D0D0F; display: grid; place-items: center; transform: rotate(6deg)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></div>
+<h2 style="margin: 22px 0 6px; font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800">Payment didn’t go through</h2>
+<p style="margin: 0; font-size: 14px; color: #9A9AA5; line-height: 1.5">UPI app timed out. Nothing was charged. If money left your account it auto-refunds in 5–7 days.</p>
+<button onClick="{{retry}}" style="margin-top: 24px; border: 0; background: #D4FF3A; color: #0D0D0F; font: inherit; font-size: 15px; font-weight: 800; min-height: 54px; padding: 0 30px; border-radius: 16px">Try again</button>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { m: 'UPI', st: 'form' }; }
+renderVals() {
+const methods = [['UPI', 'GPay, PhonePe, Paytm'], ['Card', 'Debit or credit'], ['Net banking', 'All major banks']].map(([l, s]) => { const on = l === this.state.m; return { label: l, sub: s, border: on ? '#D4FF3A' : '#26262D', dot: on ? '6px solid #D4FF3A' : '2px solid #4A4A54', pick: () => this.setState({ m: l }) }; });
+const st = this.state.st;
+return { methods: methods, form: st === 'form', ok: st === 'ok', failed: st === 'fail', pay: () => this.setState({ st: 'ok' }), fail: () => this.setState({ st: 'fail' }), retry: () => this.setState({ st: 'form' }) };
+}
+}
+</script>
+</body>
+</html>

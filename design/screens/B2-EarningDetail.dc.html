@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Earning detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B49CFF}a:hover{color:#CDBEFF}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="B1-Bag.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<div style="flex: 1"><div style="font-size: 12px; color: #9A9AA5; font-weight: 700">GDG Atria · ref ERN-88213</div><div style="font-size: 15px; font-weight: 800">Design 4 event posters</div></div>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 14px">
+<div style="text-align: center; padding: 8px 0"><div style="font-family: Unbounded, sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -2px">₹970.50</div><div style="font-size: 12px; color: #9A9AA5; font-weight: 700; margin-top: 2px">of ₹1,000 · fee locked 18 Oct</div><span style="display: inline-block; margin-top: 6px; background: {{stBg}}; color: #0D0D0F; font-size: 12px; font-weight: 800; padding: 5px 10px; border-radius: 10px">{{stLabel}}</span></div>
+
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 18px; padding: 14px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="6">
+<button onClick="{{s.pick}}" style="width: 100%; display: flex; gap: 12px; border: 0; background: transparent; color: #F5F5F0; font: inherit; padding: 0; text-align: left">
+<span style="display: flex; flex-direction: column; align-items: center"><span style="width: 16px; height: 16px; border-radius: 8px; background: {{s.dot}}; border: 2px solid {{s.ring}}; box-sizing: border-box"></span><span style="width: 2px; flex: 1; min-height: 18px; background: {{s.line}}; display: {{s.lineShow}}"></span></span>
+<span style="padding-bottom: 10px"><span style="display: block; font-size: 14px; font-weight: 800; color: {{s.fg}}">{{s.label}}</span><span style="display: block; font-size: 11px; color: #9A9AA5">{{s.when}}</span></span>
+</button>
+</sc-for>
+</div>
+<div style="font-size: 11px; color: #9A9AA5; text-align: center">Tap a step to preview that state</div>
+
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 4px 14px">
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 13px"><span style="color: #9A9AA5">Gig amount</span><b>₹1,000</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 13px"><span style="color: #9A9AA5">Bunk3d fee · club gig 2.5%</span><b>−₹25</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 13px"><span style="color: #9A9AA5">GST on the fee · 18%</span><b>−₹4.50</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 13px"><span style="color: #9A9AA5">TDS (below ₹30k/yr)</span><b>₹0</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; font-size: 14px"><span style="font-weight: 800">You receive</span><b style="color: #D4FF3A">₹970.50</b></div>
+</div>
+</div>
+<div style="padding: 10px 16px 26px; display: flex; gap: 8px"><a href="#open-H7" onClick="{{ovOpen_H7}}" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 52px; background: #1F1F25; color: #F5F5F0; border-radius: 16px; font-size: 13px; font-weight: 800; text-decoration: none">Something’s off</a><a href="#open-H5" onClick="{{ovOpen_H5}}" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 52px; background: #1F1F25; color: #F5F5F0; border-radius: 16px; font-size: 13px; font-weight: 800; text-decoration: none">Open gig</a></div>
+<sc-if value="{{ovShow_H5}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="H5-Workspace" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_H7}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="H7-Dispute" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { at: 1 }; }
+_rv() {
+const L = [['Estimated', 'Accepted 18 Oct', '#9A9AA5'], ['Pending', 'Approved 23 Oct · 7-day hold', '#FFB547'], ['Approved', 'Escrow confirmed', '#5CC8FF'], ['Payable', 'From 30 Oct · withdraw ≥ ₹100', '#D4FF3A'], ['Processing', 'Sent to UPI', '#B49CFF'], ['Paid', 'Landed in bank', '#3DDC97']];
+const at = this.state.at;
+const steps = L.map((r, i) => ({ label: r[0], when: i <= at ? r[1] : 'Not yet', dot: i <= at ? r[2] : 'transparent', ring: i <= at ? r[2] : '#4A4A54', line: i < at ? r[2] : '#26262D', lineShow: i < L.length - 1 ? 'block' : 'none', fg: i <= at ? '#F5F5F0' : '#6E6E78', pick: () => this.setState({ at: i }) }));
+return { steps: steps, stLabel: L[at][0].toUpperCase(), stBg: L[at][2] };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["H5", "H7"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Clout Board</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="C6-Quests.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<h1 style="margin: 0; flex: 1; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">Clout Board</h1>
+<span style="font-size: 12px; color: #9A9AA5; font-weight: 700">Nov · week 1</span>
+</div>
+<div style="padding: 0 16px"><div style="display: flex; background: #17171B; border-radius: 14px; padding: 4px; gap: 4px">
+<button onClick="{{campus}}" style="flex: 1; border: 0; background: {{aBg}}; color: {{aFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 42px; border-radius: 11px">Atria clubs</button>
+<button onClick="{{inter}}" style="flex: 1; border: 0; background: {{bBg}}; color: {{bFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 42px; border-radius: 11px">Inter-college</button>
+</div></div>
+
+<div style="display: flex; align-items: flex-end; justify-content: center; gap: 10px; padding: 22px 16px 10px">
+<sc-for list="{{podium}}" as="p" hint-placeholder-count="3">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px">
+<span style="width: 54px; height: 54px; border-radius: 18px; background: {{p.tint}}; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 10px; font-weight: 800; transform: rotate({{p.rot}}deg)">{{p.short}}</span>
+<span style="font-size: 12px; font-weight: 800; text-align: center">{{p.name}}</span>
+<div style="width: 100%; height: {{p.h}}px; border-radius: 14px 14px 0 0; background: {{p.bar}}; color: #0D0D0F; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 8px; box-sizing: border-box"><span style="font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800">{{p.rank}}</span><span style="font-size: 11px; font-weight: 800">{{p.xp}}</span></div>
+</div>
+</sc-for>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{rest}}" as="r" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 12px; background: {{r.bg}}; border: 1px solid {{r.border}}; border-radius: 14px; padding: 10px 12px">
+<span style="width: 22px; font-family: Unbounded, sans-serif; font-size: 14px; font-weight: 800; color: #9A9AA5">{{r.rank}}</span>
+<span style="flex: 1; font-size: 14px; font-weight: 800">{{r.name}}</span>
+<span style="font-size: 13px; font-weight: 800">{{r.xp}}</span>
+</div>
+</sc-for>
+<div style="font-size: 11px; color: #9A9AA5; text-align: center; margin-top: 8px">Clubs only — people are never ranked. How scoring works ›</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { inter: false } }
+renderVals() {
+const i = this.state.inter;
+const rows = i ? [['RVC', 'IEEE RVCE', '9,410', '#5CC8FF'], ['GDG', 'GDG Atria', '8,920', '#D4FF3A'], ['PES', 'PES Tech Club', '8,100', '#FF6B9A'], ['Christ E-Cell', '6,980'], ['BMS Robotics', '6,210'], ['Atria E-Cell', '5,400'], ['Dayananda Music', '4,900']] : [['GDG', 'GDG Atria', '4,820', '#D4FF3A'], ['CUBS', 'CUBS Sports', '4,410', '#5CC8FF'], ['MUS', 'Music Society', '3,960', '#FF6B9A'], ['E-Cell Atria', '3,120'], ['Robotics Society', '2,880'], ['Dramatics Club', '2,050'], ['Design Club', '1,730']];
+const top = rows.slice(0, 3);
+const order = [1, 0, 2];
+const podium = order.map((k) => ({ short: top[k][0], name: top[k][1], xp: top[k][2] + ' XP', tint: top[k][3], rank: k + 1, h: [130, 100, 80][k], bar: k === 0 ? '#D4FF3A' : (k === 1 ? '#B49CFF' : '#F5F5F0'), rot: [-4, 3, -2][k] }));
+const rest = rows.slice(3).map((r, n) => ({ rank: n + 4, name: r[0], xp: r[1], bg: (!i && r[0] === 'E-Cell Atria') ? '#1F2410' : '#17171B', border: (!i && r[0] === 'E-Cell Atria') ? '#D4FF3A' : '#26262D' }));
+return { podium: podium, rest: rest, aBg: i ? 'transparent' : '#D4FF3A', aFg: i ? '#9A9AA5' : '#0D0D0F', bBg: i ? '#D4FF3A' : 'transparent', bFg: i ? '#0D0D0F' : '#9A9AA5', campus: () => this.setState({ inter: false }), inter: () => this.setState({ inter: true }) };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Check-in scanner</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #050506; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; position: relative">
+<div style="position: absolute; inset: 0; background: #1A1C18" aria-hidden="true"><div style="position: absolute; left: 40px; top: 260px; width: 310px; height: 200px; border-radius: 30px; background: #24271F"></div></div>
+
+<div style="position: relative; display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Close scanner" style="width: 44px; height: 44px; border-radius: 22px; background: rgba(0,0,0,0.6); color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="C3-ClubAdmin.dc.html" aria-label="Close scanner" style="width: 44px; height: 44px; border-radius: 22px; background: rgba(0,0,0,0.6); color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a></sc-if>
+<div style="flex: 1"><div style="font-size: 14px; font-weight: 800">Hack the Canteen</div><div style="font-size: 11px; color: #C9C9C3; font-weight: 600">Check-in · North door</div></div>
+<div style="background: #D4FF3A; color: #0D0D0F; border-radius: 14px; padding: 6px 12px; text-align: center"><div style="font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; line-height: 1">{{count}}</div><div style="font-size: 9px; font-weight: 800; letter-spacing: 0.6px">/ 87 IN</div></div>
+</div>
+
+<div style="position: relative; flex: 1; display: grid; place-items: center">
+<div style="position: relative; width: 250px; height: 250px">
+<span style="position: absolute; left: 0; top: 0; width: 54px; height: 54px; border-left: 6px solid {{frame}}; border-top: 6px solid {{frame}}; border-radius: 20px 0 0 0"></span>
+<span style="position: absolute; right: 0; top: 0; width: 54px; height: 54px; border-right: 6px solid {{frame}}; border-top: 6px solid {{frame}}; border-radius: 0 20px 0 0"></span>
+<span style="position: absolute; left: 0; bottom: 0; width: 54px; height: 54px; border-left: 6px solid {{frame}}; border-bottom: 6px solid {{frame}}; border-radius: 0 0 0 20px"></span>
+<span style="position: absolute; right: 0; bottom: 0; width: 54px; height: 54px; border-right: 6px solid {{frame}}; border-bottom: 6px solid {{frame}}; border-radius: 0 0 20px 0"></span>
+<span style="position: absolute; left: 20px; right: 20px; top: 124px; height: 3px; background: {{frame}}; box-shadow: 0 0 18px {{frame}}"></span>
+</div>
+</div>
+
+<div style="position: relative; margin: 0 16px; background: {{bg}}; color: {{fg}}; border-radius: 22px; padding: 16px; display: flex; align-items: center; gap: 14px">
+<span style="width: 52px; height: 52px; flex-shrink: 0; border-radius: 18px; background: rgba(0,0,0,0.18); display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800">{{icon}}</span>
+<div style="flex: 1"><div style="font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.5px">{{title}}</div><div style="font-size: 13px; font-weight: 700; margin-top: 2px">{{sub}}</div></div>
+</div>
+<div style="position: relative; display: flex; gap: 8px; padding: 12px 16px 26px">
+<button onClick="{{next}}" style="flex: 1; border: 0; background: #F5F5F0; color: #0D0D0F; font: inherit; font-size: 14px; font-weight: 800; min-height: 52px; border-radius: 16px">Scan next (demo)</button>
+<span style="display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,0.6); font-size: 11px; font-weight: 800; padding: 0 12px; border-radius: 16px; color: #FFB547">Offline · syncs</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { i: 0, count: 42 }; }
+_rv() {
+const r = [
+{ title: 'Checked in', sub: 'Rhea Nair · 2nd yr CS & AI', bg: '#3DDC97', fg: '#0D0D0F', icon: '✓', frame: '#3DDC97' },
+{ title: 'Already used', sub: 'Scanned at 6:04 PM at this door', bg: '#FFB547', fg: '#0D0D0F', icon: '!', frame: '#FFB547' },
+{ title: 'Wrong event', sub: 'This ticket is for Open Mic Night', bg: '#FF5D5D', fg: '#0D0D0F', icon: '✕', frame: '#FF5D5D' },
+{ title: 'Not registered', sub: 'Old or screenshot code — ask them to reopen the ticket', bg: '#FF5D5D', fg: '#0D0D0F', icon: '✕', frame: '#FF5D5D' }
+];
+const c = r[this.state.i % r.length];
+return { ...c, count: this.state.count, next: () => { const ni = this.state.i + 1; this.setState({ i: ni, count: this.state.count + (ni % r.length === 0 ? 1 : 0) }); } };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+[].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

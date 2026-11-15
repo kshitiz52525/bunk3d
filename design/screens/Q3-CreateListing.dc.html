@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sell on Swap</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B49CFF}a:hover{color:#CDBEFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="Q1-Swap.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></a>
+<h1 style="margin: 0; flex: 1; font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; letter-spacing: -0.6px">Sell something</h1>
+</div>
+<sc-if value="{{editing}}" hint-placeholder-val="{{true}}">
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 8px">
+<span style="width: 92px; height: 92px; border-radius: 16px; background: #5CC8FF; flex-shrink: 0"></span>
+<span style="width: 92px; height: 92px; border-radius: 16px; border: 1.5px dashed #4A4A54; display: grid; place-items: center; color: #9A9AA5; font-size: 12px; font-weight: 800; box-sizing: border-box; text-align: center">+ Photo<br>(up to 5)</span>
+</div>
+<input value="{{title}}" onInput="{{setTitle}}" aria-label="What are you selling" placeholder="What are you selling?" style="min-height: 52px; border-radius: 14px; border: 1.5px solid #B49CFF; background: #17171B; color: #F5F5F0; font: inherit; font-size: 15px; font-weight: 700; padding: 0 14px">
+<div style="display: flex; gap: 8px">
+<div style="flex: 1; display: flex; align-items: center; min-height: 52px; border-radius: 14px; border: 1px solid #2E2E36; background: #17171B; padding: 0 14px; gap: 4px"><span style="font-family: Unbounded, sans-serif; font-weight: 800; color: #B49CFF">₹</span><input value="{{price}}" onInput="{{setPrice}}" inputmode="numeric" aria-label="Price" style="flex: 1; min-width: 0; border: 0; background: transparent; color: #F5F5F0; font-family: Unbounded, sans-serif; font-size: 17px; font-weight: 800; outline: none"></div>
+<button onClick="{{toggleNeg}}" style="border: 1.5px solid {{negBorder}}; background: {{negBg}}; color: {{negFg}}; font: inherit; font-size: 13px; font-weight: 800; padding: 0 14px; min-height: 52px; border-radius: 14px">Negotiable</button>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">CONDITION</div>
+<div style="display: flex; gap: 6px">
+<sc-for list="{{conds}}" as="c" hint-placeholder-count="4"><button onClick="{{c.pick}}" style="flex: 1; border: 1.5px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 12px; font-weight: 800; min-height: 42px; border-radius: 12px">{{c.label}}</button></sc-for>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">CATEGORY</div>
+<div style="display: flex; gap: 6px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="4"><button onClick="{{c.pick}}" style="border: 1.5px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 36px; border-radius: 18px">{{c.label}}</button></sc-for>
+</div>
+<div style="font-size: 12px; color: #9A9AA5; line-height: 1.45">Listed under your real name (Aarav S.) and visible to Atria students only. No weapons, meds, notes-for-cash on exams, or anything from the banned list.</div>
+</div>
+<div style="padding: 10px 16px 26px"><button onClick="{{post}}" style="width: 100%; border: 0; background: {{ctaBg}}; color: {{ctaFg}}; font: inherit; font-size: 15px; font-weight: 800; min-height: 56px; border-radius: 16px">Post listing</button></div>
+</sc-if>
+<sc-if value="{{posted}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 24px; gap: 14px">
+<div style="background: #B49CFF; color: #0D0D0F; border-radius: 26px; padding: 22px; transform: rotate(-2deg); box-shadow: 5px 5px 0 #D4FF3A"><div style="font-size: 11px; font-weight: 800; letter-spacing: 1.4px">LIVE ON SWAP</div><div style="font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -1px; margin-top: 8px">{{title}}</div><div style="font-size: 16px; font-weight: 800; margin-top: 4px">₹{{price}}</div></div>
+<div style="font-size: 13px; color: #9A9AA5; text-align: center">Buyers will message you. Mark it sold when it’s gone.</div>
+</div>
+<div style="padding: 10px 16px 26px"><a href="Q1-Swap.dc.html" style="display: flex; justify-content: center; align-items: center; min-height: 56px; background: #F5F5F0; color: #0D0D0F; border-radius: 16px; font-size: 15px; font-weight: 800; text-decoration: none">Back to Swap</a></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { title: 'Arduino Uno kit + sensors', price: '900', neg: true, cond: 'Good', cat: 'Gear', posted: false }; }
+renderVals() {
+const st = this.state;
+const chip = (on) => ({ bg: on ? '#B49CFF' : 'transparent', fg: on ? '#0D0D0F' : '#F5F5F0', border: on ? '#B49CFF' : '#2E2E36' });
+const conds = ['New', 'Like new', 'Good', 'Used'].map((l) => ({ label: l, ...chip(l === st.cond), pick: () => this.setState({ cond: l }) }));
+const cats = ['Books', 'Gear', 'Rides', 'Hostel'].map((l) => ({ label: l, ...chip(l === st.cat), pick: () => this.setState({ cat: l }) }));
+const ok = st.title.trim().length > 2 && st.price !== '';
+return {
+editing: !st.posted, posted: st.posted, title: st.title, price: st.price, conds: conds, cats: cats,
+setTitle: (e) => this.setState({ title: e.target.value }), setPrice: (e) => this.setState({ price: e.target.value.replace(/[^0-9]/g, '').slice(0, 6) }),
+negBorder: st.neg ? '#B49CFF' : '#2E2E36', negBg: st.neg ? '#2A2140' : 'transparent', negFg: st.neg ? '#CDBEFF' : '#C9C9C3', toggleNeg: () => this.setState({ neg: !st.neg }),
+ctaBg: ok ? '#B49CFF' : '#26262D', ctaFg: ok ? '#0D0D0F' : '#6E6E78', post: () => { if (ok) this.setState({ posted: true }); }
+};
+}
+}
+</script>
+</body>
+</html>

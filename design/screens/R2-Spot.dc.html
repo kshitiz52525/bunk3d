@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spot detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="height: 230px; background: #FFB547; position: relative; overflow: hidden; flex-shrink: 0">
+<span style="position: absolute; right: -40px; top: -30px; width: 200px; height: 200px; border-radius: 100px; border: 30px solid #F2A230" aria-hidden="true"></span>
+<span style="position: absolute; left: 20px; bottom: 26px; font-family: Unbounded, sans-serif; font-size: 64px; font-weight: 800; color: #E99A20; letter-spacing: -3px" aria-hidden="true">CAFE</span>
+<a href="R1-Map.dc.html" aria-label="Back" style="position: absolute; left: 16px; top: 12px; width: 44px; height: 44px; border-radius: 22px; background: #0D0D0F; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<button onClick="{{toggleSave}}" aria-label="Save spot" style="position: absolute; right: 16px; top: 12px; height: 44px; padding: 0 14px; border: 0; border-radius: 22px; background: #0D0D0F; color: {{saveColor}}; font: inherit; font-size: 13px; font-weight: 800">{{saveLabel}}</button>
+<span style="position: absolute; right: 16px; bottom: 16px; background: #0D0D0F; color: #FFB547; font-size: 10px; font-weight: 800; padding: 5px 8px; border-radius: 8px">SPONSORED · STUDENT DEAL</span>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div><h1 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -1px">Third Wave, Hebbal</h1><div style="font-size: 13px; color: #9A9AA5; margin-top: 4px">Café · 1.2 km · open till 11 PM · ₹₹</div></div>
+<div style="display: flex; gap: 8px">
+<div style="flex: 1; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px"><div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800; color: #D4FF3A">14</div><div style="font-size: 11px; color: #9A9AA5; font-weight: 700">students here now · approx</div></div>
+<div style="flex: 1; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 12px"><div style="font-family: Unbounded, sans-serif; font-size: 20px; font-weight: 800">Busy</div><div style="font-size: 11px; color: #9A9AA5; font-weight: 700">usually quieter after 8</div></div>
+</div>
+<div style="background: #2A2140; color: #CDBEFF; border-radius: 16px; padding: 12px 14px"><div style="font-size: 11px; font-weight: 800; letter-spacing: 1px">DEAL · SHOW YOUR BUNK3D ID</div><div style="font-size: 14px; font-weight: 700; color: #F5F5F0; margin-top: 4px">15% off cold brews, weekdays 3–6 PM</div></div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">VIBE TAGS · FROM STUDENTS</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{tags}}" as="t" hint-placeholder-count="4"><button onClick="{{t.vote}}" style="border: 1.5px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 11px; min-height: 34px; border-radius: 17px">{{t.label}} · {{t.n}}</button></sc-for>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5; margin-top: 4px">MEETUPS HERE</div>
+<a href="#open-R4" onClick="{{ovOpen_R4}}" style="display: flex; align-items: center; gap: 10px; background: #17171B; border: 1px solid #26262D; border-radius: 14px; padding: 10px 12px; text-decoration: none; color: #F5F5F0"><span style="background: #FF6B9A; color: #0D0D0F; font-size: 10px; font-weight: 800; padding: 4px 7px; border-radius: 7px">FRI 5P</span><span style="flex: 1; font-size: 14px; font-weight: 800">Sketch &amp; sip</span><span style="font-size: 12px; font-weight: 800; color: #D4FF3A">4 going</span></a>
+</div>
+<div style="padding: 10px 16px 26px; display: flex; gap: 8px">
+<a href="SP3-Shot.dc.html" style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 54px; background: #1F1F25; color: #F5F5F0; border-radius: 16px; font-size: 14px; font-weight: 800; text-decoration: none">Invite someone</a>
+<a href="#open-R3" onClick="{{ovOpen_R3}}" style="flex: 1.3; display: flex; justify-content: center; align-items: center; min-height: 54px; background: #D4FF3A; color: #0D0D0F; border-radius: 16px; font-size: 14px; font-weight: 800; text-decoration: none; box-shadow: 4px 4px 0 #B49CFF">Start a meetup here</a>
+</div>
+<sc-if value="{{ovShow_R4}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="R4-MeetupDetail" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_R3}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="R3-CreateMeetup" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { saved: false, v: {} }; }
+_rv() {
+const base = [['Good wifi', 31], ['Plug points', 22], ['Loud', 9], ['Group-friendly', 17]];
+const v = this.state.v;
+const tags = base.map((t) => { const on = !!v[t[0]]; return { label: t[0], n: t[1] + (on ? 1 : 0), bg: on ? '#D4FF3A' : 'transparent', fg: on ? '#0D0D0F' : '#F5F5F0', border: on ? '#D4FF3A' : '#2E2E36', vote: () => this.setState({ v: { ...v, [t[0]]: !on } }) }; });
+const s = this.state.saved;
+return { tags: tags, saveLabel: s ? 'Saved ✓' : '+ Save', saveColor: s ? '#D4FF3A' : '#F5F5F0', toggleSave: () => this.setState({ saved: !s }) };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["R4", "R3"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

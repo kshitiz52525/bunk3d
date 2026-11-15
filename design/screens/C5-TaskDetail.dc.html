@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Task detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="C4-MyTasks.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<div style="flex: 1"><div style="font-size: 12px; font-weight: 700; color: #9A9AA5">E-Cell Atria · from Tanvi J.</div><div style="font-size: 15px; font-weight: 800">Club task</div></div>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<h1 style="margin: 0; font-family: Unbounded, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.8px; line-height: 1.15">Staff the startup expo help desk</h1>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="5"><div><div style="height: 5px; border-radius: 3px; background: {{s.bar}}"></div><div style="font-size: 10px; font-weight: 800; color: {{s.fg}}; margin-top: 5px">{{s.label}}</div></div></sc-for>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; background: #D4FF3A; color: #0D0D0F; border-radius: 18px; padding: 14px">
+<div style="flex: 1"><div style="font-size: 11px; font-weight: 800; letter-spacing: 1px">COMPENSATION · SEEN BEFORE YOU ACCEPT</div><div style="font-family: Unbounded, sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -1px">₹800 <span style="font-size: 13px">fixed</span></div><div style="font-size: 12px; font-weight: 700">You take home ₹776.40 after the 2.5% club-gig fee + GST · lands in My Bag after approval</div></div>
+<span style="background: #0D0D0F; color: #D4FF3A; font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 9px; transform: rotate(4deg)">PAID</span>
+</div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 4px 14px">
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 13px"><span style="color: #9A9AA5">Shift</span><b>Thu 30 Oct · 10 AM – 4 PM</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #222228; font-size: 13px"><span style="color: #9A9AA5">Reviewer</span><b>Tanvi J. · events lead</b></div>
+<div style="padding: 11px 0; font-size: 13px"><div style="color: #9A9AA5; margin-bottom: 4px">Deliverables</div><div style="line-height: 1.7">• Check-in 9:45 AM at Hall B<br>• 4 photos of the desk<br>• Visitor count sheet</div></div>
+</div>
+<sc-if value="{{revision}}" hint-placeholder-val="{{false}}"><div style="background: #3D2E0D; color: #FFD58A; border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.45"><b>Revision note from Tanvi:</b> visitor sheet is missing the 2–4 PM slot. Add it and resubmit.</div></sc-if>
+<sc-if value="{{submitting}}" hint-placeholder-val="{{false}}"><div style="display: flex; gap: 8px"><span style="width: 66px; height: 66px; border-radius: 12px; background: #2A3A12"></span><span style="width: 66px; height: 66px; border-radius: 12px; background: #2A2140"></span><span style="width: 66px; height: 66px; border-radius: 12px; border: 1.5px dashed #4A4A54; display: grid; place-items: center; color: #9A9AA5; box-sizing: border-box">+</span><span style="flex: 1; align-self: center; font-size: 12px; color: #9A9AA5">visitor_sheet.xlsx attached</span></div></sc-if>
+<div style="flex: 1"></div>
+</div>
+<div style="padding: 10px 16px 26px; display: flex; gap: 8px">
+<button onClick="{{secondary}}" style="flex: 1; border: 0; background: #1F1F25; color: #F5F5F0; font: inherit; font-size: 14px; font-weight: 700; min-height: 54px; border-radius: 16px">{{secondaryLabel}}</button>
+<button onClick="{{advance}}" style="flex: 2; border: 0; background: {{ctaBg}}; color: {{ctaFg}}; font: inherit; font-size: 15px; font-weight: 800; min-height: 54px; border-radius: 16px">{{cta}}</button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { st: 0 }; }
+renderVals() {
+const st = this.state.st;
+const labels = ['Assigned', 'Accepted', 'Working', 'Review', 'Approved'];
+const idx = [0, 1, 2, 3, 2, 4][st];
+const steps = labels.map((l, i) => ({ label: l, bar: i <= idx ? '#D4FF3A' : '#26262D', fg: i <= idx ? '#F5F5F0' : '#6E6E78' }));
+const ctas = ['Accept scope & pay', 'Start shift', 'Submit proof', 'In review…', 'Resubmit', 'Approved · ₹776.40 pending'];
+return {
+steps: steps, cta: ctas[st], revision: st === 4, submitting: st === 2 || st === 4,
+ctaBg: st === 3 || st === 5 ? '#26262D' : '#D4FF3A', ctaFg: st === 3 || st === 5 ? '#C9C9C3' : '#0D0D0F',
+secondaryLabel: st === 0 ? 'Ask a question' : (st === 3 ? 'Preview revision' : 'Reset'),
+secondary: () => { if (st === 3) this.setState({ st: 4 }); else if (st !== 0) this.setState({ st: 0 }); },
+advance: () => { if (st < 3) this.setState({ st: st + 1 }); else if (st === 4) this.setState({ st: 5 }); }
+};
+}
+}
+</script>
+</body>
+</html>

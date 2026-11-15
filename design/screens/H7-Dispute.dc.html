@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dispute</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#B49CFF}a:hover{color:#CDBEFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="H4-MyWork.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<div style="flex: 1"><div style="font-size: 12px; color: #9A9AA5; font-weight: 700">Zepto · Sampling stall, Block C</div><div style="font-size: 15px; font-weight: 800">Dispute #D-2041</div></div>
+</div>
+<div style="flex: 1; overflow: hidden; padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="background: #3A1717; color: #FFC2C2; border-radius: 20px; padding: 14px 16px">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1px">₹1,500 ON HOLD · NOT LOST</div>
+<div style="font-size: 14px; font-weight: 700; color: #F5F5F0; margin-top: 6px; line-height: 1.45">Zepto rejected your proof: “stall ran 2 hrs short.” The money stays in escrow until Ops decides. No Bunk3d fee is charged on money under dispute.</div>
+</div>
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">TIMELINE</div>
+<div style="display: flex; flex-direction: column; gap: 0">
+<sc-for list="{{tl}}" as="t" hint-placeholder-count="4">
+<div style="display: flex; gap: 12px"><div style="display: flex; flex-direction: column; align-items: center"><span style="width: 14px; height: 14px; border-radius: 7px; background: {{t.dot}}; border: 2px solid #0D0D0F"></span><span style="flex: 1; width: 2px; background: #26262D; min-height: 24px; display: {{t.lineShow}}"></span></div><div style="padding-bottom: 14px"><div style="font-size: 14px; font-weight: 800; color: {{t.fg}}">{{t.label}}</div><div style="font-size: 12px; color: #9A9AA5">{{t.meta}}</div></div></div>
+</sc-for>
+</div>
+<sc-if value="{{canAdd}}" hint-placeholder-val="{{true}}">
+<div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; color: #9A9AA5">YOUR SIDE</div>
+<textarea onInput="{{type}}" value="{{txt}}" aria-label="Your statement" style="min-height: 80px; border-radius: 14px; border: 1.5px solid #B49CFF; background: #17171B; color: #F5F5F0; font: inherit; font-size: 14px; padding: 12px; resize: none"></textarea>
+<div style="display: flex; gap: 8px"><span style="flex: 1; background: #17171B; border: 1px solid #26262D; border-radius: 12px; padding: 9px 10px; font-size: 12px; font-weight: 700">check-in 10:02.jpg</span><span style="flex: 1; background: #17171B; border: 1px solid #26262D; border-radius: 12px; padding: 9px 10px; font-size: 12px; font-weight: 700">checkout 4:05.jpg</span><span style="background: #17171B; border: 1.5px dashed #4A4A54; border-radius: 12px; padding: 9px 12px; font-size: 12px; font-weight: 800; color: #9A9AA5">+</span></div>
+</sc-if>
+<sc-if value="{{sent}}" hint-placeholder-val="{{false}}"><div style="background: #2A2140; color: #CDBEFF; border-radius: 14px; padding: 12px; font-size: 13px; line-height: 1.45"><b style="color: #F5F5F0">Evidence sent.</b> Ops (Priya from Bunk3d Trust) will decide within 5 working days. You can’t be blocked from other gigs while this is open.</div></sc-if>
+</div>
+<div style="padding: 10px 16px 26px"><button onClick="{{send}}" style="width: 100%; border: 0; background: {{ctaBg}}; color: {{ctaFg}}; font: inherit; font-size: 15px; font-weight: 800; min-height: 56px; border-radius: 16px">{{cta}}</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { sent: false, txt: 'I was at the stall 10:02–4:05. Check-in and checkout photos are geotagged. The stock ran out at 3, which I flagged to their lead on chat.' }; }
+_rv() {
+const s = this.state.sent;
+const tl = [['Proof submitted', '19 Oct · 4:20 PM', '#B49CFF', '#F5F5F0'], ['Rejected by Zepto', '21 Oct · reason given', '#FF5D5D', '#F5F5F0'], ['You opened a dispute', '21 Oct · escrow locked', '#FFB547', '#F5F5F0'], [s ? 'Evidence received · Ops reviewing' : 'Add your evidence', s ? 'Today · decision by 30 Oct' : 'Within 48h of opening', s ? '#5CC8FF' : '#26262D', s ? '#F5F5F0' : '#9A9AA5']];
+return {
+tl: tl.map((r, i) => ({ label: r[0], meta: r[1], dot: r[2], fg: r[3], lineShow: i < tl.length - 1 ? 'block' : 'none' })),
+canAdd: !s, sent: s, txt: this.state.txt, type: (e) => this.setState({ txt: e.target.value }),
+cta: s ? 'Waiting on Ops' : 'Send to Ops', ctaBg: s ? '#26262D' : '#B49CFF', ctaFg: s ? '#C9C9C3' : '#0D0D0F',
+send: () => this.setState({ sent: true })
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+[].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

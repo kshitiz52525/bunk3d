@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Club chat</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid #1F1F25">
+<sc-if value="{{ovHas}}" hint-placeholder-val="{{false}}"><a href="#back" onClick="{{ovBack}}" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if><sc-if value="{{ovNo}}" hint-placeholder-val="{{true}}"><a href="C2-ClubPage.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a></sc-if>
+<span style="width: 40px; height: 40px; border-radius: 13px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center; font-family: Unbounded, sans-serif; font-size: 10px; font-weight: 800; transform: rotate(-4deg)">GDG</span>
+<div style="flex: 1"><div style="font-size: 15px; font-weight: 800">GDG Atria · members</div><div style="font-size: 12px; color: #3DDC97; font-weight: 700">142 members · 9 online</div></div>
+<button aria-label="Mute club chat" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg></button>
+</div>
+
+<div style="margin: 12px 16px 0; background: #1E2A4A; color: #DCE6FF; border-radius: 16px; padding: 12px 14px; display: flex; gap: 10px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8FB8FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><path d="M12 17v5M5 17h14l-2-5V4H7v8z"/></svg>
+<div style="flex: 1"><div style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #8FB8FF">PINNED · ADMIN · RHEA N.</div><div style="font-size: 13px; line-height: 1.45; margin-top: 3px">Hack the Canteen team lock closes <b>Fri 6 PM</b>. Solo? Drop your skills in #find-a-team.</div></div>
+</div>
+
+<div style="display: flex; gap: 7px; padding: 12px 16px 0">
+<sc-for list="{{chans}}" as="c" hint-placeholder-count="3"><button onClick="{{c.pick}}" style="border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 12px; font-weight: 800; padding: 0 12px; min-height: 34px; border-radius: 17px">{{c.label}}</button></sc-for>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 14px 16px 0; display: flex; flex-direction: column; gap: 10px; justify-content: flex-end">
+<sc-for list="{{msgs}}" as="m" hint-placeholder-count="4">
+<div style="display: flex; gap: 8px; flex-direction: {{m.dir}}; align-items: flex-end">
+<span style="width: 30px; height: 30px; border-radius: 10px; background: {{m.tint}}; color: #0D0D0F; display: {{m.avShow}}; place-items: center; font-size: 10px; font-weight: 800; flex-shrink: 0">{{m.ini}}</span>
+<div style="max-width: 260px; background: {{m.bg}}; color: {{m.fg}}; border-radius: 18px; padding: 9px 12px">
+<div style="font-size: 11px; font-weight: 800; color: {{m.nameColor}}; display: {{m.nameShow}}">{{m.who}} <span style="background: {{m.roleBg}}; color: #0D0D0F; padding: 1px 5px; border-radius: 5px; font-size: 9px; display: {{m.roleShow}}">{{m.role}}</span></div>
+<div style="font-size: 14px; line-height: 1.4">{{m.text}}</div>
+</div>
+</div>
+</sc-for>
+</div>
+
+<div style="padding: 12px 16px 24px; display: flex; gap: 8px; align-items: center">
+<input value="{{draft}}" onInput="{{type}}" placeholder="Message #{{chan}}" aria-label="Message" style="flex: 1; min-height: 48px; border-radius: 24px; border: 1px solid #2E2E36; background: #17171B; color: #F5F5F0; font: inherit; font-size: 14px; padding: 0 16px; box-sizing: border-box">
+<button onClick="{{send}}" aria-label="Send" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"back":{"editor":null},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { chan: 'general', draft: '', sent: { general: [], 'find-a-team': [], announcements: [] } };
+}
+_rv() {
+const base = {
+general: [['Kabir M.', 'KM', '#5CC8FF', 'anyone has the Flutter workshop recording?', ''], ['Rhea N.', 'RN', '#D4FF3A', 'Uploaded to the club page, Media tab', 'ADMIN'], ['Sana K.', 'SK', '#FF6B9A', 'lifesaver fr', '']],
+'find-a-team': [['Ishaan P.', 'IP', '#B49CFF', 'backend dev, need a designer + 1 for Hack the Canteen', ''], ['Meera T.', 'MT', '#FFB547', 'designer here, DM me', '']],
+announcements: [['Rhea N.', 'RN', '#D4FF3A', 'Only admins can post here. Results go live Sunday.', 'ADMIN']]
+};
+const c = this.state.chan;
+const msgs = base[c].map((r) => ({ who: r[0], ini: r[1], tint: r[2], text: r[3], role: r[4], roleShow: r[4] ? 'inline' : 'none', roleBg: '#8FB8FF', dir: 'row', avShow: 'grid', nameShow: 'block', nameColor: r[2], bg: '#17171B', fg: '#F5F5F0' }))
+.concat(this.state.sent[c].map((t) => ({ who: 'You', ini: '', tint: '', text: t, role: '', roleShow: 'none', roleBg: '', dir: 'row-reverse', avShow: 'none', nameShow: 'none', nameColor: '', bg: '#D4FF3A', fg: '#0D0D0F' })));
+const chans = ['general', 'find-a-team', 'announcements'].map((l) => { const on = l === c; return { label: '#' + l, bg: on ? '#F5F5F0' : 'transparent', fg: on ? '#0D0D0F' : '#C9C9C3', border: on ? '#F5F5F0' : '#2E2E36', pick: () => this.setState({ chan: l }) }; });
+return {
+msgs: msgs, chans: chans, chan: c, draft: this.state.draft,
+type: (e) => this.setState({ draft: e.target.value }),
+send: () => { const d = this.state.draft.trim(); if (!d || c === 'announcements') return; const s = { ...this.state.sent }; s[c] = s[c].concat([d]); this.setState({ sent: s, draft: '' }); }
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+[].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

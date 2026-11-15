@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Full-screen photo viewer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+.bk-pv::-webkit-scrollbar{display:none}
+@keyframes bkOpen{from{transform:scale(.86) translateY(40px);opacity:0;border-radius:22px}to{transform:none;opacity:1;border-radius:0}}
+@keyframes bkFade{from{opacity:0}to{opacity:1}}
+@keyframes bkSheet{from{transform:translateY(100%)}to{transform:none}}
+.bk-sheet{animation:bkSheet 280ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-open{animation:none!important}}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #000000; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; position: relative; overflow: hidden">
+
+<div class="bk-pv bk-open" onScroll="{{onSlide}}" style="position: absolute; inset: 0; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; animation: bkOpen 340ms cubic-bezier(.2,.8,.2,1) both">
+<sc-for list="{{photos}}" as="p" hint-placeholder-count="3">
+<button onClick="{{p.tap}}" onDoubleClick="{{p.zoom}}" aria-label="{{p.alt}}. Tap to show or hide controls, double-tap to zoom" style="flex: 0 0 100%; height: 100%; scroll-snap-align: center; scroll-snap-stop: always; border: 0; padding: 0; background: #000000; display: grid; place-items: center; overflow: hidden; cursor: zoom-in">
+<img src="{{p.src}}" alt="{{p.alt}}" style="max-width: 100%; max-height: 100%; width: 100%; height: 100%; object-fit: contain; display: block; transform: scale({{p.scale}}); transform-origin: 50% 45%; transition: transform 300ms cubic-bezier(.2,.8,.2,1)">
+</button>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; top: 0; padding: 12px 16px 40px; display: flex; align-items: center; gap: 10px; background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0)); opacity: {{chromeOp}}; transition: opacity 220ms; pointer-events: {{chromePe}}">
+<a href="T1-Feed.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 22px; background: rgba(31,31,37,0.8); color: #F5F5F0; display: grid; place-items: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+<span style="width: 34px; height: 34px; border-radius: 17px; background: #5CC8FF; color: #0D0D0F; display: grid; place-items: center; font-size: 11px; font-weight: 800">KM</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 13px; font-weight: 800">Kabir M.</span><span style="display: block; font-size: 11px; color: #C9C9C3">{{ratio}}</span></span>
+<span style="background: rgba(31,31,37,0.8); font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 12px">{{idx}} / 3</span>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 60px 16px 26px; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.85)); opacity: {{chromeOp}}; transition: opacity 220ms; pointer-events: {{chromePe}}; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 14px; line-height: 1.45">{{caption}}</div>
+<div style="display: flex; justify-content: center; gap: 5px"><sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><span style="width: {{d.w}}px; height: 6px; border-radius: 3px; background: {{d.bg}}; transition: width 220ms"></span></sc-for></div>
+<div style="display: flex; align-items: center; gap: 8px">
+<button onClick="{{vote}}" aria-label="Upvote" style="display: flex; align-items: center; gap: 6px; border: 0; background: {{vBg}}; color: {{vFg}}; font: inherit; font-size: 13px; font-weight: 800; min-height: 44px; padding: 0 16px; border-radius: 22px">▲ {{score}}</button>
+<a href="#open-T2" onClick="{{ovOpen_T2}}" style="display: flex; align-items: center; background: rgba(31,31,37,0.85); color: #F5F5F0; font-size: 13px; font-weight: 700; padding: 0 14px; min-height: 44px; border-radius: 22px; text-decoration: none">9 comments</a>
+<span style="flex: 1"></span>
+<button onClick="{{openShare}}" aria-label="Send to a DM" style="display: flex; align-items: center; gap: 6px; border: 0; background: #D4FF3A; color: #0D0D0F; font: inherit; font-size: 13px; font-weight: 800; padding: 0 14px; min-height: 44px; border-radius: 22px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg>Send</button>
+<button aria-label="Save" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: rgba(31,31,37,0.85); color: #F5F5F0; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"></path></svg></button>
+</div>
+<div style="font-size: 11px; color: #9A9AA5; text-align: center">Swipe sideways · double-tap to zoom · drag down to close</div>
+</div>
+<sc-if value="{{share}}" hint-placeholder-val="{{false}}">
+<button onClick="{{closeShare}}" aria-label="Close send sheet" style="position: absolute; inset: 0; z-index: 8; border: 0; padding: 0; background: rgba(0,0,0,0.55)"></button>
+<div class="bk-sheet" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 9; background: #17171B; border-radius: 26px 26px 0 0; border-top: 1px solid #2E2E36; padding: 10px 16px 26px; display: flex; flex-direction: column; gap: 10px">
+<div style="width: 40px; height: 4px; border-radius: 2px; background: #3A3A42; margin: 0 auto 4px"></div>
+<div style="display: flex; align-items: baseline; justify-content: space-between"><span style="font-family: Unbounded, sans-serif; font-size: 18px; font-weight: 800">Send to</span><span style="font-size: 12px; color: #9A9AA5; font-weight: 700">{{sentCount}}</span></div>
+<div style="display: flex; gap: 10px; align-items: center; background: #0D0D0F; border-radius: 14px; padding: 8px"><img src="{{curSrc}}" alt="" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover"><span style="flex: 1; min-width: 0; font-size: 12px; color: #C9C9C3; line-height: 1.4">Kabir’s post · opens in Tea for people at Atria</span></div>
+<sc-for list="{{chats}}" as="c" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 12px; min-height: 52px"><span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: {{c.radius}}; background: {{c.tint}}; color: #0D0D0F; display: grid; place-items: center; font-size: 11px; font-weight: 800">{{c.ini}}</span><span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; font-weight: 800">{{c.name}}</span><span style="display: block; font-size: 12px; color: #9A9AA5">{{c.meta}}</span></span><button onClick="{{c.send}}" style="border: 0; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 13px; font-weight: 800; padding: 0 16px; min-height: 38px; border-radius: 19px">{{c.label}}</button></div></sc-for>
+<div style="display: flex; gap: 10px; align-items: flex-start; font-size: 12px; color: #9A9AA5; line-height: 1.45; border-top: 1px solid #26262D; padding-top: 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B49CFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span>Other people’s photos can only be sent in DMs, never added to your story. Only your own posts can go to your story.</span></div>
+</div>
+</sc-if>
+<sc-if value="{{ovShow_T2}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="T2-PostDetail" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { i: 0, chrome: true, zoom: -1, voted: false, share: false, sent: [] };
+this.onSlide = (e) => { const i = Math.round(e.target.scrollLeft / Math.max(1, e.target.clientWidth)); if (i !== this.state.i) this.setState({ i: i, zoom: -1 }); };
+}
+_rv() {
+const st = this.state;
+const P = [
+{ src: '/_blob/09c1b29936c1832cc7144a0d1e1d60f8', alt: 'Hostel terrace at sunset', ratio: '4:5 · shown full, no crop', cap: 'sunset from the hostel terrace hits different after a 6-hour lab' },
+{ src: '/_blob/f5d6e2991b0170d112e2e8de040ac7bb', alt: 'Rainy evening outside Block C', ratio: '9:16 · feed showed a 4:5 crop, here it’s whole', cap: 'Block C in the rain. The feed cropped this to 4:5 — the viewer always shows the original.' },
+{ src: '/_blob/485e7da6913dc0d04b860ccc07ac7be3', alt: 'Hack the Canteen, teams at laptops', ratio: '16:9 · letterboxed, never stretched', cap: 'Hour 3 of Hack the Canteen. Wide photos sit in the middle with black above and below.' }
+];
+const photos = P.map((p, i) => ({ ...p, scale: st.zoom === i ? 2 : 1, tap: () => this.setState({ chrome: !st.chrome }), zoom: () => this.setState({ zoom: st.zoom === i ? -1 : i, chrome: st.zoom === i }) }));
+const cur = P[st.i] || P[0];
+return {
+onSlide: this.onSlide, photos: photos, idx: st.i + 1, ratio: cur.ratio, caption: cur.cap,
+chromeOp: st.chrome ? 1 : 0, chromePe: st.chrome ? 'auto' : 'none',
+dots: P.map((p, i) => ({ w: i === st.i ? 18 : 6, bg: i === st.i ? '#D4FF3A' : '#4A4A54' })),
+vote: () => this.setState({ voted: !st.voted }), score: 76 + (st.voted ? 1 : 0),
+share: st.share, openShare: () => this.setState({ share: true }), closeShare: () => this.setState({ share: false }), curSrc: cur.src,
+sentCount: st.sent.length ? st.sent.length + ' sent' : 'Pick people or chats',
+chats: [['RN', 'Rhea Nair', 'DM · active now', '#B49CFF', '20px'], ['HTC', 'Hack the Canteen squad', 'Squad · 4', '#D4FF3A', '12px'], ['GDG', 'GDG Atria · #general', 'Club chat · 142', '#D4FF3A', '12px'], ['TJ', 'Tanvi J.', 'DM', '#3DDC97', '20px']].map((c) => { const on = st.sent.indexOf(c[1]) !== -1; return { ini: c[0], name: c[1], meta: c[2], tint: c[3], radius: c[4], label: on ? 'Sent ✓' : 'Send', bg: on ? '#26262D' : '#D4FF3A', fg: on ? '#C9C9C3' : '#0D0D0F', send: () => { if (!on) this.setState({ sent: st.sent.concat([c[1]]) }); } }; }),
+vBg: st.voted ? '#D4FF3A' : 'rgba(31,31,37,0.85)', vFg: st.voted ? '#0D0D0F' : '#F5F5F0'
+};
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["T2"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>

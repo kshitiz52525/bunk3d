@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Club admin</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#D4FF3A}a:hover{color:#E6FF85}
+@keyframes bkOvIn{from{transform:translateX(28px);opacity:0}to{transform:none;opacity:1}}
+.bk-ov{animation:bkOvIn 260ms cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.bk-ov{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0D0D0F; color: #F5F5F0; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px">
+<a href="C2-ClubPage.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: #1F1F25; color: #F5F5F0; display: grid; place-items: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<div style="flex: 1"><div style="font-family: Unbounded, sans-serif; font-size: 16px; font-weight: 800">Club admin</div><div style="font-size: 11px; color: #9A9AA5; font-weight: 700">GDG Atria</div></div>
+</div>
+
+<div style="flex: 1; overflow: hidden; padding: 4px 16px 0">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<a href="#open-T3" onClick="{{ovOpen_T3}}" style="display: flex; flex-direction: column; gap: 8px; background: #D4FF3A; color: #0D0D0F; border-radius: 18px; padding: 12px; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span style="font-size: 12px; font-weight: 800">Post as club</span></a>
+<a href="#open-E4" onClick="{{ovOpen_E4}}" style="display: flex; flex-direction: column; gap: 8px; background: #B49CFF; color: #0D0D0F; border-radius: 18px; padding: 12px; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span style="font-size: 12px; font-weight: 800">New event</span></a>
+<a href="#open-E5" onClick="{{ovOpen_E5}}" style="display: flex; flex-direction: column; gap: 8px; background: #17171B; border: 1px solid #2E2E36; color: #F5F5F0; border-radius: 18px; padding: 12px; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4M4 12h16"/></svg><span style="font-size: 12px; font-weight: 800">Check-in</span></a>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin: 20px 0 10px"><span style="font-size: 15px; font-weight: 800">Join requests</span><span style="background: #FF6B9A; color: #0D0D0F; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 10px">{{reqCount}}</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{reqs}}" as="r" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 10px; background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 10px 12px">
+<span style="width: 40px; height: 40px; border-radius: 20px; background: {{r.tint}}; color: #0D0D0F; display: grid; place-items: center; font-size: 12px; font-weight: 800">{{r.initials}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; font-weight: 800">{{r.name}}</span><span style="display: block; font-size: 12px; color: #9A9AA5">{{r.meta}}</span></span>
+<button onClick="{{r.decline}}" aria-label="Decline" style="width: 38px; height: 38px; border: 0; border-radius: 12px; background: #26262D; color: #F5F5F0; display: grid; place-items: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+<button onClick="{{r.approve}}" aria-label="Approve" style="width: 38px; height: 38px; border: 0; border-radius: 12px; background: #D4FF3A; color: #0D0D0F; display: grid; place-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+</div>
+</sc-for>
+<sc-if value="{{none}}" hint-placeholder-val="{{false}}"><div style="background: #17171B; border: 1px dashed #3A3A42; border-radius: 16px; padding: 16px; text-align: center; font-size: 13px; color: #9A9AA5">All caught up. {{approved}} approved — they get a push.</div></sc-if>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin: 20px 0 10px"><span style="font-size: 15px; font-weight: 800">Members · 142</span><span style="font-size: 12px; font-weight: 700; color: #9A9AA5">Search</span></div>
+<div style="background: #17171B; border: 1px solid #26262D; border-radius: 16px; padding: 2px 12px">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 56px; border-bottom: 1px solid #222228"><span style="width: 34px; height: 34px; border-radius: 17px; background: #B49CFF; color: #0D0D0F; display: grid; place-items: center; font-size: 11px; font-weight: 800">RN</span><span style="flex: 1; font-size: 14px; font-weight: 700">Rhea Nair</span><span style="font-size: 12px; font-weight: 800; color: #D4FF3A">Admin ▾</span></div>
+<div style="display: flex; align-items: center; gap: 10px; min-height: 56px; border-bottom: 1px solid #222228"><span style="width: 34px; height: 34px; border-radius: 17px; background: #5CC8FF; color: #0D0D0F; display: grid; place-items: center; font-size: 11px; font-weight: 800">KM</span><span style="flex: 1; font-size: 14px; font-weight: 700">Kabir M.</span><span style="font-size: 12px; font-weight: 700; color: #9A9AA5">Member ▾</span></div>
+<div style="display: flex; align-items: center; gap: 10px; min-height: 56px"><span style="width: 34px; height: 34px; border-radius: 17px; background: #FFB547; color: #0D0D0F; display: grid; place-items: center; font-size: 11px; font-weight: 800">TJ</span><span style="flex: 1; font-size: 14px; font-weight: 700">Tanvi J.</span><span style="font-size: 12px; font-weight: 700; color: #9A9AA5">Member ▾</span></div>
+</div>
+<div style="font-size: 11px; color: #9A9AA5; margin-top: 10px">Admins can’t remove Tea posts or see who posted anonymously. That’s Campus Mods.</div>
+</div>
+<sc-if value="{{ovShow_E4}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="E4-CreateEvent" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_T3}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="T3-Create" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+<sc-if value="{{ovShow_E5}}" hint-placeholder-val="{{false}}"><div class="bk-ov" style="position: absolute; inset: 0; z-index: 60; overflow: hidden; background: #0D0D0F"><dc-import name="E5-Scanner" back="{{ovClose}}"  hint-size="390px,844px"></dc-import></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { gone: {}, approved: 0 }; }
+_rv() {
+const all = [
+{ id: 'a', name: 'Ishaan R.', initials: 'IR', tint: '#FF6B9A', meta: '1st yr · CSE · 2 mutual members' },
+{ id: 'b', name: 'Meera K.', initials: 'MK', tint: '#3DDC97', meta: '2nd yr · ECE · interested in Flutter' }
+];
+const g = this.state.gone;
+const reqs = all.filter((r) => !g[r.id]).map((r) => ({ ...r, approve: () => this.setState({ gone: { ...g, [r.id]: true }, approved: this.state.approved + 1 }), decline: () => this.setState({ gone: { ...g, [r.id]: true } }) }));
+return { reqs: reqs, reqCount: reqs.length, none: reqs.length === 0, approved: this.state.approved };
+}
+renderVals() {
+const v = this._rv() || {};
+const b = this.props.back;
+v.ovHas = !!b; v.ovNo = !b;
+v.ovBack = (e) => { if (e && e.preventDefault) e.preventDefault(); if (b) b(); };
+const cur = this.state ? this.state.__ov : null;
+v.ovClose = () => this.setState({ __ov: null });
+["E4", "T3", "E5"].forEach((k) => { v["ovShow_" + k] = cur === k; v["ovOpen_" + k] = (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ __ov: k }); }; });
+return v;
+}
+}
+</script>
+</body>
+</html>
