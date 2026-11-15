@@ -1,0 +1,40 @@
+/* GENERATED from brand/tokens.json. Dark only. */
+:root {
+  --bg: #0D0D0F;
+  --surface: #17171B;
+  --surface-raised: #1F1F25;
+  --line: #26262D;
+  --ink: #F5F5F0;
+  --ink-muted: #9A9AA5;
+  --lime: #D4FF3A;
+  --on-lime: #0D0D0F;
+  --violet: #B49CFF;
+  --on-violet: #0D0D0F;
+  --anon-tile: #2A2140;
+  --anon-ink: #CDBEFF;
+  --hot: #FF6B9A;
+  --success: #3DDC97;
+  --warning: #FFB547;
+  --error: #FF5D5D;
+  --info: #5CC8FF;
+  --mod-tile: #1E2A4A;
+  --mod-ink: #8FB8FF;
+  --focus-ring: #D4FF3A;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --shadow-sticker: 4px 4px 0 #B49CFF;
+  --font-display: Unbounded, "Arial Black", system-ui, sans-serif;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}

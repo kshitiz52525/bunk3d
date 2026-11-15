@@ -1,0 +1,7 @@
+/* Dark only. Tokens come from @bunk3d/ui/tokens.css, generated from brand/tokens.json. */
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-inter), var(--font-sans); }
+.display { font-family: var(--font-unbounded), var(--font-display); font-weight: 800; }
+.wordmark b { color: var(--lime); font-weight: 800; }
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 24px; border-radius: var(--radius-md); background: var(--lime); color: var(--on-lime); font-weight: 800; text-decoration: none; }
+main { max-width: 720px; margin: 0 auto; padding: var(--space-8) var(--space-4); }
