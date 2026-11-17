@@ -1,7 +1,5 @@
-'use client';
-import { ConsoleShell } from '@/components/kit';
+import { HqShell } from '../_hq/HqShell';
 
-// Finance console frame. Add nav entries as pages are built.
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <ConsoleShell title="Finance" nav={[{ href: '/finance', label: 'Overview' }]}>{children}</ConsoleShell>;
+  return <HqShell console="finance">{children}</HqShell>;
 }

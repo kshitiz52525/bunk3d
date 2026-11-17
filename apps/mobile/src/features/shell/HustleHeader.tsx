@@ -20,7 +20,7 @@ export function HustleHeader({ title }: { title: string }) {
     <HidingHeader>
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 8, paddingBottom: 6, gap: 12, height: 86 }}>
         <View {...pan.panHandlers}>
-          <Pressable accessibilityRole="button" accessibilityLabel="Your profile. Swipe down for The Vibe" onPress={() => router.push('/me')} style={{ width: 52, height: 52, borderRadius: 18, backgroundColor: color.violet, alignItems: 'center', justifyContent: 'center' }}>
+          <Pressable accessibilityRole="button" accessibilityLabel="Your Hustle portfolio. Swipe down for The Vibe" onPress={() => router.push('/portfolio')} style={{ width: 52, height: 52, borderRadius: 18, backgroundColor: color.violet, alignItems: 'center', justifyContent: 'center' }}>
             <RNText style={{ fontFamily: 'Unbounded_800ExtraBold', fontSize: 16, color: color.onLime }}>{me.data?.initials ?? ''}</RNText>
           </Pressable>
         </View>

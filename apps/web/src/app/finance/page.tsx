@@ -1,5 +1,6 @@
-import { PageHead } from '@/components/kit';
+import { SectionView } from '../_hq/SectionView';
+import { HQ } from '../_hq/sections';
 
 export default function Page() {
-  return <PageHead title="Finance" sub="This console is being built." />;
+  return <SectionView console="finance" id={HQ.finance.ids[0]} />;
 }

@@ -1,0 +1,21 @@
+.hq-stack { display: flex; flex-direction: column; gap: 16px; }
+.hq-eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 1px; color: var(--ink-muted); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.hq-split { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.hq-split > .hq-table { flex: 999 1 520px; min-width: 0; }
+.hq-split > .hq-detail { flex: 1 1 300px; min-width: 0; }
+.hq-table tbody tr { cursor: pointer; }
+.hq-table tbody tr:hover { background: var(--surface-raised); }
+.hq-table tbody tr.sel { background: var(--surface-raised); outline: 1px solid var(--lime); outline-offset: -1px; }
+.hq-table tbody tr.hl td:first-child { box-shadow: inset 3px 0 0 var(--warning); }
+.hq-cellbtn { all: unset; cursor: pointer; font-weight: 800; border-radius: 6px; }
+.hq-cellbtn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.t-warn { color: var(--warning); font-weight: 800; } .t-ok { color: var(--success); font-weight: 800; } .t-err { color: var(--error); font-weight: 800; } .t-muted { color: var(--ink-muted); }
+.hq-detail dl { margin: 0 0 12px; } .hq-detail .ln { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.hq-detail dt { color: var(--ink-muted); } .hq-detail dd { margin: 0; font-weight: 700; text-align: right; }
+.hq-banner { border-radius: 12px; padding: 12px 14px; font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.hq-banner.warn { background: #3D2E0D; color: #FFD58A; } .hq-banner.ok { background: #123D2C; color: var(--success); } .hq-banner.err { background: #3A1618; color: var(--error); }
+.hq-banner button { border: 0; background: transparent; color: inherit; font: inherit; font-weight: 800; cursor: pointer; min-height: 44px; padding: 0 8px; border-radius: 8px; }
+.hq-banner button:focus-visible { outline: 2px solid var(--focus-ring); }
+.hq-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.hq-actions .btn { flex: 1 1 120px; }
+.hq-stack .stat .num { font-size: 24px; overflow-wrap: anywhere; }
