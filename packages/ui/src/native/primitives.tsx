@@ -173,5 +173,5 @@ export function Banner({ text, kind = 'pending' }: { text: string; kind?: 'pendi
 }
 
 export function Skeleton({ height = 16, width = '100%' }: { height?: number; width?: number | `${number}%` }) {
-  return <View accessibilityElementsHidden style={{ height, width, borderRadius: radius.sm, backgroundColor: color.surfaceRaised }} />;
+  return <View aria-hidden style={{ height, width, borderRadius: radius.sm, backgroundColor: color.surfaceRaised }} />;
 }

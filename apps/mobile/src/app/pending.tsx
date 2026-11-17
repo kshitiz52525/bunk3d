@@ -8,7 +8,7 @@ export default function Pending() {
   return (
     <Screen>
       <StepHeader step={3} warn onBack={() => router.back()} />
-      <View style={{ height: 230, marginTop: 8 }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+      <View style={{ height: 230, marginTop: 8 }} aria-hidden>
         <View style={{ position: 'absolute', left: 90, top: 20, width: 220, height: 130, borderRadius: 18, backgroundColor: color.surface, borderColor: '#2E2E36', borderWidth: 1, transform: [{ rotate: '-6deg' }], padding: 14 }}>
           <View style={{ width: 46, height: 46, borderRadius: 10, backgroundColor: color.line }} />
           <View style={{ position: 'absolute', left: 74, top: 16, width: 110, height: 8, borderRadius: 4, backgroundColor: '#3A3A42' }} />

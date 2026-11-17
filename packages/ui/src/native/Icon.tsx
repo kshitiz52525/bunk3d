@@ -1,3 +1,4 @@
+import { View } from 'react-native';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
 import { color as c } from '../tokens.generated';
 
@@ -9,7 +10,8 @@ export type IconName =
 export function Icon({ name, size = 20, color = c.ink, stroke = 2.2 }: { name: IconName; size?: number; color?: string; stroke?: number }) {
   const p = { stroke: color, strokeWidth: stroke, strokeLinecap: 'round', strokeLinejoin: 'round', fill: 'none' } as const;
   return (
-    <Svg width={size} height={size} viewBox="0 0 24 24" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <View aria-hidden style={{ width: size, height: size }}>
+    <Svg width={size} height={size} viewBox="0 0 24 24">
       {name === 'back' && <Path d="M15 5l-7 7 7 7" {...p} />}
       {name === 'chevronRight' && <Path d="M9 5l7 7-7 7" {...p} />}
       {name === 'check' && <Path d="M5 12.5l4.5 4.5L19 7.5" {...p} />}
@@ -26,5 +28,6 @@ export function Icon({ name, size = 20, color = c.ink, stroke = 2.2 }: { name: I
       {name === 'bank' && <Path d="M3 10l9-6 9 6M5 10v8M9.500 10v8M14.500 10v8M19 10v8M3 20h18" {...p} />}
       {name === 'google' && (<><Path d="M21 12a9 9 0 1 1-3-6.700" {...p} /><Path d="M12 12h9" {...p} /></>)}
     </Svg>
+    </View>
   );
 }

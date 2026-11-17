@@ -13,7 +13,7 @@ export default function Welcome() {
   ] as const;
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: color.bg, overflow: 'hidden' }}>
-      <View style={{ height: 380, overflow: 'visible' }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+      <View style={{ height: 380, overflow: 'visible' }} aria-hidden>
         <View style={{ position: 'absolute', left: -30, top: 40, width: 470, height: 64, backgroundColor: color.lime, transform: [{ rotate: '-8deg' }], justifyContent: 'center', overflow: 'hidden' }}>
           <RNText numberOfLines={1} style={{ fontFamily: 'Unbounded_800ExtraBold', fontSize: 22, color: color.onLime, letterSpacing: -0.5 }}> skip the lecture · not the tea · skip the lecture · not the tea</RNText>
         </View>
