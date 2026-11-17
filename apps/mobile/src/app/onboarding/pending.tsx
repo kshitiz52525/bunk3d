@@ -37,7 +37,7 @@ export default function Pending() {
         <RNText style={{ flex: 1, fontFamily: 'Inter_600SemiBold', fontSize: 13, lineHeight: 19, color: '#FFD58A' }}>A yellow banner stays on top of the app until you’re verified.</RNText>
       </View>
       <Spacer />
-      <PrimaryCta label="Finish my profile" onPress={() => router.push('/profile')} />
+      <PrimaryCta label="Finish my profile" onPress={() => router.push('/onboarding/profile')} />
       <TextLink label="Use college email instead" onPress={() => router.back()} />
     </Screen>
   );

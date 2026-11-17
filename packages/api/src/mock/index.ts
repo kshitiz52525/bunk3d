@@ -1,111 +1,32 @@
-import { decideOtp, isAdult, parseDob, type OtpAttemptState } from '@bunk3d/core';
-import type { BunkApi, MembershipState, OnboardingDraft, Session, Waitlist } from '../contract';
-import { MOCK_CODE, SEED_CAMPUSES, SEED_CLUBS } from './seed';
+import type { BunkApi } from '../contract';
+import { createCtx, type MockOptions } from './ctx';
+import { createIdentity } from './identity';
+import { createTea } from './tea';
+import { createStudy } from './study';
+import { createPoppin } from './poppin';
+import { createCrew } from './crew';
+import { createDm } from './dm';
+import { createDiscover } from './discover';
+import { createYou } from './you';
+import { createSafety } from './safety';
+import { createHustle } from './hustle';
+import { createConsole } from './console';
 
-const delay = (ms = 150) => new Promise<void>((r) => setTimeout(r, ms));
-const emptyDraft = (): OnboardingDraft => ({ profile: {}, interests: [], goals: [], clubs: {}, followNotices: true });
-const TAKEN = new Set(['admin', 'bunk3d', 'aarav.taken']);
-
-export type MockOptions = { latencyMs?: number; now?: () => number };
+export type { MockOptions } from './ctx';
 
 export function createMockApi(opts: MockOptions = {}): BunkApi {
-  const wait = (ms?: number) => delay(opts.latencyMs ?? ms ?? 150);
-  const now = opts.now ?? (() => Date.now());
-  let session: Session | null = null;
-  let draft = emptyDraft();
-  let attempts: OtpAttemptState = { wrong: 0, lockedUntil: null };
-  let emailWrong = 0;
-  let waitlistCount = 0;
-  const listeners = new Set<() => void>();
-  const set = (s: Session | null) => {
-    session = s;
-    listeners.forEach((l) => l());
-  };
-  const patch = (p: Partial<Session>) => session && set({ ...session, ...p });
-
-  const returningSession = (phone?: string): Session => ({ userId: 'u_returning', phone, campusId: 'atria', verified: 'verified', onboarding: 'done' });
-  const newSession = (phone?: string): Session => ({ userId: 'u_new', phone, campusId: null, verified: 'unverified', onboarding: 'college' });
-
+  const ctx = createCtx(opts);
   return {
-    auth: {
-      async sendOtp() { await wait(); return { ok: true }; },
-      async verifyOtp(phone, code, o) {
-        await wait();
-        const { decision, next } = decideOtp(attempts, code === MOCK_CODE, now());
-        attempts = next;
-        if (!decision.ok) return decision;
-        draft = emptyDraft();
-        const s = o.returning ? returningSession(phone) : newSession(phone);
-        set(s);
-        return { ok: true, session: s };
-      },
-      async signInWithGoogle(o) {
-        await wait();
-        draft = emptyDraft();
-        const s = o.returning ? returningSession() : newSession();
-        set(s);
-        return { ok: true, session: s };
-      },
-      getSession: () => session,
-      subscribe(fn) { listeners.add(fn); return () => listeners.delete(fn); },
-      async signOut() { set(null); draft = emptyDraft(); },
-    },
-    campuses: {
-      async listLive(q) {
-        await wait();
-        const s = q.trim().toLowerCase();
-        return SEED_CAMPUSES.filter((c) => c.name.toLowerCase().includes(s));
-      },
-      async select(id) { await wait(); patch({ campusId: id, onboarding: 'verify' }); },
-      async requestWaitlist(college): Promise<Waitlist> {
-        await wait();
-        waitlistCount += 1;
-        // The waitlist total is real per-college data in the backend. In the mock it only counts this session's requests.
-        return { college, count: waitlistCount, target: 25, seed: true };
-      },
-    },
-    verification: {
-      async sendEmailCode() { await wait(); emailWrong = 0; return { ok: true }; },
-      async verifyEmailCode(code) {
-        await wait();
-        if (code === MOCK_CODE) { patch({ verified: 'verified', onboarding: 'profile' }); return { ok: true }; }
-        emailWrong += 1;
-        return { ok: false, reason: 'wrong' };
-      },
-      async submitId() { await wait(); patch({ verified: 'pending', onboarding: 'profile' }); return { ok: true }; },
-    },
-    onboarding: {
-      async getDraft() { return structuredClone(draft); },
-      async isUsernameFree(u) { await wait(80); return !TAKEN.has(u.toLowerCase()); },
-      async saveProfile(input) {
-        await wait();
-        const dob = parseDob(input.dob);
-        if (!dob || !input.name.trim() || !input.username.trim()) return { ok: false, reason: 'invalid' };
-        if (!isAdult(dob, new Date(now()))) {
-          draft = emptyDraft(); // delete what was entered
-          return { ok: false, reason: 'underage' };
-        }
-        const { dob: _private, ...rest } = input; // dob is never kept in the draft
-        draft.profile = rest;
-        patch({ onboarding: 'interests' });
-        return { ok: true };
-      },
-      async saveInterests(interests, goals) {
-        await wait();
-        draft.interests = interests;
-        draft.goals = goals;
-        patch({ onboarding: 'clubs' });
-      },
-      async listClubs() { await wait(); return SEED_CLUBS; },
-      async setClubMembership(id, joined): Promise<MembershipState> {
-        await wait(80);
-        const club = SEED_CLUBS.find((c) => c.id === id);
-        const state: MembershipState = !joined ? 'none' : club?.join === 'approval' ? 'pending' : 'joined';
-        draft.clubs = { ...draft.clubs, [id]: state };
-        return state;
-      },
-      async setFollowNotices(f) { draft.followNotices = f; },
-      async acceptGuidelines() { await wait(); patch({ onboarding: 'done' }); },
-    },
+    ...createIdentity(ctx),
+    tea: createTea(ctx),
+    study: createStudy(ctx),
+    poppin: createPoppin(ctx),
+    crew: createCrew(ctx),
+    dm: createDm(ctx),
+    discover: createDiscover(ctx),
+    you: createYou(ctx),
+    safety: createSafety(ctx),
+    hustle: createHustle(ctx),
+    console: createConsole(ctx),
   };
 }

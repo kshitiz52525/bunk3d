@@ -34,7 +34,7 @@ export default function Interests() {
   const toggle = (arr: string[], set: (v: string[]) => void, l: string, max: number) =>
     set(arr.includes(l) ? arr.filter((x) => x !== l) : arr.length < max ? [...arr, l] : arr);
   const ok = i.length >= 3 && g.length >= 1;
-  const next = async () => { setBusy(true); await api.onboarding.saveInterests(i, g); setBusy(false); router.push('/clubs'); };
+  const next = async () => { setBusy(true); await api.onboarding.saveInterests(i, g); setBusy(false); router.push('/onboarding/clubs'); };
   return (
     <Screen>
       <StepHeader step={5} onBack={() => router.back()} />

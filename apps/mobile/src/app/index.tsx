@@ -2,7 +2,7 @@ import { Redirect, type Href } from 'expo-router';
 import { useSession } from '@bunk3d/api';
 
 const STEP_ROUTE: Record<string, Href> = {
-  college: '/college', verify: '/verify', profile: '/profile', interests: '/interests', clubs: '/clubs', guidelines: '/guidelines', done: '/feed',
+  college: '/onboarding/college', verify: '/onboarding/verify', profile: '/onboarding/profile', interests: '/onboarding/interests', clubs: '/onboarding/clubs', guidelines: '/onboarding/guidelines', done: '/tea',
 };
 
 /** Gate: signed-out users see Welcome; others resume where onboarding stopped. */

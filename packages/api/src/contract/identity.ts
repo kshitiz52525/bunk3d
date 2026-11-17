@@ -37,6 +37,8 @@ export type Session = {
   verified: VerifiedStatus;
   /** Where onboarding stands; 'done' means the user can enter the app. */
   onboarding: 'college' | 'verify' | 'profile' | 'interests' | 'clubs' | 'guidelines' | 'done';
+  /** Campus wave 1-4 (HANDOFF §8). The Hustle is hidden below wave 3. Managed in Ops OP4. */
+  wave: 1 | 2 | 3 | 4;
 };
 
 export type AuthResult =
@@ -68,7 +70,7 @@ export type OnboardingDraft = {
 
 export type Waitlist = { college: string; count: number; target: number; seed?: true };
 
-export interface BunkApi {
+export interface IdentityApi {
   auth: {
     /** Public. Rate-limited server side. */
     sendOtp(phone: string): Promise<{ ok: true }>;

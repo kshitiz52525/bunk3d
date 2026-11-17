@@ -12,7 +12,7 @@ export default function College() {
   const [wait, setWait] = useState<Waitlist | null>(null);
   const list = useAsync(() => api.campuses.listLive(q), [q]);
 
-  const pick = async (id: string) => { await api.campuses.select(id); router.push('/verify'); };
+  const pick = async (id: string) => { await api.campuses.select(id); router.push('/onboarding/verify'); };
   const request = async () => setWait(await api.campuses.requestWaitlist(q.trim() || 'My college'));
 
   if (wait) {

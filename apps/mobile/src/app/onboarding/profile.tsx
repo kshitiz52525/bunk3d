@@ -57,7 +57,7 @@ export default function Profile() {
     setBusy(true);
     const r = await api.onboarding.saveProfile({ name: name.trim(), username, degree, dept, year, dob });
     setBusy(false);
-    if (r.ok) router.push('/interests');
+    if (r.ok) router.push('/onboarding/interests');
     else if (r.reason === 'underage') { setName(''); setUsername(''); setDob(''); setDegree(''); setDept(''); setYear(''); setPhoto(null); setMinor(true); }
     else setInvalid(true);
   };

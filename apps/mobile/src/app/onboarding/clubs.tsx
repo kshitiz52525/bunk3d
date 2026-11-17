@@ -30,13 +30,13 @@ export default function Clubs() {
 
   return (
     <Screen>
-      <StepHeader step={6} onBack={() => router.back()} right={{ label: 'Skip', onPress: () => router.push('/guidelines') }} />
+      <StepHeader step={6} onBack={() => router.back()} right={{ label: 'Skip', onPress: () => router.push('/onboarding/guidelines') }} />
       <View style={{ marginTop: 30, marginBottom: 6 }}><H1>Pick your crews</H1></View>
       <RNText style={{ fontFamily: 'Inter_500Medium', fontSize: 14, color: color.inkMuted, marginBottom: 16 }}>{sub}</RNText>
       <RNText style={{ fontFamily: 'Inter_800ExtraBold', fontSize: 11, letterSpacing: 1.4, color: color.inkMuted, marginBottom: 8 }}>CLUBS AT ATRIA</RNText>
       {clubs.status === 'loading' ? <SkeletonList rows={4} /> : null}
       {clubs.status === 'error' ? <ErrorState onRetry={clubs.reload} /> : null}
-      {clubs.status === 'ready' && clubs.data.length === 0 ? <EmptyState title="No clubs here yet." body="Crews show up as soon as a club lead sets one up." action={{ label: 'Skip', onPress: () => router.push('/guidelines') }} /> : null}
+      {clubs.status === 'ready' && clubs.data.length === 0 ? <EmptyState title="No clubs here yet." body="Crews show up as soon as a club lead sets one up." action={{ label: 'Skip', onPress: () => router.push('/onboarding/guidelines') }} /> : null}
       {clubs.status === 'ready' ? (
         <View style={{ gap: 8 }}>
           {clubs.data.map((c) => {
@@ -76,7 +76,7 @@ export default function Clubs() {
         </Pressable>
       </View>
       <Spacer />
-      <PrimaryCta label="Next" onPress={() => router.push('/guidelines')} />
+      <PrimaryCta label="Next" onPress={() => router.push('/onboarding/guidelines')} />
     </Screen>
   );
 }

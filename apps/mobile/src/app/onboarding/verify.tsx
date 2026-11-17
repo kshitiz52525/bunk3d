@@ -32,14 +32,14 @@ export default function Verify() {
     setBusy(true);
     const r = await api.verification.verifyEmailCode(code);
     setBusy(false);
-    if (r.ok) router.push('/profile'); else { setWrong(true); setCode(''); }
+    if (r.ok) router.push('/onboarding/profile'); else { setWrong(true); setCode(''); }
   };
   const snap = async () => {
     const perm = await ImagePicker.requestCameraPermissionsAsync();
     const r = perm.granted ? await ImagePicker.launchCameraAsync({ quality: 0.7 }) : await ImagePicker.launchImageLibraryAsync({ quality: 0.7 });
     if (!r.canceled) { setPhoto(r.assets[0].uri); }
   };
-  const submitId = async () => { setBusy(true); await api.verification.submitId(); setBusy(false); router.push('/pending'); };
+  const submitId = async () => { setBusy(true); await api.verification.submitId(); setBusy(false); router.push('/onboarding/pending'); };
 
   return (
     <Screen>
