@@ -27,12 +27,25 @@ pnpm + Turborepo monorepo. Expo (React Native) + TypeScript + Expo Router for mo
 - Anonymous posting unlocks at 20 karma, a 7-day-old account **and no active strike** (per S1-States). T3 and T11 lock copy must match.
 - Money rounding: round to 2 decimal places (paise) at each step. For a ₹199 ticket that gives fee ₹9.95, GST ₹1.79, total ₹210.74, which differs from the ₹210.80 example in §4. The unit tests follow the 2-decimal rule, and the §4 text below is left as written until the owner decides whether to correct the example.
 
+## Build approach (owner decision, 18 Nov 2026): frontend first, then backend, then connect
+1. **Frontend phase (now):** build every screen and state against a mock data layer. Order stays wave order, but backend, database and RLS work is deferred.
+2. **Backend phase:** Supabase schema, RLS with tests, Edge Functions, Razorpay. Built against the same API contract.
+3. **Connect phase:** swap the mock adapter for the Supabase adapter.
+Rules that make the swap cheap:
+- Screens never import mock data or server logic. They call hooks from `@bunk3d/api` only (`useFeed()`, `useCampuses()`, ...), which go through a `BunkApi` interface defined in `packages/api/src/contract`.
+- `packages/api/src/mock` is the only implementation for now. It holds clearly labelled **SEED** data (every seed record is flagged `seed: true` and the UI never presents it as real numbers).
+- Business rules (fees, GST, karma gates, mod votes, strikes, QR rotation) live as pure, unit-tested TypeScript in `packages/core`. The mock adapter calls them now; the Edge Functions will reuse them later. Screens never call `packages/core` for money; they receive computed amounts from the API.
+- Every async hook exposes loading, error, empty and offline states (S1).
+- The contract is the hand-off to the backend phase: each method lists who may call it and what RLS must enforce.
+
 ## Repo layout (target)
 ```
 apps/mobile      Expo app (Vibe, and Hustle behind the wave gate)
 apps/web         Next.js consoles (Crew HQ, College HQ, Collab HQ, Vendor, Finance, Ops) + phone-browser scanner
 packages/ui      Design tokens (generated from brand/tokens.json) + primitives
-packages/db      Supabase migrations, generated types, RLS tests
+packages/core    Pure business rules (money, gates, moderation), unit-tested
+packages/api     BunkApi contract, hooks, mock adapter (now), Supabase adapter (later)
+packages/db      Supabase migrations, generated types, RLS tests (backend phase)
 HANDOFF.md       Product spec, source of truth
 design/          Screen specs (.dc.html), canvas.json, screenshots
 brand/           tokens.json, guidelines, logos

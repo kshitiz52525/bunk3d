@@ -22,7 +22,9 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-svg": "*",
+    "react-native-safe-area-context": "*"
   },
   "devDependencies": {
     "@types/node": "^20.19.43",
@@ -30,6 +32,8 @@
     "react": "19.3.0",
     "react-native": "0.88.1",
     "typescript": "~6.0.3",
-    "vitest": "latest"
+    "vitest": "latest",
+    "react-native-svg": "*",
+    "react-native-safe-area-context": "~5.11.1"
   }
 }

@@ -60,7 +60,7 @@ export function Button({ label, kind = 'primary', sticker, style, disabled, ...r
           backgroundColor: primary ? color.lime : color.surfaceRaised,
           opacity: disabled ? 0.5 : pressed ? 0.85 : 1,
         },
-        sticker && { boxShadow: `4px 4px 0 ${color.violet}`, transform: [{ rotate: `${tilt.left}deg` }] },
+        sticker && { boxShadow: `4px 4px 0 ${color.violet}` },
         style,
       ]}
     >
