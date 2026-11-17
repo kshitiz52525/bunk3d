@@ -3,3 +3,4 @@
 export * from './age';
 export * from './otp';
 export * from './anon';
+export * from './money';

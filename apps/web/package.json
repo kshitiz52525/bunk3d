@@ -14,7 +14,9 @@
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "@bunk3d/ui": "workspace:*"
+    "@bunk3d/ui": "workspace:*",
+    "@bunk3d/api": "workspace:*",
+    "@bunk3d/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20",
