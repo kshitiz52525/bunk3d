@@ -1,0 +1,13 @@
+# Netlify build for the mobile app's web export (Expo Router, single-page output).
+[build]
+  command = "pnpm install --frozen-lockfile && pnpm --filter @bunk3d/mobile exec expo export --platform web"
+  publish = "apps/mobile/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Single-page app: every path (/tea, /gigs, ...) must serve index.html so deep links and reloads work.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
