@@ -38,6 +38,7 @@ export function VibeHeader() {
   const session = useSession();
   const me = useAsync(() => api.you.me(), []);
   const badges = useAsync(() => api.you.badges(), []);
+  const dmUnread = useAsync(() => api.dm.unreadCount(), []);
   const canHustle = (session?.wave ?? 1) >= 3; // The Hustle is hidden until wave 3.
   const pan = useMemo(() =>
     PanResponder.create({
@@ -60,7 +61,7 @@ export function VibeHeader() {
           <RNText accessibilityRole="header" accessibilityLabel="Bunk3d" style={{ fontFamily: 'Unbounded_800ExtraBold', fontSize: 20, letterSpacing: -0.8, color: color.ink }}>bunk<RNText style={{ color: color.lime }}>3</RNText>d</RNText>
           <RNText numberOfLines={1} style={{ fontFamily: 'Inter_600SemiBold', fontSize: 12, color: color.inkMuted }}>{me.data?.campusName ?? ''}</RNText>
         </View>
-        <IconBtn icon="chat" label="Messages" dot={badges.data?.unreadDms} onPress={() => router.push('/dms')} />
+        <IconBtn icon="chat" label="Messages" dot={badges.data?.unreadDms || (dmUnread.data ?? 0) > 0} onPress={() => router.push('/dms')} />
         <IconBtn icon="search" label="Search" onPress={() => router.push('/search')} />
         <IconBtn icon="bell" label="Notices" badge={badges.data?.unreadNotices || undefined} onPress={() => router.push('/notices')} />
       </View>

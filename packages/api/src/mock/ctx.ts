@@ -22,11 +22,25 @@ export type MockCtx = {
   profile: { name: string; username: string; degree?: string; dept?: string; year?: string; photoUri?: string } | null;
 };
 
+const STORE_KEY = 'bunk3d.mock.session';
+type Store = { getItem(k: string): string | null; setItem(k: string, v: string): void; removeItem(k: string): void };
+/** Browser-only convenience so a reload does not sign the dev user out. Absent on native; never throws. */
+const store = (): Store | null => {
+  try { return (globalThis as { localStorage?: Store }).localStorage ?? null; } catch { return null; }
+};
+function restore(): { session: Session; profile: MockCtx['profile'] } | null {
+  try { const raw = store()?.getItem(STORE_KEY); return raw ? JSON.parse(raw) : null; } catch { return null; }
+}
+
 export function createCtx(opts: MockOptions = {}): MockCtx {
-  let session: Session | null = null;
+  const saved = opts.latencyMs === undefined ? restore() : null; // tests pass latencyMs and stay isolated
+  let session: Session | null = saved?.session ?? null;
   const listeners = new Set<() => void>();
   const setSession = (s: Session | null) => {
     session = s;
+    if (opts.latencyMs === undefined) {
+      try { if (s) store()?.setItem(STORE_KEY, JSON.stringify({ session: s, profile: ctx.profile })); else store()?.removeItem(STORE_KEY); } catch { /* storage unavailable */ }
+    }
     listeners.forEach((l) => l());
   };
   const ctx: MockCtx = {
@@ -44,7 +58,7 @@ export function createCtx(opts: MockOptions = {}): MockCtx {
       listeners.add(fn);
       return () => listeners.delete(fn);
     },
-    profile: null,
+    profile: saved?.profile ?? null,
   };
   return ctx;
 }

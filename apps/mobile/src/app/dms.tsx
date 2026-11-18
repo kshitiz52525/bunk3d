@@ -96,7 +96,7 @@ export default function Dms() {
                   <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
                     <Pressable accessibilityRole="button" accessibilityLabel={`Accept ${r.name}`} onPress={async () => { const id = await api.dm.acceptRequest(r.id); router.push({ pathname: '/chat/[id]', params: { id } }); }} style={{ minHeight: 44, paddingHorizontal: 18, borderRadius: 12, backgroundColor: color.lime, justifyContent: 'center' }}><T size={13} f="bold" c={color.onLime}>Accept</T></Pressable>
                     <Pressable accessibilityRole="button" accessibilityLabel={`Ignore ${r.name}`} onPress={async () => { await api.dm.ignoreRequest(r.id); }} style={{ minHeight: 44, paddingHorizontal: 18, borderRadius: 12, backgroundColor: color.line, justifyContent: 'center' }}><T size={13} f="semi">Ignore</T></Pressable>
-                    <Pressable accessibilityRole="link" accessibilityLabel={`Report ${r.name}`} onPress={() => router.push({ pathname: '/report', params: { kind: 'dm_request', id: r.id } } as never)} style={{ minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' }}><T size={13} f="semi" c="#C9C9C3">Report</T></Pressable>
+                    <Pressable accessibilityRole="link" accessibilityLabel={`Report ${r.name}`} onPress={() => router.push({ pathname: '/report', params: { targetKind: 'dm', targetId: r.id } } as never)} style={{ minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' }}><T size={13} f="semi" c="#C9C9C3">Report</T></Pressable>
                   </View>
                 </View>
               )) : null

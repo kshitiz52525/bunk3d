@@ -4,6 +4,7 @@ import type {
 } from '../contract';
 import type { MockCtx } from './ctx';
 import { personById } from './seed-people';
+import { SEED_CAMPUSES } from './seed';
 import { SEARCH_DOCS, SEED_KARMA, SEED_MY_CLUBS, SEED_MY_ITEMS, SEED_NOTICES, SEED_PUBLIC_POSTS } from './seed-you';
 
 const DAY = 86_400_000;
@@ -25,7 +26,7 @@ export function createYou(ctx: MockCtx): YouApi {
   const me = (): Me => {
     const p = ctx.profile;
     const name = p?.name ?? 'Student';
-    return { id: ctx.requireUser(), name, initials: initialsOf(name), username: p?.username ?? 'student', campusName: 'Atria University', photoUri: p?.photoUri };
+    return { id: ctx.requireUser(), name, initials: initialsOf(name), username: p?.username ?? 'student', campusName: SEED_CAMPUSES.find((c) => c.id === ctx.getSession()?.campusId)?.name ?? 'Atria University', photoUri: p?.photoUri };
   };
   const liveNotices = () => notices.map((n) => ({ ...n, read: read.has(n.id) }));
   const isSeedUser = () => ctx.requireUser() === 'u_returning';

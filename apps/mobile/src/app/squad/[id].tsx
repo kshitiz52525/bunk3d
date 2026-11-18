@@ -104,7 +104,7 @@ export default function SquadChat() {
             <T size={13} c={color.inkMuted}>{`Max ${s.max} · only verified students from your campus can join`}</T>
             <Row label="Invite link · expires in 24h" value="Copy" onPress={copyInvite} />
             <Row label="Mute notifications" value={s.muted ? 'On' : 'Off'} onPress={async () => { await api.dm.setSquadMuted(id, !s.muted); state.reload(); }} />
-            <Row label="Report group" value="›" onPress={() => router.push({ pathname: '/report', params: { kind: 'squad', id } } as never)} />
+            <Row label="Report group" value="›" onPress={() => router.push({ pathname: '/report', params: { targetKind: 'dm', targetId: id } } as never)} />
             <Row label="Leave group" value="›" onPress={async () => { await api.dm.leaveSquad(id); router.back(); }} />
             {note ? <T size={12} c={color.success} accessibilityRole="alert">{note}</T> : null}
             <Pressable accessibilityRole="button" accessibilityLabel="Done" onPress={() => setInfo(false)} style={{ minHeight: 52, borderRadius: 14, backgroundColor: color.lime, alignItems: 'center', justifyContent: 'center' }}><T size={15} f="bold" c={color.onLime}>Done</T></Pressable>

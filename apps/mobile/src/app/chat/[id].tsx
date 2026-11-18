@@ -99,7 +99,7 @@ export default function Chat() {
             {[
               { label: v.myReceiptsOn ? 'Turn off read receipts' : 'Turn on read receipts', run: async () => { await api.dm.setReadReceipts(!v.myReceiptsOn); } },
               { label: v.muted ? 'Unmute' : 'Mute', run: async () => { await api.dm.setChatMuted(id, !v.muted); } },
-              { label: 'Report', run: async () => router.push({ pathname: '/report', params: { kind: 'dm', id } } as never), hot: true },
+              { label: 'Report', run: async () => router.push({ pathname: '/report', params: { targetKind: 'dm', targetId: id } } as never), hot: true },
               { label: `Block ${first}`, run: async () => { await api.dm.blockPerson(id); } },
             ].map((it) => (
               <Pressable key={it.label} accessibilityRole="menuitem" accessibilityLabel={it.label} onPress={async () => { setMenu(false); await it.run(); state.reload(); }} style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 14 }}>
