@@ -17,11 +17,12 @@ const theme = {
 };
 
 export default function RootLayout() {
-  const [loaded] = useFonts({ Inter_500Medium, Inter_600SemiBold, Inter_800ExtraBold, Unbounded_800ExtraBold });
+  const [loaded, error] = useFonts({ Inter_500Medium, Inter_600SemiBold, Inter_800ExtraBold, Unbounded_800ExtraBold });
   useEffect(() => {
-    if (loaded) SplashScreen.hideAsync();
-  }, [loaded]);
-  if (!loaded) return null;
+    if (loaded || error) SplashScreen.hideAsync();
+  }, [loaded, error]);
+  // A failed font download must not prevent the app from opening.
+  if (!loaded && !error) return null;
   return (
     <ApiProvider api={api}>
       <ThemeProvider value={theme}>
