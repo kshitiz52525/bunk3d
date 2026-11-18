@@ -1,5 +1,7 @@
 # Netlify build for the mobile app's web export (Expo Router, single-page output).
 [build]
+  # Paths below are relative to the repo root, even if the Netlify UI sets a base directory.
+  base = "."
   command = "pnpm install --frozen-lockfile && pnpm --filter @bunk3d/mobile exec expo export --platform web"
   publish = "apps/mobile/dist"
 
