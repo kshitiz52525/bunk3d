@@ -1,6 +1,7 @@
 import type { BunkApi } from '../contract';
 import { createCtx, type MockOptions } from './ctx';
 import { createIdentity } from './identity';
+import { createStaff } from './staff';
 import { createTea } from './tea';
 import { createStudy } from './study';
 import { createPoppin } from './poppin';
@@ -18,6 +19,8 @@ export function createMockApi(opts: MockOptions = {}): BunkApi {
   const ctx = createCtx(opts);
   return {
     ...createIdentity(ctx),
+    mode: 'mock',
+    staff: createStaff(ctx),
     tea: createTea(ctx),
     study: createStudy(ctx),
     poppin: createPoppin(ctx),

@@ -9,6 +9,7 @@ import type { YouApi } from './you';
 import type { SafetyApi } from './safety';
 import type { HustleApi } from './hustle';
 import type { ConsoleApi } from './console';
+import type { StaffApi } from './staff';
 
 export * from './identity';
 export * from './tea';
@@ -21,9 +22,13 @@ export * from './you';
 export * from './safety';
 export * from './hustle';
 export * from './console';
+export * from './staff';
 
 /** The whole backend surface. The mock adapter implements it now; the Supabase adapter later. */
 export interface BunkApi extends IdentityApi {
+  /** 'mock' while the frontend runs on seed data; consoles label seed data only in this mode. */
+  mode: 'mock' | 'live';
+  staff: StaffApi;
   tea: TeaApi;
   study: StudyApi;
   poppin: PoppinApi;

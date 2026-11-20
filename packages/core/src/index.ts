@@ -16,3 +16,4 @@ export * from './strikes';
 export * from './discover';
 export * from './earnings';
 export * from './swap';
+export * from './staff';

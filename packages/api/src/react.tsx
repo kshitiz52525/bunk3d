@@ -42,3 +42,8 @@ export function useAsync<T>(fn: () => Promise<T>, deps: unknown[]): AsyncState<T
   }, [...deps, tick]);
   return { ...state, reload } as AsyncState<T>;
 }
+
+/** 'mock' while the app runs on seed data. Use it to label seed data; never show the label in 'live' mode. */
+export function useApiMode(): 'mock' | 'live' {
+  return useApi().mode;
+}

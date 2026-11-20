@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
+import { AccountMenu } from './staff';
 
 // Shared console kit. Dark only; styled by the classes in globals.css (tokens from @bunk3d/ui).
 export type NavItem = { href: string; label: string };
@@ -18,6 +19,7 @@ export function ConsoleShell({ title, nav, children }: { title: string; nav: Nav
             <Link key={n.href} href={n.href} aria-current={path === n.href ? 'page' : undefined} className={path === n.href ? 'on' : ''}>{n.label}</Link>
           ))}
         </nav>
+        <AccountMenu />
       </aside>
       <main className="content">{children}</main>
     </div>

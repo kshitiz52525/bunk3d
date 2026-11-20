@@ -8,15 +8,16 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"no tests yet\""
+    "test": "echo \"no tests yet\"",
+    "e2e:auth": "node e2e/auth.mjs"
   },
   "dependencies": {
+    "@bunk3d/api": "workspace:*",
+    "@bunk3d/core": "workspace:*",
+    "@bunk3d/ui": "workspace:*",
     "next": "16.4.6",
     "react": "19.3.0",
-    "react-dom": "19.3.0",
-    "@bunk3d/ui": "workspace:*",
-    "@bunk3d/api": "workspace:*",
-    "@bunk3d/core": "workspace:*"
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -24,6 +25,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "playwright-core": "^1.65.1",
     "typescript": "^5"
   }
 }
